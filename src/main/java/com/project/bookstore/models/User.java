@@ -32,15 +32,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "users")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u")
-    , @NamedQuery(name = "Users.findById", query = "SELECT u FROM Users u WHERE u.id = :id")
-    , @NamedQuery(name = "Users.findByUsername", query = "SELECT u FROM Users u WHERE u.username = :username")
-    , @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password")
-    , @NamedQuery(name = "Users.findByFirstName", query = "SELECT u FROM Users u WHERE u.firstName = :firstName")
-    , @NamedQuery(name = "Users.findByLastName", query = "SELECT u FROM Users u WHERE u.lastName = :lastName")
-    , @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email")})
-public class Users implements Serializable {
+public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -66,29 +58,29 @@ public class Users implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonManagedReference
-    private Collection<Baskets> basketsCollection;
+    private Collection<Basket> basketsCollection;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
     @JsonBackReference
-    private Roles roleId;
+    private Role roleId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonManagedReference
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonManagedReference
-    private Collection<Orders> ordersCollection;
+    private Collection<Order> ordersCollection;
     @OneToMany(mappedBy = "userId")
     @JsonManagedReference
-    private Collection<Wishlists> wishlistsCollection;
+    private Collection<Wishlist> wishlistsCollection;
 
-    public Users() {
+    public User() {
     }
 
-    public Users(Integer id) {
+    public User(Integer id) {
         this.id = id;
     }
 
-    public Users(String username, String password, String firstName, String lastName, String email) {
+    public User(String username, String password, String firstName, String lastName, String email) {
         
         this.username = username;
         this.password = password;
@@ -146,19 +138,19 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Baskets> getBasketsCollection() {
+    public Collection<Basket> getBasketsCollection() {
         return basketsCollection;
     }
 
-    public void setBasketsCollection(Collection<Baskets> basketsCollection) {
+    public void setBasketsCollection(Collection<Basket> basketsCollection) {
         this.basketsCollection = basketsCollection;
     }
 
-    public Roles getRoleId() {
+    public Role getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(Roles roleId) {
+    public void setRoleId(Role roleId) {
         this.roleId = roleId;
     }
 
@@ -172,20 +164,20 @@ public class Users implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Orders> getOrdersCollection() {
+    public Collection<Order> getOrdersCollection() {
         return ordersCollection;
     }
 
-    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+    public void setOrdersCollection(Collection<Order> ordersCollection) {
         this.ordersCollection = ordersCollection;
     }
 
     @XmlTransient
-    public Collection<Wishlists> getWishlistsCollection() {
+    public Collection<Wishlist> getWishlistsCollection() {
         return wishlistsCollection;
     }
 
-    public void setWishlistsCollection(Collection<Wishlists> wishlistsCollection) {
+    public void setWishlistsCollection(Collection<Wishlist> wishlistsCollection) {
         this.wishlistsCollection = wishlistsCollection;
     }
 
@@ -199,10 +191,10 @@ public class Users implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Users)) {
+        if (!(object instanceof User)) {
             return false;
         }
-        Users other = (Users) object;
+        User other = (User) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

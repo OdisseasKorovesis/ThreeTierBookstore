@@ -30,12 +30,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "authors")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Authors.findAll", query = "SELECT a FROM Authors a")
-    , @NamedQuery(name = "Authors.findById", query = "SELECT a FROM Authors a WHERE a.id = :id")
-    , @NamedQuery(name = "Authors.findByFirstName", query = "SELECT a FROM Authors a WHERE a.firstName = :firstName")
-    , @NamedQuery(name = "Authors.findByLastName", query = "SELECT a FROM Authors a WHERE a.lastName = :lastName")})
-public class Authors implements Serializable {
+public class Author implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,16 +56,16 @@ public class Authors implements Serializable {
         @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "book_id", referencedColumnName = "id")})
     @ManyToMany
-    private Collection<Books> booksCollection;
+    private Collection<Book> booksCollection;
 
-    public Authors() {
+    public Author() {
     }
 
-    public Authors(Integer id) {
+    public Author(Integer id) {
         this.id = id;
     }
 
-    public Authors(Integer id, String firstName, String lastName, String quote, String imageUrl) {
+    public Author(Integer id, String firstName, String lastName, String quote, String imageUrl) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -119,11 +114,11 @@ public class Authors implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Books> getBooksCollection() {
+    public Collection<Book> getBooksCollection() {
         return booksCollection;
     }
 
-    public void setBooksCollection(Collection<Books> booksCollection) {
+    public void setBooksCollection(Collection<Book> booksCollection) {
         this.booksCollection = booksCollection;
     }
 
@@ -137,10 +132,10 @@ public class Authors implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Authors)) {
+        if (!(object instanceof Author)) {
             return false;
         }
-        Authors other = (Authors) object;
+        Author other = (Author) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

@@ -6,45 +6,48 @@
 package com.project.bookstore.models;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author chatz
  */
 @Entity
-@Table(name = "wishlist_items")
+@Table(name = "baskets")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "WishlistItems.findAll", query = "SELECT w FROM WishlistItems w")
-    , @NamedQuery(name = "WishlistItems.findById", query = "SELECT w FROM WishlistItems w WHERE w.id = :id")})
-public class WishlistItems implements Serializable {
+public class Basket implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @JoinColumn(name = "book_id", referencedColumnName = "id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "basketId")
+    private Collection<BasketItem> basketItemsCollection;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Books bookId;
-    @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Wishlists wishlistId;
+    private User userId;
 
-    public WishlistItems() {
+    public Basket() {
     }
 
-    public WishlistItems(Integer id) {
+    public Basket(Integer id) {
         this.id = id;
     }
 
@@ -56,20 +59,21 @@ public class WishlistItems implements Serializable {
         this.id = id;
     }
 
-    public Books getBookId() {
-        return bookId;
+    @XmlTransient
+    public Collection<BasketItem> getBasketItemsCollection() {
+        return basketItemsCollection;
     }
 
-    public void setBookId(Books bookId) {
-        this.bookId = bookId;
+    public void setBasketItemsCollection(Collection<BasketItem> basketItemsCollection) {
+        this.basketItemsCollection = basketItemsCollection;
     }
 
-    public Wishlists getWishlistId() {
-        return wishlistId;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setWishlistId(Wishlists wishlistId) {
-        this.wishlistId = wishlistId;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -82,10 +86,10 @@ public class WishlistItems implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof WishlistItems)) {
+        if (!(object instanceof Basket)) {
             return false;
         }
-        WishlistItems other = (WishlistItems) object;
+        Basket other = (Basket) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -94,7 +98,7 @@ public class WishlistItems implements Serializable {
 
     @Override
     public String toString() {
-        return "com.project.bookstore.models.WishlistItems[ id=" + id + " ]";
+        return "com.project.bookstore.models.Baskets[ id=" + id + " ]";
     }
     
 }

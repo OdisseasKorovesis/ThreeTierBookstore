@@ -8,12 +8,11 @@ package com.project.bookstore.models;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,29 +25,32 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author chatz
  */
 @Entity
-@Table(name = "wishlists")
+@Table(name = "roles")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Wishlists.findAll", query = "SELECT w FROM Wishlists w")
-    , @NamedQuery(name = "Wishlists.findById", query = "SELECT w FROM Wishlists w WHERE w.id = :id")})
-public class Wishlists implements Serializable {
+public class Role implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlistId")
-    private Collection<WishlistItems> wishlistItemsCollection;
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    @ManyToOne
-    private Users userId;
+    @Basic(optional = false)
+    @Column(name = "role")
+    private String role;
+    @OneToMany(mappedBy = "roleId")
+    private Collection<User> usersCollection;
 
-    public Wishlists() {
+    public Role() {
     }
 
-    public Wishlists(Integer id) {
+    public Role(Integer id) {
         this.id = id;
+    }
+
+    public Role(Integer id, String role) {
+        this.id = id;
+        this.role = role;
     }
 
     public Integer getId() {
@@ -59,21 +61,21 @@ public class Wishlists implements Serializable {
         this.id = id;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     @XmlTransient
-    public Collection<WishlistItems> getWishlistItemsCollection() {
-        return wishlistItemsCollection;
+    public Collection<User> getUsersCollection() {
+        return usersCollection;
     }
 
-    public void setWishlistItemsCollection(Collection<WishlistItems> wishlistItemsCollection) {
-        this.wishlistItemsCollection = wishlistItemsCollection;
-    }
-
-    public Users getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Users userId) {
-        this.userId = userId;
+    public void setUsersCollection(Collection<User> usersCollection) {
+        this.usersCollection = usersCollection;
     }
 
     @Override
@@ -86,10 +88,10 @@ public class Wishlists implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Wishlists)) {
+        if (!(object instanceof Role)) {
             return false;
         }
-        Wishlists other = (Wishlists) object;
+        Role other = (Role) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -98,7 +100,7 @@ public class Wishlists implements Serializable {
 
     @Override
     public String toString() {
-        return "com.project.bookstore.models.Wishlists[ id=" + id + " ]";
+        return "com.project.bookstore.models.Roles[ id=" + id + " ]";
     }
     
 }

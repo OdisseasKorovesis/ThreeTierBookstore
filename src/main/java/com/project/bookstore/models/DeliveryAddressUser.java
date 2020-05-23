@@ -42,7 +42,7 @@ public class DeliveryAddressUser implements Serializable {
     private DeliveryAddress deliveryAddressId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Users userId;
+    private User userId;
 
     public DeliveryAddressUser() {
     }
@@ -67,11 +67,11 @@ public class DeliveryAddressUser implements Serializable {
         this.deliveryAddressId = deliveryAddressId;
     }
 
-    public Users getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Users userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

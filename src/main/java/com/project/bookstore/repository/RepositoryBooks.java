@@ -5,13 +5,13 @@
  */
 package com.project.bookstore.repository;
 
-import com.project.bookstore.models.Books;
+import com.project.bookstore.models.Book;
 import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author chatz
  */
-public interface RepositoryBooks extends CrudRepository<Books, Integer>  {
-    Books findBookById(Integer id);
+public interface RepositoryBooks extends CrudRepository<Book, Integer>  {
+    Book findBookById(Integer id);
 }

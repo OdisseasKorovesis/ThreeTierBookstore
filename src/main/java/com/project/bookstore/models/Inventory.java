@@ -40,7 +40,7 @@ public class Inventory implements Serializable {
     private int stockLevel;
     @JoinColumn(name = "book_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
-    private Books books;
+    private Book books;
 
     public Inventory() {
     }
@@ -70,11 +70,11 @@ public class Inventory implements Serializable {
         this.stockLevel = stockLevel;
     }
 
-    public Books getBooks() {
+    public Book getBooks() {
         return books;
     }
 
-    public void setBooks(Books books) {
+    public void setBooks(Book books) {
         this.books = books;
     }
 

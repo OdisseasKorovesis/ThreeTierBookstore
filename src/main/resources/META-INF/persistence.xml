@@ -3,21 +3,22 @@
   <persistence-unit name="com.project_bookstore_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.project.bookstore.models.OrderStatus</class>
-    <class>com.project.bookstore.models.Books</class>
-    <class>com.project.bookstore.models.Users</class>
-    <class>com.project.bookstore.models.OrderItems</class>
     <class>com.project.bookstore.models.DeliveryAddress</class>
     <class>com.project.bookstore.models.Inventory</class>
-    <class>com.project.bookstore.models.Baskets</class>
     <class>com.project.bookstore.models.Genre</class>
-    <class>com.project.bookstore.models.Authors</class>
-    <class>com.project.bookstore.models.BasketItems</class>
-    <class>com.project.bookstore.models.WishlistItems</class>
-    <class>com.project.bookstore.models.Orders</class>
-    <class>com.project.bookstore.models.Publishers</class>
-    <class>com.project.bookstore.models.Roles</class>
-    <class>com.project.bookstore.models.Wishlists</class>
     <class>com.project.bookstore.models.DeliveryAddressUser</class>
+    <class>com.project.bookstore.models.Book</class>
+    <class>com.project.bookstore.models.Basket</class>
+    <class>com.project.bookstore.models.BasketItem</class>
+    <class>com.project.bookstore.models.OrderItem</class>
+    <class>com.project.bookstore.models.Order</class>
+    <class>com.project.bookstore.models.Role</class>
+    <class>com.project.bookstore.models.User</class>
+    <class>com.project.bookstore.models.WishlistItem</class>
+    <class>com.project.bookstore.models.Wishlist</class>
+    <class>com.project.bookstore.models.Publisher</class>
+    <class>com.project.bookstore.models.Author</class>
+    <class>com.project.bookstore.models.BookOrder</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://ra1.anystream.eu:3012/3_tier_books?zeroDateTimeBehavior=convertToNull"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

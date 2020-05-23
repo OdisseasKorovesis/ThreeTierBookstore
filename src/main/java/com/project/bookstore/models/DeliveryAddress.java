@@ -74,7 +74,7 @@ public class DeliveryAddress implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
-    private Collection<Orders> ordersCollection;
+    private Collection<Order> ordersCollection;
 
     public DeliveryAddress() {
     }
@@ -177,11 +177,11 @@ public class DeliveryAddress implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Orders> getOrdersCollection() {
+    public Collection<Order> getOrdersCollection() {
         return ordersCollection;
     }
 
-    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+    public void setOrdersCollection(Collection<Order> ordersCollection) {
         this.ordersCollection = ordersCollection;
     }
 

@@ -43,7 +43,7 @@ public class OrderStatus implements Serializable {
     @Column(name = "order_status")
     private String orderStatus;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "statusId")
-    private Collection<Orders> ordersCollection;
+    private Collection<Order> ordersCollection;
 
     public OrderStatus() {
     }
@@ -69,11 +69,11 @@ public class OrderStatus implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Orders> getOrdersCollection() {
+    public Collection<Order> getOrdersCollection() {
         return ordersCollection;
     }
 
-    public void setOrdersCollection(Collection<Orders> ordersCollection) {
+    public void setOrdersCollection(Collection<Order> ordersCollection) {
         this.ordersCollection = ordersCollection;
     }
 

@@ -11,9 +11,9 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -26,36 +26,26 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author chatz
  */
 @Entity
-@Table(name = "publishers")
+@Table(name = "wishlists")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Publishers.findAll", query = "SELECT p FROM Publishers p")
-    , @NamedQuery(name = "Publishers.findById", query = "SELECT p FROM Publishers p WHERE p.id = :id")
-    , @NamedQuery(name = "Publishers.findByName", query = "SELECT p FROM Publishers p WHERE p.name = :name")})
-public class Publishers implements Serializable {
+public class Wishlist implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "name")
-    private String name;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisherId")
-    private Collection<Books> booksCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlistId")
+    private Collection<WishlistItem> wishlistItemsCollection;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne
+    private User userId;
 
-    public Publishers() {
+    public Wishlist() {
     }
 
-    public Publishers(Integer id) {
+    public Wishlist(Integer id) {
         this.id = id;
-    }
-
-    public Publishers(Integer id, String name) {
-        this.id = id;
-        this.name = name;
     }
 
     public Integer getId() {
@@ -66,21 +56,21 @@ public class Publishers implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @XmlTransient
-    public Collection<Books> getBooksCollection() {
-        return booksCollection;
+    public Collection<WishlistItem> getWishlistItemsCollection() {
+        return wishlistItemsCollection;
     }
 
-    public void setBooksCollection(Collection<Books> booksCollection) {
-        this.booksCollection = booksCollection;
+    public void setWishlistItemsCollection(Collection<WishlistItem> wishlistItemsCollection) {
+        this.wishlistItemsCollection = wishlistItemsCollection;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -93,10 +83,10 @@ public class Publishers implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Publishers)) {
+        if (!(object instanceof Wishlist)) {
             return false;
         }
-        Publishers other = (Publishers) object;
+        Wishlist other = (Wishlist) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -105,7 +95,7 @@ public class Publishers implements Serializable {
 
     @Override
     public String toString() {
-        return "com.project.bookstore.models.Publishers[ id=" + id + " ]";
+        return "com.project.bookstore.models.Wishlists[ id=" + id + " ]";
     }
     
 }

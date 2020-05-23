@@ -1,8 +1,8 @@
 package com.project.bookstore.controller;
 
 import static com.project.bookstore.BookstoreApplication.logger;
-import com.project.bookstore.models.Books;
-import com.project.bookstore.models.Users;
+import com.project.bookstore.models.Book;
+import com.project.bookstore.models.User;
 import com.project.bookstore.repository.RepositoryBooks;
 import com.project.bookstore.repository.RepositoryUsers;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class DemoController {
         System.out.println("Got request with params ");
 
         // DB add account logic
-        Users user = new Users("nkapa", "1993", "nikos", "kapa", "nkapa@gmail.com");
+        User user = new User("nkapa", "1993", "nikos", "kapa", "nkapa@gmail.com");
 
         repositoryUsers.save(user);
         return "Account registered successfully!";
@@ -44,19 +44,19 @@ public class DemoController {
     }
 
     @GetMapping(path = "/allUsers")
-    public List<Users> getUsers() {
+    public List<User> getUsers() {
 
         logger.info("Got a get all users request");
-        List<Users> users = new ArrayList<>();
+        List<User> users = new ArrayList<>();
         repositoryUsers.findAll().forEach(users::add);
         return users;
     }
     
     @GetMapping(path = "/user/{id}")
-    public Users getUserById(@PathVariable int id) {
+    public User getUserById(@PathVariable int id) {
 
         logger.info("Got a get user by id request");
-        Users user = repositoryUsers.findUserById(id);
+        User user = repositoryUsers.findUserById(id);
         return user;
     }
     
@@ -72,10 +72,10 @@ public class DemoController {
 //    }
 
      @GetMapping(path = "/allBooks")
-    public List<Books> getBooks() {
+    public List<Book> getBooks() {
 
         logger.info("Got a get all users request");
-        List<Books> books = new ArrayList<>();
+        List<Book> books = new ArrayList<>();
         repositoryBooks.findAll().forEach(books::add);
         return books;
     }
@@ -96,10 +96,10 @@ public class DemoController {
 //    }
     
      @GetMapping(path = "/book/{id}")
-    public Books getBookById(@PathVariable int id) {
+    public Book getBookById(@PathVariable int id) {
 
         logger.info("Got a get book by id request");
-        Books book = repositoryBooks.findBookById(id);
+        Book book = repositoryBooks.findBookById(id);
         return book;
     }
     

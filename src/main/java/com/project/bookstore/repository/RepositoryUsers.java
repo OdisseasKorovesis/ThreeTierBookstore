@@ -5,15 +5,15 @@
  */
 package com.project.bookstore.repository;
 
-import com.project.bookstore.models.Users;
+import com.project.bookstore.models.User;
 import org.springframework.data.repository.CrudRepository;
 /**
  *
  * @author chatz
  */
-public interface RepositoryUsers extends CrudRepository<Users, Integer>  {
+public interface RepositoryUsers extends CrudRepository<User, Integer>  {
     
-   Users findUserById(Integer id);
+   User findUserById(Integer id);
     
 }
 

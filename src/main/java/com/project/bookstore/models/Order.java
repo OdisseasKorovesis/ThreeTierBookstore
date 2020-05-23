@@ -33,14 +33,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "orders")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Orders.findAll", query = "SELECT o FROM Orders o")
-    , @NamedQuery(name = "Orders.findById", query = "SELECT o FROM Orders o WHERE o.id = :id")
-    , @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE o.orderDate = :orderDate")
-    , @NamedQuery(name = "Orders.findByProcessDate", query = "SELECT o FROM Orders o WHERE o.processDate = :processDate")
-    , @NamedQuery(name = "Orders.findByDispatchDate", query = "SELECT o FROM Orders o WHERE o.dispatchDate = :dispatchDate")
-    , @NamedQuery(name = "Orders.findByTrackingNumber", query = "SELECT o FROM Orders o WHERE o.trackingNumber = :trackingNumber")})
-public class Orders implements Serializable {
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -68,18 +61,18 @@ public class Orders implements Serializable {
     private OrderStatus statusId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Users userId;
+    private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    private Collection<OrderItems> orderItemsCollection;
+    private Collection<OrderItem> orderItemsCollection;
 
-    public Orders() {
+    public Order() {
     }
 
-    public Orders(Integer id) {
+    public Order(Integer id) {
         this.id = id;
     }
 
-    public Orders(Integer id, Date orderDate) {
+    public Order(Integer id, Date orderDate) {
         this.id = id;
         this.orderDate = orderDate;
     }
@@ -140,20 +133,20 @@ public class Orders implements Serializable {
         this.statusId = statusId;
     }
 
-    public Users getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Users userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 
     @XmlTransient
-    public Collection<OrderItems> getOrderItemsCollection() {
+    public Collection<OrderItem> getOrderItemsCollection() {
         return orderItemsCollection;
     }
 
-    public void setOrderItemsCollection(Collection<OrderItems> orderItemsCollection) {
+    public void setOrderItemsCollection(Collection<OrderItem> orderItemsCollection) {
         this.orderItemsCollection = orderItemsCollection;
     }
 
@@ -167,10 +160,10 @@ public class Orders implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Orders)) {
+        if (!(object instanceof Order)) {
             return false;
         }
-        Orders other = (Orders) object;
+        Order other = (Order) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

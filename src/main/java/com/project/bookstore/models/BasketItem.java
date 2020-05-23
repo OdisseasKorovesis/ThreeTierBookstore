@@ -24,11 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "basket_items")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "BasketItems.findAll", query = "SELECT b FROM BasketItems b")
-    , @NamedQuery(name = "BasketItems.findById", query = "SELECT b FROM BasketItems b WHERE b.id = :id")
-    , @NamedQuery(name = "BasketItems.findByQuantity", query = "SELECT b FROM BasketItems b WHERE b.quantity = :quantity")})
-public class BasketItems implements Serializable {
+public class BasketItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,19 +36,19 @@ public class BasketItems implements Serializable {
     private int quantity;
     @JoinColumn(name = "basket_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Baskets basketId;
+    private Basket basketId;
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Books bookId;
+    private Book bookId;
 
-    public BasketItems() {
+    public BasketItem() {
     }
 
-    public BasketItems(Integer id) {
+    public BasketItem(Integer id) {
         this.id = id;
     }
 
-    public BasketItems(Integer id, int quantity) {
+    public BasketItem(Integer id, int quantity) {
         this.id = id;
         this.quantity = quantity;
     }
@@ -73,19 +69,19 @@ public class BasketItems implements Serializable {
         this.quantity = quantity;
     }
 
-    public Baskets getBasketId() {
+    public Basket getBasketId() {
         return basketId;
     }
 
-    public void setBasketId(Baskets basketId) {
+    public void setBasketId(Basket basketId) {
         this.basketId = basketId;
     }
 
-    public Books getBookId() {
+    public Book getBookId() {
         return bookId;
     }
 
-    public void setBookId(Books bookId) {
+    public void setBookId(Book bookId) {
         this.bookId = bookId;
     }
 
@@ -99,10 +95,10 @@ public class BasketItems implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof BasketItems)) {
+        if (!(object instanceof BasketItem)) {
             return false;
         }
-        BasketItems other = (BasketItems) object;
+        BasketItem other = (BasketItem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

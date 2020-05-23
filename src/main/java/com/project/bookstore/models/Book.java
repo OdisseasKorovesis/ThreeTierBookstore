@@ -31,16 +31,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "books")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Books.findAll", query = "SELECT b FROM Books b")
-    , @NamedQuery(name = "Books.findById", query = "SELECT b FROM Books b WHERE b.id = :id")
-    , @NamedQuery(name = "Books.findByIsbn", query = "SELECT b FROM Books b WHERE b.isbn = :isbn")
-    , @NamedQuery(name = "Books.findByTitle", query = "SELECT b FROM Books b WHERE b.title = :title")
-    , @NamedQuery(name = "Books.findByNrOfPages", query = "SELECT b FROM Books b WHERE b.nrOfPages = :nrOfPages")
-    , @NamedQuery(name = "Books.findByPublicationYear", query = "SELECT b FROM Books b WHERE b.publicationYear = :publicationYear")
-    , @NamedQuery(name = "Books.findByPrice", query = "SELECT b FROM Books b WHERE b.price = :price")
-    , @NamedQuery(name = "Books.findByOriginalTitle", query = "SELECT b FROM Books b WHERE b.originalTitle = :originalTitle")})
-public class Books implements Serializable {
+public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -73,11 +64,11 @@ public class Books implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
     @ManyToMany(mappedBy = "booksCollection")
-    private Collection<Authors> authorsCollection;
+    private Collection<Author> authorsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    private Collection<BasketItems> basketItemsCollection;
+    private Collection<BasketItem> basketItemsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    private Collection<WishlistItems> wishlistItemsCollection;
+    private Collection<WishlistItem> wishlistItemsCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
     private Inventory inventory;
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
@@ -85,18 +76,18 @@ public class Books implements Serializable {
     private Genre genreId;
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Publishers publisherId;
+    private Publisher publisherId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    private Collection<OrderItems> orderItemsCollection;
+    private Collection<OrderItem> orderItemsCollection;
 
-    public Books() {
+    public Book() {
     }
 
-    public Books(Integer id) {
+    public Book(Integer id) {
         this.id = id;
     }
 
-    public Books(Integer id, String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
+    public Book(Integer id, String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
         this.id = id;
         this.isbn = isbn;
         this.title = title;
@@ -180,29 +171,29 @@ public class Books implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Authors> getAuthorsCollection() {
+    public Collection<Author> getAuthorsCollection() {
         return authorsCollection;
     }
 
-    public void setAuthorsCollection(Collection<Authors> authorsCollection) {
+    public void setAuthorsCollection(Collection<Author> authorsCollection) {
         this.authorsCollection = authorsCollection;
     }
 
     @XmlTransient
-    public Collection<BasketItems> getBasketItemsCollection() {
+    public Collection<BasketItem> getBasketItemsCollection() {
         return basketItemsCollection;
     }
 
-    public void setBasketItemsCollection(Collection<BasketItems> basketItemsCollection) {
+    public void setBasketItemsCollection(Collection<BasketItem> basketItemsCollection) {
         this.basketItemsCollection = basketItemsCollection;
     }
 
     @XmlTransient
-    public Collection<WishlistItems> getWishlistItemsCollection() {
+    public Collection<WishlistItem> getWishlistItemsCollection() {
         return wishlistItemsCollection;
     }
 
-    public void setWishlistItemsCollection(Collection<WishlistItems> wishlistItemsCollection) {
+    public void setWishlistItemsCollection(Collection<WishlistItem> wishlistItemsCollection) {
         this.wishlistItemsCollection = wishlistItemsCollection;
     }
 
@@ -222,20 +213,20 @@ public class Books implements Serializable {
         this.genreId = genreId;
     }
 
-    public Publishers getPublisherId() {
+    public Publisher getPublisherId() {
         return publisherId;
     }
 
-    public void setPublisherId(Publishers publisherId) {
+    public void setPublisherId(Publisher publisherId) {
         this.publisherId = publisherId;
     }
 
     @XmlTransient
-    public Collection<OrderItems> getOrderItemsCollection() {
+    public Collection<OrderItem> getOrderItemsCollection() {
         return orderItemsCollection;
     }
 
-    public void setOrderItemsCollection(Collection<OrderItems> orderItemsCollection) {
+    public void setOrderItemsCollection(Collection<OrderItem> orderItemsCollection) {
         this.orderItemsCollection = orderItemsCollection;
     }
 
@@ -249,10 +240,10 @@ public class Books implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Books)) {
+        if (!(object instanceof Book)) {
             return false;
         }
-        Books other = (Books) object;
+        Book other = (Book) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }

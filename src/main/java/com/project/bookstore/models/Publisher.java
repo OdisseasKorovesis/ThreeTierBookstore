@@ -8,6 +8,7 @@ package com.project.bookstore.models;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,13 +26,9 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author chatz
  */
 @Entity
-@Table(name = "roles")
+@Table(name = "publishers")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Roles.findAll", query = "SELECT r FROM Roles r")
-    , @NamedQuery(name = "Roles.findById", query = "SELECT r FROM Roles r WHERE r.id = :id")
-    , @NamedQuery(name = "Roles.findByRole", query = "SELECT r FROM Roles r WHERE r.role = :role")})
-public class Roles implements Serializable {
+public class Publisher implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -40,21 +37,21 @@ public class Roles implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "role")
-    private String role;
-    @OneToMany(mappedBy = "roleId")
-    private Collection<Users> usersCollection;
+    @Column(name = "name")
+    private String name;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisherId")
+    private Collection<Book> booksCollection;
 
-    public Roles() {
+    public Publisher() {
     }
 
-    public Roles(Integer id) {
+    public Publisher(Integer id) {
         this.id = id;
     }
 
-    public Roles(Integer id, String role) {
+    public Publisher(Integer id, String name) {
         this.id = id;
-        this.role = role;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -65,21 +62,21 @@ public class Roles implements Serializable {
         this.id = id;
     }
 
-    public String getRole() {
-        return role;
+    public String getName() {
+        return name;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @XmlTransient
-    public Collection<Users> getUsersCollection() {
-        return usersCollection;
+    public Collection<Book> getBooksCollection() {
+        return booksCollection;
     }
 
-    public void setUsersCollection(Collection<Users> usersCollection) {
-        this.usersCollection = usersCollection;
+    public void setBooksCollection(Collection<Book> booksCollection) {
+        this.booksCollection = booksCollection;
     }
 
     @Override
@@ -92,10 +89,10 @@ public class Roles implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
+        if (!(object instanceof Publisher)) {
             return false;
         }
-        Roles other = (Roles) object;
+        Publisher other = (Publisher) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -104,7 +101,7 @@ public class Roles implements Serializable {
 
     @Override
     public String toString() {
-        return "com.project.bookstore.models.Roles[ id=" + id + " ]";
+        return "com.project.bookstore.models.Publishers[ id=" + id + " ]";
     }
     
 }
