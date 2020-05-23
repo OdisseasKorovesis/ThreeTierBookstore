@@ -3,9 +3,16 @@
 //     var allBooks;
 //     $.ajax({
 //         url: "/books",
+//         data: {
+//             format: 'json'
+//         },
+//         error: function() {
+//             alert("Could not find any books!");
+//         },
 //         success: function (data) {
-//             books = data;
-//             generateCarousel();
+//             allBooks = data;
+//             generateCarouselofMostSold(allBooks);
+//             generateCarouselofMostRecent(allBooks);
 //         }
 //     });
 // });
