@@ -13,8 +13,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -27,10 +25,6 @@ import javax.xml.bind.annotation.XmlTransient;
 @Entity
 @Table(name = "genre")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "Genre.findAll", query = "SELECT g FROM Genre g")
-    , @NamedQuery(name = "Genre.findById", query = "SELECT g FROM Genre g WHERE g.id = :id")
-    , @NamedQuery(name = "Genre.findByName", query = "SELECT g FROM Genre g WHERE g.name = :name")})
 public class Genre implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -106,5 +100,5 @@ public class Genre implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Genre[ id=" + id + " ]";
     }
-    
+
 }
