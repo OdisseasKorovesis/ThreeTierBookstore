@@ -5,6 +5,7 @@
  */
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -40,6 +41,7 @@ public class Inventory implements Serializable {
     private int stockLevel;
     @JoinColumn(name = "book_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
+    @JsonBackReference
     private Book books;
 
     public Inventory() {

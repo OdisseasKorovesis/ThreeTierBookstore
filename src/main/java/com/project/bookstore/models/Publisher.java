@@ -5,6 +5,7 @@
  */
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -40,6 +41,7 @@ public class Publisher implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisherId")
+    @JsonBackReference
     private Collection<Book> booksCollection;
 
     public Publisher() {

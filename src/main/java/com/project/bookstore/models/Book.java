@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,8 @@
  */
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -64,20 +67,27 @@ public class Book implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
     @ManyToMany(mappedBy = "booksCollection")
+    @JsonManagedReference
     private Collection<Author> authorsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @JsonManagedReference
     private Collection<BasketItem> basketItemsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @JsonManagedReference
     private Collection<WishlistItem> wishlistItemsCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
+    @JsonManagedReference
     private Inventory inventory;
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonManagedReference
     private Genre genreId;
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonManagedReference
     private Publisher publisherId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @JsonManagedReference
     private Collection<OrderItem> orderItemsCollection;
 
     public Book() {

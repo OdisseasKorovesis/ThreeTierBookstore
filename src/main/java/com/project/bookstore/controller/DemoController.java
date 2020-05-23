@@ -1,56 +1,57 @@
-//package com.project.bookstore.controller;
-//
-//import static com.project.bookstore.BookstoreApplication.logger;
-//import com.project.bookstore.models.Book;
-//import com.project.bookstore.models.User;
-//import com.project.bookstore.repository.RepositoryBooks;
-//import com.project.bookstore.repository.RepositoryUsers;
-//import java.util.ArrayList;
-//import java.util.List;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.web.bind.annotation.PostMapping;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.bind.annotation.RestController;
-//
-//@RequestMapping(path = "/tier3")
-//@RestController
-//public class DemoController {
-//
-//    @Autowired
-//    private RepositoryUsers repositoryUsers;
-//    private RepositoryBooks repositoryBooks;
-//    @PostMapping(path = "/register")
-//    public String registerAccount(@RequestParam String email, @RequestParam String password) {
-//
-//        logger.info("Got a register request with params " + email + " " + password);
-//        System.out.println("Got request with params ");
-//
-//        // DB add account logic
-//        User user = new User("nkapa", "1993", "nikos", "kapa", "nkapa@gmail.com");
-//
-//        repositoryUsers.save(user);
-//        return "Account registered successfully!";
-//    }
-//
-//    @GetMapping(path = "/status")
-//    public String getStatus() {
-//
-//        System.out.println("Got request with params ");
-//
-//        return "Status OK!";
-//    }
-//
-//    @GetMapping(path = "/allUsers")
-//    public List<User> getUsers() {
-//
-//        logger.info("Got a get all users request");
-//        List<User> users = new ArrayList<>();
-//        repositoryUsers.findAll().forEach(users::add);
-//        return users;
-//    }
+package com.project.bookstore.controller;
+
+import static com.project.bookstore.BookstoreApplication.logger;
+import com.project.bookstore.models.Book;
+import com.project.bookstore.models.User;
+import com.project.bookstore.repository.RepositoryBooks;
+import com.project.bookstore.repository.RepositoryUsers;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RequestMapping(path = "/tier3")
+@RestController
+public class DemoController {
+
+    @Autowired
+    private RepositoryUsers repositoryUsers;
+    private RepositoryBooks repositoryBooks;
+    @PostMapping(path = "/register")
+    public String registerAccount(@RequestParam String email, @RequestParam String password) {
+
+        logger.info("Got a register request with params " + email + " " + password);
+        System.out.println("Got request with params ");
+
+        // DB add account logic
+        User user = new User("nkapa", "1993", "nikos", "kapa", "nkapa@gmail.com");
+
+        repositoryUsers.save(user);
+        return "Account registered successfully!";
+    }
+
+    @GetMapping(path = "/status")
+    public String getStatus() {
+
+        System.out.println("Got request with params ");
+
+        return "Status OK!";
+    }
+
+    @GetMapping(path = "/allUsers")
+    public List<User> getUsers() {
+
+        logger.info("Got a get all users request");
+        List<User> users = new ArrayList<>();
+        repositoryUsers.findAll().forEach(users::add);
+        return users;
+    }
+}
 //    
 //    @GetMapping(path = "/user/{id}")
 //    public User getUserById(@PathVariable int id) {
@@ -62,14 +63,14 @@
 //    
 //    
 //    
-////     @GetMapping("/books")
-////    public ResponseEntity<List<Books>> getAllBooks() {
-////        List<Book> books = bookService.findAllBooks();
-////        if (books.isEmpty()) {
-////            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-////        }
-////        return new ResponseEntity<>(books, HttpStatus.OK);
-////    }
+//     @GetMapping("/books")
+//    public ResponseEntity<List<Book>> getAllBooks() {
+//        List<Book> books = bookService.findAllBooks();
+//        if (books.isEmpty()) {
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
+//        return new ResponseEntity<>(books, HttpStatus.OK);
+//    }
 //
 //     @GetMapping(path = "/allBooks")
 //    public List<Book> getBooks() {
