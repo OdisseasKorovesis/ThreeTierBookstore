@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-@Table(name = "language")
+@Table(name = "languages")
 @XmlRootElement
 public class Language implements Serializable {
 
@@ -24,8 +24,8 @@ public class Language implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
-    @Column(name = "language")
-    private String language;
+    @Column(name = "name")
+    private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId")
     @JsonBackReference
     private Collection<Book> booksCollection;
@@ -37,9 +37,9 @@ public class Language implements Serializable {
         this.id = id;
     }
 
-    public Language(Integer id, String language) {
+    public Language(Integer id, String name) {
         this.id = id;
-        this.language = language;
+        this.name = name;
     }
 
     public Integer getId() {
@@ -50,12 +50,12 @@ public class Language implements Serializable {
         this.id = id;
     }
 
-    public String getLanguage() {
-        return language;
+    public String getName() {
+        return name;
     }
 
-    public void setLanguage(String language) {
-        this.language = language;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @XmlTransient
