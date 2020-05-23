@@ -1,9 +1,3 @@
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -19,18 +13,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "books")
 @XmlRootElement
@@ -82,6 +70,10 @@ public class Book implements Serializable {
     @ManyToOne(optional = false)
     @JsonManagedReference
     private Genre genreId;
+    @JoinColumn(name = "language_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    @JsonManagedReference
+    private Language languageId;
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     @JsonManagedReference
@@ -223,6 +215,14 @@ public class Book implements Serializable {
         this.genreId = genreId;
     }
 
+    public Language getLanguageId() {
+        return languageId;
+    }
+
+    public void setLanguageId(Language languageId) {
+        this.languageId = languageId;
+    }
+
     public Publisher getPublisherId() {
         return publisherId;
     }
@@ -264,5 +264,5 @@ public class Book implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Books[ id=" + id + " ]";
     }
-    
+
 }
