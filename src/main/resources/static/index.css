@@ -1,0 +1,42 @@
+ul.navbar-nav.mr-auto > li {
+    border-right: black 1px solid;
+    line-height: 3px;
+}
+
+ul.navbar-nav.onleft > li {
+    border-left: black 1px solid;
+    line-height: 3px;
+}
+
+.carousel.slide.mt-3 .carousel-item {
+    height: 300px;
+  }
+  
+  #myCarousel .carousel-item img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-height: 300px;
+  }
+
+#mostSoldBooksCarousel {
+    border: 1px solid black;
+    
+}
+
+#mostSoldBooksCarousel img {
+    float:left; 
+    width: 150px; 
+    height: 230px;
+    
+}
+
+#mostRecentBooksCarousel img {
+    float:left; 
+    width: 150px; 
+    height: 230px;
+    
+}
+
+
+
