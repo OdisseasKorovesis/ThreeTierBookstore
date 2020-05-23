@@ -70,10 +70,10 @@ public class Book implements Serializable {
     @JsonManagedReference
     private Collection<Author> authorsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonManagedReference
+    @JsonBackReference
     private Collection<BasketItem> basketItemsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonManagedReference
+    @JsonBackReference
     private Collection<WishlistItem> wishlistItemsCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
     @JsonManagedReference
@@ -87,7 +87,7 @@ public class Book implements Serializable {
     @JsonManagedReference
     private Publisher publisherId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonManagedReference
+    @JsonBackReference
     private Collection<OrderItem> orderItemsCollection;
 
     public Book() {
