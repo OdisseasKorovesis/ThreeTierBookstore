@@ -23,7 +23,7 @@ public class AuthorController {
      * the body, or with status 204 (NO CONTENT) if the random author is empty.
      */
     @GetMapping("/quote")
-    public ResponseEntity<Author> getRandomQuote() {
+    public ResponseEntity<Author> getRandomAuthor() {
         Author author = authorService.getRandomAuthor();
         if (author.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
