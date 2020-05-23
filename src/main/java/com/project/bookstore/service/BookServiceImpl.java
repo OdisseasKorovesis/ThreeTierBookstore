@@ -1,46 +1,31 @@
-//package com.project.bookstore.service;
-//
-//import java.util.ArrayList;
-//import java.util.Iterator;
-//import java.util.List;
-//import java.util.concurrent.atomic.AtomicLong;
-//
-//import org.springframework.stereotype.Service;
-//
-//@Service("bookService")
-//public class BookServiceImpl implements IBookService {
-//
-//    private static final AtomicLong counter = new AtomicLong();
-//
-//    private static List<Book> books;
-//
-//    static {
-//        books = populateDummyBooks();
-//    }
-//
-//    public List<Book> findAllBooks() {
-////       TODO dao returns books
-//        return books;
-//    }
-//
-//    private static List<Book> populateDummyBooks() {
-////        TODO remove dummy books, they shoud come from db
-//        List<Book> books = new ArrayList<>();
-//        books.add(new Book(1, "Withering Heights"));
-//        books.add(new Book(2, "Sapiens"));
-//        return books;
-//    }
-//
-//    @Override
-//    public Book findById(long id) {
-////        TODO get book from dao. if it does not exist return null
-//        for (Book book : books) {
-//            if (book.getId() == id) {
-//                return book;
-//            }
-//        }
-//        return null;
-//    }
+package com.project.bookstore.service;
+
+import com.project.bookstore.models.Book;
+import com.project.bookstore.repository.RepositoryBooks;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service("bookService")
+public class BookServiceImpl implements IBookService {
+
+    @Autowired
+    private RepositoryBooks repositoryBooks;
+
+    private static List<Book> books;
+
+    public List<Book> findAllBooks() {
+        List<Book> books = new ArrayList<>();
+        repositoryBooks.findAll()
+                .forEach(books::add);
+        return books;
+    }
+
+    @Override
+    public Book findById(int id) {
+        return repositoryBooks.findBookById(id);
+    }
 //
 //    @Override
 //    public boolean isBookExist(Book book) {
@@ -71,5 +56,4 @@
 //            }
 //        }
 //    }
-//
-//}
+}
