@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/598efe55df.js" crossorigin="anonymous"></script>
     <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />
     <script src="index.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -47,7 +47,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item active">
-                                <a class="nav-link" href="#"><i class="fas fa-home"></i> Home </a>
+                                <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home </a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#"><i class="fas fa-book-open"></i> About us</a>
@@ -131,48 +131,71 @@
             <!-- main content area -->
             <div id="mainContentArea" class="row">
                 <!-- sidebar area -->
-                <div id="sidebar" class="col-3 rounded" style="background-color: #CDD0C0">
-                    <div class= "mt-2">
-                        <p class="px-3 pt-2" style="font-family: 'Chelsea Market', cursive; font-weight: bold;">What kind of <br> books do you like?</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Action and Adventure</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Classics</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Graphic Novels</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Mystery</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Fantasy</p>                        
-                        <hr class="mx-3">
-                    </div>
-                    <div class="mt-2">
-                        <p class="px-3 pt-2" style="font-family: 'Chelsea Market', cursive; font-weight: bold;">Quote of the day:</p>
-                        <img id="quoteImage" class="rounded px-3" src="https://noijamdotcom.files.wordpress.com/2018/08/pablo-neruda-1.jpg?w=492" 
-                        alt="no img" style="max-width: 100%; max-height: 100%;">
-                        <p id="quote" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;">"Deny me bread, air, light, spring, but never your laughter for I would die."</p>
-                        <p id="quoteAuthor" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;">Pablo Neruda</p>
+                <div id="sidebar" class="col-3" >
+                    <div class="mt-2 rounded" style="background-color: #C0B283">
+                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">What
+                            kind of <br> books do you like?</p>
                         
-                    </div>
-                    <div class= "mt-2">
-                        <p class="px-3 pt-2" style="font-family: 'Chelsea Market', cursive; font-weight: bold;">Language learner? <br> Leave it to us!</p>
+                        <a href="/byGenre.html?genre=Poetry" style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Poetry</p>
+                        </a>
                         <hr class="mx-3">
+                        <a href="/byGenre.html?genre=History " style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">History</p>
+                        </a>
+                        <hr class="mx-3">
+                        <a href="/byGenre.html?genre=Crime" style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Crime</p>
+                        </a>
+                        <hr class="mx-3">
+                        <a href="/byGenre.html?genre=Gastronomy" style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Gastronomy</p>
+                        </a>
+                        <hr class="mx-3">
+                        <a href="/byGenre.html?genre=Children" style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">For Children</p>
+                        </a>
+                        <hr class="mx-3">
+                    </div>
+                    <div class="mt-2 rounded" style="background-color: #C0B283">
+                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">Quote of
+                            the day:</p>
+                        <img id="quoteImage" class="rounded px-3"
+                            src="" alt="no img"
+                            style="max-width: 100%; max-height: 100%;">
+                        <p id="quote" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;"></p>
+                        <p id="quoteAuthor" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;"></p>
+
+                    </div>
+                    <div class="mt-2 rounded" style="background-color: #C0B283">
+                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">Language
+                            learner? <br> Leave it to us!</p>                        
+                        <a href="/byLanguage.html?language=english" style="color: inherit;">
+                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in English</p>
+                        </a>
+                        <hr class="mx-3">
+                        <a href="/byLanguage.html?language=greek" style="color: inherit;">
+                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Greek</p>
+                        </a>
+                        <hr class="mx-3">
+                        <a href="/byLanguage.html?language=spanish" style="color: inherit;">
                         <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Spanish</p>
+                        </a>
                         <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Chinese</p>
-                        <hr class="mx-3">
+                        <a href="/byLanguage.html?language=french" style="color: inherit;">
                         <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in French</p>
-                        <hr class="mx-3">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Hindi</p>                        
+                        </a>
                         <hr class="mx-3">
                     </div>
-                    <div class="mt-2 mb-1">
-                        <p class="px-3 pt-2" style="font-family: 'Chelsea Market', cursive; font-weight: bold;">View our discounts!</p>
-                        <img class="rounded px-3" src="img/sales-promotion-discounts-and-allowances-computer-icons-marketing-png-clip-art-removebg-preview.png" 
-                        alt="no img" style="max-width: 100%; max-height: 100%;">                        
+                    <div class="mt-2 mb-1 rounded" style="background-color:  #C0B283">
+                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">View our
+                            discounts!</p>
+                        <img class="rounded px-3"
+                            src="img/sales-promotion-discounts-and-allowances-computer-icons-marketing-png-clip-art-removebg-preview.png"
+                            alt="no img" style="max-width: 100%; max-height: 100%;">
                     </div>
                 </div>
-                
+
 
                 <!-- main content -->
                 <div id="mainContent" class="col-9">
@@ -180,10 +203,11 @@
                     <div id="mostSoldBooksCarousel" class="carousel slide carousel-multi-item shadow"
                         data-ride="carousel" data-interval="false">
                         <div>
-                            <h2 class="p-3 display-5" style="background-color: #C0B283; font-family: 'Chelsea Market', cursive;">
+                            <h2 class="p-3 display-5"
+                                style="background-color: #C0B283; font-family: 'Chelsea Market', cursive;">
                                 Bestselling Books </h2>
                         </div>
-                        
+
                         <!--Controls-->
                         <a class="carousel-control-prev" href="#mostSoldBooksCarousel" role="button" data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
@@ -199,34 +223,38 @@
 
                             <!--First slide-->
                             <div class="carousel-item active">
-                                <div class="card-deck firstPage mostSold">
+                                <div class="card-deck mx-auto firstPage mostSold">
                                 </div>
                             </div>
                             <!--Second slide-->
                             <div class="carousel-item">
-                                <div class="card-deck secondPage mostSold">
+                                <div class="card-deck mx-auto secondPage mostSold">
                                 </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <!-- categories boxes -->
                     <div class="row mx-auto mt-4 justify-content-center" id="categoriesBoxes">
-                        <div class="col-2 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-child fa-6x text-center p-2" style="width: 100%;"></i>
+                        <div class="col-2 border border-dark rounded p-3" style="background-color: #C0B283;">
+                            <a href="/byGenre.html?genre=Children" style="color: inherit;">
+                            <i class="fas fa-child fa-6x text-center" style="width: 100%;"></i></a>
                             <br>
                             <p class="text-center">For Children</p>
                         </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-user-astronaut fa-5x text-center p-3" style="width: 100%;"></i>
+                        <div class="col-2 offset-1 border border-dark rounded" style="background-color: #C0B283;">
+                            <a href="/byGenre.html?genre=Fiction" style="color: inherit;">
+                            <i class="fas fa-user-astronaut fa-5x text-center p-3" style="width: 100%;"></i></a>
                             <p class="text-center">Fiction</p>
                         </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-user-secret fa-5x text-center p-3" style="width: 100%;"></i>
+                        <div class="col-2 offset-1 border border-dark rounded" style="background-color: #C0B283;">
+                            <a href="/byGenre.html?genre=Crime" style="color: inherit;">
+                            <i class="fas fa-user-secret fa-5x text-center p-3" style="width: 100%;"></i></a>
                             <p class="text-center">Crime</p>
                         </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;" >                            
-                            <i class="fas fa-heartbeat fa-5x text-center p-3" style="width: 100%;"></i>
+                        <div class="col-2 offset-1 border border-dark rounded" style="background-color: #C0B283;">
+                            <a href="/byGenre.html?genre=Romance" style="color: inherit;">
+                            <i class="fas fa-heartbeat fa-5x text-center p-3" style="width: 100%;"></i></a>
                             <p class="text-center">Romance</p>
                         </div>
                     </div>
@@ -235,13 +263,16 @@
                     <!-- most recent books carousel -->
                     <div id="mostRecentBooksCarousel" class="carousel slide carousel-multi-item shadow mt-2"
                         data-ride="carousel" data-interval="false" style="background-color: white;">
-                        <h2 class="p-3 display-5" style="background-color: #C0B283; font-family: 'Chelsea Market', cursive;">
+                        <h2 class="p-3 display-5"
+                            style="background-color: #C0B283; font-family: 'Chelsea Market', cursive;">
                             Recent Additions</h2>
                         <!--Controls-->
-                        <a class="carousel-control-prev" href="#mostRecentBooksCarousel" role="button" data-slide="prev">
+                        <a class="carousel-control-prev" href="#mostRecentBooksCarousel" role="button"
+                            data-slide="prev">
                             <span class="carousel-control-prev-icon"></span>
                         </a>
-                        <a class="carousel-control-next" href="#mostRecentBooksCarousel" role="button" data-slide="next">
+                        <a class="carousel-control-next" href="#mostRecentBooksCarousel" role="button"
+                            data-slide="next">
                             <span class="carousel-control-next-icon"></span>
                             <span class="sr-only"></span>
                         </a>
@@ -251,39 +282,16 @@
 
                             <!--First slide-->
                             <div class="carousel-item active">
-                                <div class="card-deck firstPage mostRecent">
+                                <div class="card-deck mx-auto firstPage mostRecent">
                                 </div>
                             </div>
                             <!--Second slide-->
                             <div class="carousel-item">
-                                <div class="card-deck secondPage mostRecent">
+                                <div class="card-deck mx-auto secondPage mostRecent">
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- categories boxes -->
-                    <div class="row mx-auto mt-4 justify-content-center" id="categoriesBoxes">
-                        <div class="col-2 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-child fa-6x text-center p-2" style="width: 100%;"></i>
-                            <br>
-                            <p class="text-center">For Children</p>
-                        </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-user-astronaut fa-5x text-center p-3" style="width: 100%;"></i>
-                            <p class="text-center">Fiction</p>
-                        </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;">                            
-                            <i class="fas fa-user-secret fa-5x text-center p-3" style="width: 100%;"></i>
-                            <p class="text-center">Crime</p>
-                        </div>
-                        <div class="col-2 offset-1 border" style="background-color: #C0B283;" >                            
-                            <i class="fas fa-heartbeat fa-5x text-center p-3" style="width: 100%;"></i>
-                            <p class="text-center">Romance</p>
-                        </div>
-                    </div>
-                    <br>
-                    
+                    </div>                    
                 </div>
 
             </div>
@@ -295,7 +303,7 @@
         <footer class="page-footer font-small">
 
 
-            <div class="py-5" style="background-color: #CDD0C0;"> 
+            <div class="py-5" style="background-color: #CDD0C0;">
                 <div class="mb-3 text-center">
                     <!-- Facebook -->
                     <a class="fb-ic">
