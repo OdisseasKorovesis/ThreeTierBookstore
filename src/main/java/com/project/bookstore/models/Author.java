@@ -146,5 +146,15 @@ public class Author implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Authors[ id=" + id + " ]";
     }
-    
+
+    public boolean isEmpty() {
+        if ("".equals(firstName) || "".equals(lastName) || "".equals(quote)) {
+            return true;
+
+        } else {
+            return false;
+        }
+
+    }
+
 }
