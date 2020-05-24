@@ -36,6 +36,11 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findByLanguage(String language) {
         return repositoryBooks.findBookByLanguage(language);
     }
+
+    @Override
+    public List<Book> findNRecentBooks(int n) {
+        return repositoryBooks.findNRecentBooks(n);
+    }
 //
 //    @Override
 //    public boolean isBookExist(Book book) {

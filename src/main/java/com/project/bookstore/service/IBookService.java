@@ -13,6 +13,8 @@ public interface IBookService {
 
     Book findById(int id);
 
+    List<Book> findNRecentBooks(int n);
+
 //    this does not need to be implemented in dao
 //    boolean isBookExist(Book book);
 //

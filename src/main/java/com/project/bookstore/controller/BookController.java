@@ -58,6 +58,24 @@ public class BookController {
     }
 
     /**
+     * GET /books/recent:n : Get n most recent books added to database.
+     *
+     * @param n the number of books to retrieve.
+     * @return the ResponseEntity with status 200 (OK) and the list of n recent
+     * books in the body, or with status 204 (NO CONTENT) if there are no recent
+     * books in database. If less than n books exist in the database, all books
+     * will be retrieved.
+     */
+    @GetMapping("/books/recent/{n}")
+    public ResponseEntity<List<Book>> getNRecentBooks(@PathVariable("n") int n) {
+        List<Book> books = bookService.findNRecentBooks(n);
+        if (books.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    /**
      * POST /books : Create a new book.
      *
      * @param book the book to create
