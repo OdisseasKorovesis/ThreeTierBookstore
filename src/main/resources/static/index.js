@@ -17,24 +17,6 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {    
-    var allBooks;
-    $.ajax({
-        url: "tier3/books",
-        data: {
-            format: 'json'
-        },
-        error: function() {
-            alert("Could not find any books!");
-        },
-        success: function (data) {
-            allBooks = data;
-            generateCarouselofMostSold(allBooks);
-            generateCarouselofMostRecent(allBooks);            
-        }
-    });
-});
-
-$(document).ready(function () {    
     var author;
     $.ajax({
         url: "tier3/quote",
