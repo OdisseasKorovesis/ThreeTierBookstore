@@ -1,5 +1,4 @@
-$(document).ready(function () {
-    console.log("ready!");
+$(document).ready(function () {    
     var allBooks;
     $.ajax({
         url: "tier3/books",
@@ -12,7 +11,7 @@ $(document).ready(function () {
         success: function (data) {
             allBooks = data;
             generateCarouselofMostSold(allBooks);
-            generateCarouselofMostRecent(allBooks);
+            generateCarouselofMostRecent(allBooks);            
         }
     });
 });
@@ -27,35 +26,35 @@ function generateCarouselofMostSold(books) {
         $(".card-deck.firstPage.mostSold").append(
             "<div class='col-md-3' style='float:left;'>" +
                 "<div class='card mt-2 mb-2 mostSoldCard'> " +
-                "<a href='/3_tier_books/book.html'>" +
+                "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top img-fluid' " +
                         "src='" + books[i].imageUrl +"'" +
                         "alt='Card image cap' /> " + "</a>" +
                     "<div class='card-body' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title'>" +books[i].title+ "</p>" +
-                        "<p class='card-text'>" + books[i].price+ "</p>" +    
+                        "<p class='card-title' style='font-size: 11px; font-weight: bold;'>" + books[i].title + "</p>" +
+                        "<p class='card-title' style='font-size: 10px;'>" + books[i].authorsCollection[0].firstName + " " 
+                        + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +
                 "</div>" +
             "</div>"
         );        
     }
-    for(i = 0; i < books.length; i++) {   
-        console.log("insidesecondfor");    
+    for(i = 0; i < books.length; i++) {        
         $(".card-deck.secondPage.mostSold").append(
-            
-            
             "<div class='col-md-3' style='float:left;'>" +
                 "<div class='card mt-2 mb-2 mostSoldCard'> " +
+                "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top img-fluid' " +
                         "src='" + books[i].imageUrl +"'" +
-                        "alt='Card image cap' /> " +
-                    "<div class='card-body'>" +
-                        "<p class='card-title'>" +books[i].title+ "</p>" +
-                        "<p class='card-text'>" + books[i].price+ "</p>" +    
+                        "alt='Card image cap' /> " + "</a>" +
+                    "<div class='card-body' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title' style='font-size: 11px; font-weight: bold;'>" + books[i].title + "</p>" +
+                        "<p class='card-title' style='font-size: 10px;'>" + books[i].authorsCollection[0].firstName + " " 
+                        + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +
                 "</div>" +
             "</div>"
-        );
+        );      
     }
     
 }
@@ -70,34 +69,35 @@ function generateCarouselofMostRecent(books) {
         $(".card-deck.firstPage.mostRecent").append(
             "<div class='col-md-3' style='float:left;'>" +
                 "<div class='card mt-2 mb-2 mostSoldCard'> " +
+                "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top img-fluid' " +
                         "src='" + books[i].imageUrl +"'" +
-                        "alt='Card image cap' /> " +
+                        "alt='Card image cap' /> " + "</a>" +
                     "<div class='card-body' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title'>" +books[i].title+ "</p>" +
-                        "<p class='card-text'>" + books[i].price+ "</p>" +    
+                        "<p class='card-title' style='font-size: 11px; font-weight: bold;'>" + books[i].title + "</p>" +
+                        "<p class='card-title' style='font-size: 10px;'>" + books[i].authorsCollection[0].firstName + " " 
+                        + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +
                 "</div>" +
             "</div>"
-        );        
+        );       
     }
-    for(i = 0; i < books.length; i++) {   
-        console.log("insidesecondfor");    
+    for(i = 0; i < books.length; i++) {        
         $(".card-deck.secondPage.mostRecent").append(
-            
-            
             "<div class='col-md-3' style='float:left;'>" +
                 "<div class='card mt-2 mb-2 mostSoldCard'> " +
+                "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top img-fluid' " +
                         "src='" + books[i].imageUrl +"'" +
-                        "alt='Card image cap' /> " +
-                    "<div class='card-body'>" +
-                        "<p class='card-title'>" +books[i].title+ "</p>" +
-                        "<p class='card-text'>" + books[i].price+ "</p>" +    
+                        "alt='Card image cap' /> " + "</a>" +
+                    "<div class='card-body' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title' style='font-size: 11px; font-weight: bold;'>" + books[i].title + "</p>" +
+                        "<p class='card-title' style='font-size: 10px;'>" + books[i].authorsCollection[0].firstName + " " 
+                        + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +
                 "</div>" +
             "</div>"
-        );
+        );      
     }
     
 }
