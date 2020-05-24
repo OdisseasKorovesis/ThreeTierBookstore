@@ -31,6 +31,11 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findByGenre(String genre) {
         return repositoryBooks.findBookByGenre(genre);
     }
+
+    @Override
+    public List<Book> findByLanguage(String language) {
+        return repositoryBooks.findBookByLanguage(language);
+    }
 //
 //    @Override
 //    public boolean isBookExist(Book book) {

@@ -9,6 +9,8 @@ public interface IBookService {
 
     List<Book> findByGenre(String genre);
 
+    List<Book> findByLanguage(String language);
+
     Book findById(int id);
 
 //    this does not need to be implemented in dao
