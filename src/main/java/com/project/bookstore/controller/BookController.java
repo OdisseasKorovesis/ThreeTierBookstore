@@ -76,6 +76,24 @@ public class BookController {
     }
 
     /**
+     * GET /books/bestseller:n : Get n most sold books in bookstore.
+     *
+     * @param n the number of books to retrieve.
+     * @return the ResponseEntity with status 200 (OK) and the list of n
+     * bestseller books in the body, or with status 204 (NO CONTENT) if there
+     * are no sold books in database. If less than n sold books exist in the
+     * database, all sold books will be retrieved.
+     */
+    @GetMapping("/books/bestseller/{n}")
+    public ResponseEntity<List<Book>> getNBestsellerBooks(@PathVariable("n") int n) {
+        List<Book> books = bookService.findNBestsellerBooks(n);
+        if (books.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    /**
      * POST /books : Create a new book.
      *
      * @param book the book to create

@@ -41,6 +41,11 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findNRecentBooks(int n) {
         return repositoryBooks.findNRecentBooks(n);
     }
+
+    @Override
+    public List<Book> findNBestsellerBooks(int n) {
+        return repositoryBooks.findNBestsellerBooks(n);
+    }
 //
 //    @Override
 //    public boolean isBookExist(Book book) {

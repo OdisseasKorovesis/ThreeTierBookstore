@@ -20,4 +20,8 @@ public interface RepositoryBooks extends CrudRepository<Book, Integer> {
     @Query(value = "SELECT * from books ORDER BY id DESC LIMIT ?1", nativeQuery = true)
     List<Book> findNRecentBooks(int n);
 
+    @Query(value = "SELECT books.* FROM books JOIN order_items on books.id = order_items.book_id "
+            + "GROUP BY book_id ORDER BY sum(quantity) DESC LIMIT ?1", nativeQuery = true)
+    List<Book> findNBestsellerBooks(int n);
+
 }
