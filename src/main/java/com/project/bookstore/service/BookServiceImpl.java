@@ -13,8 +13,7 @@ public class BookServiceImpl implements IBookService {
     @Autowired
     private RepositoryBooks repositoryBooks;
 
-    private static List<Book> books;
-
+    @Override
     public List<Book> findAllBooks() {
         List<Book> books = new ArrayList<>();
         repositoryBooks.findAll()
