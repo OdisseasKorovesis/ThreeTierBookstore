@@ -24,4 +24,12 @@ public interface RepositoryBooks extends CrudRepository<Book, Integer> {
             + "GROUP BY book_id ORDER BY sum(quantity) DESC LIMIT ?1", nativeQuery = true)
     List<Book> findNBestsellerBooks(int n);
 
+    @Query(value = "SELECT * FROM books\n"
+            + "WHERE title LIKE %?1%", nativeQuery = true)
+    List<Book> searchByTitle(String Title);
+
+    @Query(value = "SELECT books.* from books \n"
+            + "JOIN books_authors on books.id=books_authors.book_id\n"
+            + "WHERE author_id=?1", nativeQuery = true)
+    List<Book> searchByAuthor(int author_id);
 }
