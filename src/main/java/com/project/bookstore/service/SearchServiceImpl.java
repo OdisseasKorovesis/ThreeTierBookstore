@@ -7,7 +7,9 @@ import com.project.bookstore.repository.RepositoryBooks;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service("searchService")
 public class SearchServiceImpl implements ISearchService {
 
     @Autowired
@@ -19,7 +21,8 @@ public class SearchServiceImpl implements ISearchService {
     @Override
     public List<Book> searchBooks(String keyphrase) {
         List<Book> resultBooks = new ArrayList();
-        resultBooks.addAll(repositoryBooks.searchByTitle(keyphrase));
+        List<Book> queryResult = repositoryBooks.searchByTitle(keyphrase);
+        resultBooks.addAll(queryResult);
         resultBooks.addAll(searchBooksByAuthorName(keyphrase));
         return resultBooks;
     }
