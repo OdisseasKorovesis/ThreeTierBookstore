@@ -5,6 +5,7 @@
  */
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -63,6 +64,7 @@ public class Order implements Serializable {
     @ManyToOne(optional = false)
     private User userId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
+    @JsonManagedReference(value="orderId-orderItem")
     private Collection<OrderItem> orderItemsCollection;
 
     public Order() {

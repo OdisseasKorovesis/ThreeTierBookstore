@@ -55,7 +55,7 @@ public class Author implements Serializable {
         @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "book_id", referencedColumnName = "id")})
     @ManyToMany
-    @JsonBackReference
+    @JsonBackReference(value="author-book")
     private Collection<Book> booksCollection;
 
     public Author() {

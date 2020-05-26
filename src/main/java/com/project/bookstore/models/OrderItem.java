@@ -41,11 +41,11 @@ public class OrderItem implements Serializable {
     private int quantity;
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="orderItem-books")
     private Book bookId;
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference
+    @JsonBackReference(value="orderId-orderItem")
     private Order orderId;
 
     public OrderItem() {

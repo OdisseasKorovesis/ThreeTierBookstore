@@ -58,31 +58,31 @@ public class Book implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
     @ManyToMany(mappedBy = "booksCollection")
-    @JsonManagedReference
+    @JsonManagedReference(value="author-book")
     private Collection<Author> authorsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonBackReference
+    @JsonBackReference(value="basketItem-books")
     private Collection<BasketItem> basketItemsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonBackReference
+    @JsonBackReference(value="wishList-books")
     private Collection<WishlistItem> wishlistItemsCollection;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
-    @JsonManagedReference
+    @JsonManagedReference(value="invetory-books")
     private Inventory inventory;
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="genre-books")
     private Genre genreId;
     @JoinColumn(name = "language_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="language-books")
     private Language languageId;
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="publisher-books")
     private Publisher publisherId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonBackReference
+    @JsonBackReference(value="orderItem-books")
     private Collection<OrderItem> orderItemsCollection;
 
     public Book() {

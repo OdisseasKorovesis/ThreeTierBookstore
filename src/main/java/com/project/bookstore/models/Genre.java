@@ -36,7 +36,7 @@ public class Genre implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genreId")
-    @JsonBackReference
+    @JsonBackReference(value="genre-books")
     private Collection<Book> booksCollection;
 
     public Genre() {

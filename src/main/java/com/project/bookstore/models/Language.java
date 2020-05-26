@@ -27,7 +27,7 @@ public class Language implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId")
-    @JsonBackReference
+    @JsonBackReference(value="language-books")
     private Collection<Book> booksCollection;
 
     public Language() {

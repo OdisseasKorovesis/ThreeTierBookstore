@@ -5,6 +5,8 @@
  */
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -36,6 +38,7 @@ public class Wishlist implements Serializable {
     @Column(name = "id")
     private Integer id;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlistId")
+    @JsonManagedReference(value="wishlist-wishlistItem")
     private Collection<WishlistItem> wishlistItemsCollection;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne

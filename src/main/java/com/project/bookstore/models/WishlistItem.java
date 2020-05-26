@@ -33,11 +33,11 @@ public class WishlistItem implements Serializable {
     private Integer id;
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="wishList-books")
     private Book bookId;
     @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference
+    @JsonBackReference(value="wishlist-wishlistItem")
     private Wishlist wishlistId;
 
     public WishlistItem() {

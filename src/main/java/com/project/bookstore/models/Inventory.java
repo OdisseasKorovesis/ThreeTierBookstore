@@ -41,7 +41,7 @@ public class Inventory implements Serializable {
     private int stockLevel;
     @JoinColumn(name = "book_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
-    @JsonBackReference
+    @JsonBackReference(value="invetory-books")
     private Book books;
 
     public Inventory() {

@@ -41,7 +41,7 @@ public class Publisher implements Serializable {
     @Column(name = "name")
     private String name;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisherId")
-    @JsonBackReference
+    @JsonBackReference(value="publisher-books")
     private Collection<Book> booksCollection;
 
     public Publisher() {

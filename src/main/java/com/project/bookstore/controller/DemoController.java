@@ -29,7 +29,7 @@ public class DemoController {
         System.out.println("Got request with params ");
 
         // DB add account logic
-        User user = new User("nkapa", "1993", "nikos", "kapa", "nkapa@gmail.com");
+        User user = new User("nakapa", "1993", "nifkos", "kaapa", "nkapacfd@gmail.com");
 
         repositoryUsers.save(user);
         return "Account registered successfully!";
