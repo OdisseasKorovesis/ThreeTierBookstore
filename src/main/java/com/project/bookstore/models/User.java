@@ -57,20 +57,20 @@ public class User implements Serializable {
     private String email;
     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonManagedReference
+    //@JsonManagedReference(value="basket-users")
     private Collection<Basket> basketsCollection;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
-    @JsonBackReference
+   // @JsonBackReference
     private Role roleId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonManagedReference
+  //  @JsonManagedReference
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonManagedReference
+  //  @JsonManagedReference
     private Collection<Order> ordersCollection;
     @OneToMany(mappedBy = "userId")
-    @JsonManagedReference
+  //  @JsonManagedReference
     private Collection<Wishlist> wishlistsCollection;
 
     public User() {

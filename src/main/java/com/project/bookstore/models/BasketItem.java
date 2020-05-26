@@ -38,7 +38,7 @@ public class BasketItem implements Serializable {
     private Basket basketId;
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference
+    @JsonManagedReference(value="basketItem-books")
     private Book bookId;
 
     public BasketItem() {

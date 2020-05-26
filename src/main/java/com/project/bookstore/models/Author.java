@@ -6,6 +6,7 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -55,7 +56,7 @@ public class Author implements Serializable {
         @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "book_id", referencedColumnName = "id")})
     @ManyToMany
-    @JsonBackReference
+    @JsonManagedReference(value="author-book")
     private Collection<Book> booksCollection;
 
     public Author() {

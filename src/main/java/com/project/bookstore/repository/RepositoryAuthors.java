@@ -17,4 +17,6 @@ public interface RepositoryAuthors extends CrudRepository<Author, Integer> {
     @Query(value = "SELECT * FROM authors\n"
             + "where last_name LIKE %?1%", nativeQuery = true)
     List<Author> searchByLastName(String LastName);
+    
+    
 }
