@@ -47,12 +47,10 @@ public class Publisher implements Serializable {
     public Publisher() {
     }
 
-    public Publisher(Integer id) {
-        this.id = id;
-    }
+    
 
-    public Publisher(Integer id, String name) {
-        this.id = id;
+    public Publisher(String name) {
+        
         this.name = name;
     }
 

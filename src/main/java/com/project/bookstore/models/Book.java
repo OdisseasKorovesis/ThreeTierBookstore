@@ -8,6 +8,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
@@ -26,6 +28,7 @@ public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -89,8 +92,8 @@ public class Book implements Serializable {
         this.id = id;
     }
 
-    public Book(Integer id, String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
-        this.id = id;
+    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
+        
         this.isbn = isbn;
         this.title = title;
         this.nrOfPages = nrOfPages;
