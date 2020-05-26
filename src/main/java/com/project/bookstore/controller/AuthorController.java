@@ -1,11 +1,15 @@
 package com.project.bookstore.controller;
 
 import com.project.bookstore.models.Author;
+import com.project.bookstore.models.Genre;
 import com.project.bookstore.service.AuthorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,5 +33,23 @@ public class AuthorController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(author, HttpStatus.OK);
+    }
+
+    /**
+     * POST /authors : Create a new book language.
+     *
+     * @param author the genre to create
+     * @return the ResponseEntity with status 201 (Created), or with status 409
+     * (Conflict) if the author already exists.
+     */
+    @PostMapping(value = "/authors", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createGenre(@RequestBody Author author) {
+
+        if (authorService.isAuthorExist(author)) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        authorService.saveAuthor(author);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
