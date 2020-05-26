@@ -1,22 +1,22 @@
 $(document).ready(function(){
     // click on button submit
     $(".btn").on('click', function(event){
-        event.preventDefault();
-        var formData = JSON.stringify($("#publisherForm").serializeArray());        
+        event.preventDefault();        
+        var formData = {};
+        $("#publisherForm").find(":input").each(function(){
+            formData[this.name] = $(this).val()
+        })    
         $.ajax({
             type: "POST",
-            url: "/publishers",
-            data: formData,
-            success: function(formData){
-                console.log(formData);
-            },
-            error: function() {
-                alert("did not send");
-            },
+            url: "tier3/publishers",
+            data: (JSON.stringify(formData)),
             dataType: "json",
-            contentType : "application/json"
-          });     
-        
-       
+            contentType: "application/json; charset=utf-8", 
+            statusCode: {
+                201: function() {
+                    alert("created succesfully");
+                }
+            }                                    
+          });   
     });
 });
