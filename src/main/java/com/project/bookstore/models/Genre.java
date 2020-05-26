@@ -1,12 +1,15 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -20,6 +23,7 @@ public class Genre implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
@@ -29,7 +33,8 @@ public class Genre implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genreId")
-    @JsonBackReference(value = "genre-books")
+//    @JsonBackReference(value = "genre-books")
+    @JsonIgnore
     private Collection<Book> booksCollection;
 
     public Genre() {

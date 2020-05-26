@@ -48,10 +48,10 @@ public class LanguageController {
      *
      * @param language the language to create
      * @return the ResponseEntity with status 201 (Created), or with status 409
-     * (Conflict) if the publishers already exists.
+     * (Conflict) if the language already exists.
      */
     @PostMapping(value = "/languages", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> createPublisher(@RequestBody Language language) {
+    public ResponseEntity<?> createLanguage(@RequestBody Language language) {
 
         if (languageService.isLanguageExist(language)) {
             return new ResponseEntity(HttpStatus.CONFLICT);
