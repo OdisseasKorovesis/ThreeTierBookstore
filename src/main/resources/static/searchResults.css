@@ -49,11 +49,22 @@ ul.navbar-nav.onleft > li {
 .slider::-moz-range-thumb {
   width: 25px; /* Set a specific slider handle width */
   height: 25px; /* Slider handle height */
-  background: #4CAF50; /* Green background */
+  background: #d3d3d3; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
   /* side bar slider css end */
 
+.card-header.filter {
+    background-color: #373737; 
+    font-family: 'Chelsea Market', cursive;
+}
 
+.card-body.filter {
+    background-color: #c0b283;    
+}
+
+.form-check-label {
+    font-family: Chelsea Market, cursive;
+}
 

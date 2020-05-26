@@ -16,11 +16,11 @@
         integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" type="text/css" href="searchResults.css">
     <script src="https://kit.fontawesome.com/598efe55df.js" crossorigin="anonymous"></script>
     <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />    
-    <script src="byGenre.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+    <script src="searchResults.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">    
 </head>
 
 <body>
@@ -136,68 +136,68 @@
             <div id="mainContentArea" class="row">
                 <!-- sidebar area -->
                 <div id="sidebar" class="col-3" >
-                    <div class="mt-2 rounded" style="background-color: #C0B283">
-                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">What
-                            kind of <br> books do you like?</p>
+                    <div class="card">
+                        <article class="card-group-item">
+                            <header class="card-header filter">
+                                <h6 class="title text-white">Filter by Author </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body filter">
+                                <form id="authorFilter">                             
+                                </form>
+                    
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- card-group-item.// -->
                         
-                        <a href="/byGenre.html?genre=Poetry" style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Poetry</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byGenre.html?genre=History " style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">History</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byGenre.html?genre=Crime" style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Crime</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byGenre.html?genre=Gastronomy" style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Gastronomy</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byGenre.html?genre=Children" style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">For Children</p>
-                        </a>
-                        <hr class="mx-3">
-                    </div>
-                    <div class="mt-2 rounded" style="background-color: #C0B283">
-                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">Quote of
-                            the day:</p>
-                        <img id="quoteImage" class="rounded px-3"
-                            src="" alt="no img"
-                            style="max-width: 100%; max-height: 100%;">
-                        <p id="quote" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;"></p>
-                        <p id="quoteAuthor" class="px-3 mt-1" style="font-family: 'Chelsea Market', cursive;"></p>
+                        <article class="card-group-item">
+                            <header class="card-header filter">
+                                <h6 class="title text-white">Filter by Publisher </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body filter">
+                                <form id="publisherFilter">                                     
+                                </form>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- card-group-item.// -->
 
-                    </div>
-                    <div class="mt-2 rounded" style="background-color: #C0B283">
-                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">Language
-                            learner? <br> Leave it to us!</p>                        
-                        <a href="/byLanguage.html?language=english" style="color: inherit;">
-                            <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in English</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byLanguage.html?language=greek" style="color: inherit;">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Greek</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byLanguage.html?language=spanish" style="color: inherit;">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in Spanish</p>
-                        </a>
-                        <hr class="mx-3">
-                        <a href="/byLanguage.html?language=french" style="color: inherit;">
-                        <p class="px-3" style="font-family: 'Chelsea Market', cursive;">Books in French</p>
-                        </a>
-                        <hr class="mx-3">
-                    </div>
-                    <div class="mt-2 mb-1 rounded" style="background-color:  #C0B283">
-                        <p class="px-3 pt-2 rounded text-white" style="font-family: 'Chelsea Market', cursive; font-weight: bold; background-color: #373737">View our
-                            discounts!</p>
-                        <img class="rounded px-3"
-                            src="img/sales-promotion-discounts-and-allowances-computer-icons-marketing-png-clip-art-removebg-preview.png"
-                            alt="no img" style="max-width: 100%; max-height: 100%;">
-                    </div>
+                        <article class="card-group-item">
+                            <header class="card-header filter">
+                                <h6 class="title text-white">Filter by Language </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body filter">
+                                <form id="languageFilter">                                                                                                        
+                                </form>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- card-group-item.// -->
+
+                        <article class="card-group-item">
+                            <header class="card-header filter">
+                                <h6 class="title text-white">Filter by Publication Year </h6>
+                            </header>
+                            <div class="filter-content">
+                                <div class="card-body filter">
+                                <form id="yearFilter">                                     
+                                </form>
+                                </div> <!-- card-body.// -->
+                            </div>
+                        </article> <!-- card-group-item.// -->
+                        <article class="card-group-item">
+                            <header class="card-header filter">
+                                <h6 class="title text-white">Filter by Max Price </h6>
+                            </header>                          
+                                <div style="background-color: #C0B283;"><br></div>
+                                <div class="slidecontainer" style="background-color: #C0B283;" >
+                                    <input type="range" min="" max="" value="" class="slider" id="myRange"  style="background-color: #373737;">
+                                    <div id="showBar" class="p-3" style="font-family:'Chelsea Market' cursive;"></div>
+                                  </div>
+                            
+                            
+                        </article> <!-- card-group-item.// -->
+                    </div> <!-- card.// -->
                 </div>
 
 

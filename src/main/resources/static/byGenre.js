@@ -39,28 +39,52 @@ function getBookGenreFromUrl(paramName) {
 }
 
 function generateByGenreResults(booksByGenre) {
-    for(i = 0; i <= 3; i++) {$('.card-deck.firstRow').append(        
-        "<div class='card'>" +
-        "<a href='/book.html?id=" + booksByGenre[0].id + "'>" +
-        "<img class='card-img-top' src='" + booksByGenre[0].imageUrl + "' alt='Card image cap'>" + "</a>" +
-        "<div class='card-body' style='background-color: #CDD0C0'>" +
-          "<h5 class='card-title'>" +  booksByGenre[0].title + "</h5>" +
-          "<p class='card-text'>" + booksByGenre[0].authorsCollection[0].firstName + " " 
-          + booksByGenre[0].authorsCollection[0].lastName + "<br>" + (booksByGenre[0].price / 100) + "$" + "</p>" +         
-        "</div>" +        
-      "</div>"
-    )}
-    for(i = 0; i <= 3; i++) {$('.card-deck.secondRow').append(        
-        "<div class='card'>" +
-        "<a href='/book.html?id=" + booksByGenre[0].id + "'>" +
-        "<img class='card-img-top' src='" + booksByGenre[0].imageUrl + "' alt='Card image cap'>" + "</a>" +
-        "<div class='card-body' style='background-color: #CDD0C0'>" +
-          "<h5 class='card-title'>" +  booksByGenre[0].title + "</h5>" +
-          "<p class='card-text'>" + booksByGenre[0].authorsCollection[0].firstName + " " 
-          + booksByGenre[0].authorsCollection[0].lastName + "<br>" + (booksByGenre[0].price / 100) + "$" + "</p>" +              
-        "</div>" +        
-      "</div>"
-    )}
+    for (i = 0; i < booksByGenre.length; i++) {
+        if (i <= booksByGenre.length - 1 && i <=3) {
+            $('.card-deck.firstRow').append(
+                "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
+                "<a href='/book.html?id=" + booksByGenre[i].id + "'>" +
+                "<img class='card-img-top' src='" + booksByGenre[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
+                "<div class='card-body' style='background-color: #CDD0C0'>" +
+                "<p class='card-title' style='font-weight: bold;'>" + booksByGenre[i].title + "</h5>" +
+                "<p class='card-text'>" + booksByGenre[i].authorsCollection[0].firstName + " "
+                + booksByGenre[i].authorsCollection[0].lastName + "<br>" + (booksByGenre[i].price / 100) + "$" + "</p>" +                
+                "</div>" +
+                "</div>")
+        }
+    }
+    if (booksByGenre.length > 4) {
+        for (i = 4; i <= booksByGenre.length; i++) {
+            if (i <= booksByGenre.length - 1 && i <=7) {
+            $('.card-deck.secondRow').append(
+                "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
+                "<a href='/book.html?id=" + booksByGenre[i].id + "'>" +
+                "<img class='card-img-top' src='" + booksByGenre[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
+                "<div class='card-body' style='background-color: #CDD0C0'>" +
+                "<p class='card-title' style='font-weight: bold;'>" + booksByGenre[i].title + "</h5>" +
+                "<p class='card-text'>" + booksByGenre[i].authorsCollection[0].firstName + " "
+                + booksByGenre[i].authorsCollection[0].lastName + "<br>" + (booksByGenre[i].price / 100) + "$" + "</p>" +                
+                "</div>" +
+                "</div>")
+            }
+        }
+    }
+    if (booksByGenre.length > 8) {
+        for (i = 8; i <= booksByGenre.length; i++) {
+            if (i <= booksByGenre.length - 1 && i <=11) {
+            $('.card-deck.secondRow').append(
+                "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
+                "<a href='/book.html?id=" + booksByGenre[i].id + "'>" +
+                "<img class='card-img-top' src='" + booksByGenre[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
+                "<div class='card-body' style='background-color: #CDD0C0'>" +
+                "<p class='card-title' style='font-weight: bold;'>" + booksByGenre[i].title + "</h5>" +
+                "<p class='card-text'>" + booksByGenre[i].authorsCollection[0].firstName + " "
+                + booksByGenre[i].authorsCollection[0].lastName + "<br>" + (booksByGenre[i].price / 100) + "$" + "</p>" +
+                "</div>" +
+                "</div>")
+            }
+        }
+    }
     
     
 }
@@ -70,3 +94,4 @@ function getQuoteOfTheDay(author) {
     $('#quoteAuthor').text(author.firstName + " " + author.lastName);
     $('#quoteImage').attr('src', author.imageUrl);
 }
+
