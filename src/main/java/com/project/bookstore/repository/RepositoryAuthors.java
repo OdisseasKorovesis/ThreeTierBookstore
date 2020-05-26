@@ -11,12 +11,19 @@ public interface RepositoryAuthors extends CrudRepository<Author, Integer> {
     Author findRandomAuthor();
 
     @Query(value = "SELECT * FROM authors\n"
-            + "where first_name LIKE %?1%", nativeQuery = true)
+            + "WHERE first_name LIKE %?1%", nativeQuery = true)
     List<Author> searchByFirstName(String firstName);
 
     @Query(value = "SELECT * FROM authors\n"
-            + "where last_name LIKE %?1%", nativeQuery = true)
+            + "WHERE last_name LIKE %?1%", nativeQuery = true)
     List<Author> searchByLastName(String LastName);
-    
-    
+
+    @Query(value = "SELECT * FROM authors\n"
+            + "WHERE first_name = ?1", nativeQuery = true)
+    Author findByFirstName(String firstName);
+
+    @Query(value = "SELECT * FROM authors\n"
+            + "WHERE last_name= ?1", nativeQuery = true)
+    Author findByLastName(String lastName);
+
 }

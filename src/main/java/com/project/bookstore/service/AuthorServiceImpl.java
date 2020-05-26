@@ -16,4 +16,19 @@ public class AuthorServiceImpl implements IAuthorInterface {
         return repositoryAuthors.findRandomAuthor();
     }
 
+    @Override
+    public void saveAuthor(Author author) {
+        repositoryAuthors.save(author);
+    }
+
+    @Override
+    public boolean isAuthorExist(Author author) {
+        if (repositoryAuthors.findByFirstName(author.getFirstName()) == null
+                && repositoryAuthors.findByLastName(author.getLastName()) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 }
