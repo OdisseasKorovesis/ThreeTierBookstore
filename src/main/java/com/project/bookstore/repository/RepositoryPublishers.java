@@ -5,7 +5,6 @@
  */
 package com.project.bookstore.repository;
 
-
 import com.project.bookstore.models.Publisher;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -15,8 +14,8 @@ import org.springframework.data.repository.CrudRepository;
  * @author chatz
  */
 public interface RepositoryPublishers extends CrudRepository<Publisher, Integer> {
-    
-    @Query(value = "SELECT * FROM publishers where name= ?1",nativeQuery=true)
+
+    @Query(value = "SELECT * FROM publishers where name= ?1", nativeQuery = true)
     Publisher findByName(String name);
-    
+
 }

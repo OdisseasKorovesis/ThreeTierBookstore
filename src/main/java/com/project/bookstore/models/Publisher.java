@@ -47,10 +47,8 @@ public class Publisher implements Serializable {
     public Publisher() {
     }
 
-    
-
     public Publisher(String name) {
-        
+
         this.name = name;
     }
 
@@ -103,5 +101,5 @@ public class Publisher implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Publishers[ id=" + id + " ]";
     }
-    
+
 }

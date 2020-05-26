@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class BookstoreApplication {
 
-public static final Logger logger = LoggerFactory.getLogger(BookstoreApplication.class);
+    public static final Logger logger = LoggerFactory.getLogger(BookstoreApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(BookstoreApplication.class, args);
