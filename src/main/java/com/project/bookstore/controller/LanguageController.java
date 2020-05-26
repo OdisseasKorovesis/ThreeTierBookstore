@@ -1,13 +1,18 @@
 package com.project.bookstore.controller;
 
 import com.project.bookstore.models.Book;
+import com.project.bookstore.models.Language;
 import com.project.bookstore.service.BookServiceImpl;
+import com.project.bookstore.service.LanguageServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,6 +22,9 @@ public class LanguageController {
 
     @Autowired
     BookServiceImpl bookService;
+
+    @Autowired
+    LanguageServiceImpl languageService;
 
     /**
      * GET /language:language : Get books by language
@@ -33,5 +41,23 @@ public class LanguageController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(books, HttpStatus.OK);
+    }
+
+    /**
+     * POST /languages : Create a new book language.
+     *
+     * @param language the language to create
+     * @return the ResponseEntity with status 201 (Created), or with status 409
+     * (Conflict) if the publishers already exists.
+     */
+    @PostMapping(value = "/languages", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> createPublisher(@RequestBody Language language) {
+
+        if (languageService.isLanguageExist(language)) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        languageService.saveLanguage(language);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
