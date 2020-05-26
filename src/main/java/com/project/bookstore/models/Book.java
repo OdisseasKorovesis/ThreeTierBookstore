@@ -58,7 +58,7 @@ public class Book implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
     @ManyToMany(mappedBy = "booksCollection")
-    @JsonManagedReference(value="author-book")
+    @JsonBackReference(value="author-book")
     private Collection<Author> authorsCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     @JsonBackReference(value="basketItem-books")
