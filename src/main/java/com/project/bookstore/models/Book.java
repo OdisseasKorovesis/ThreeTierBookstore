@@ -93,7 +93,6 @@ public class Book implements Serializable {
 
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-
     @JsonManagedReference(value = "publisher-books")
     private Publisher publisherId;
 
