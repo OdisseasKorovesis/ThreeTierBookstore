@@ -48,8 +48,8 @@ function generateCarouselofMostSold(books) {
                     "<img class='card-img-top' " +
                         "src='" + books[i].imageUrl +"'" +
                         "alt='Card image cap' /> " + "</a>" +
-                    "<div class='card-body h-100' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title' style='font-weight: bold;'>" + books[i].title + "</p>" +
+                    "<div class='card-body d-flex flex-column h-100' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title mt-auto' style='font-weight: bold;'>" + books[i].title + "</p>" +
                         "<p class='card-text'>" + books[i].authorsCollection[0].firstName + " " 
                         + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +                
@@ -63,8 +63,8 @@ function generateCarouselofMostSold(books) {
                     "<img class='card-img-top' " +
                         "src='" + books[i].imageUrl +"'" +
                         "alt='Card image cap' /> " + "</a>" +
-                    "<div class='card-body h-100' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title' style='font-weight: bold;'>" + books[i].title + "</p>" +
+                    "<div class='card-body d-flex flex-column h-100' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title mt-auto' style='font-weight: bold;'>" + books[i].title + "</p>" +
                         "<p class='card-text'>" + books[i].authorsCollection[0].firstName + " " 
                         + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +                
@@ -82,28 +82,28 @@ function generateCarouselofMostRecent(books) {
     var i = 0;
     for(i = 0; i < 4; i++) {        
         $(".card-deck.firstPage.mostRecent").append(
-            "<div class='card mt-2 mb-2 mostRecentCard'> " +
+            "<div class='card mt-2 mb-2 mostSoldCard'> " +
                 "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top' " +
                         "src='" + books[i].imageUrl +"'" +
                         "alt='Card image cap' /> " + "</a>" +
-                    "<div class='card-body h-100' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title' style='font-weight: bold;'>" + books[i].title + "</p>" +
+                    "<div class='card-body d-flex flex-column h-100' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title mt-auto' style='font-weight: bold;'>" + books[i].title + "</p>" +
                         "<p class='card-text'>" + books[i].authorsCollection[0].firstName + " " 
                         + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +                
             "</div>"
-        );       
+        );        
     }
     for(i = 4; i < 8; i++) {        
         $(".card-deck.secondPage.mostRecent").append(
-            "<div class='card mt-2 mb-2 mostRecentCard'> " +
+            "<div class='card mt-2 mb-2 mostSoldCard'> " +
                 "<a href='/book.html?id=" + books[i].id + "'>" +
                     "<img class='card-img-top' " +
                         "src='" + books[i].imageUrl +"'" +
                         "alt='Card image cap' /> " + "</a>" +
-                    "<div class='card-body h-100' style='background-color: #CDD0C0'>" +
-                        "<p class='card-title' style='font-weight: bold;'>" + books[i].title + "</p>" +
+                    "<div class='card-body d-flex flex-column h-100' style='background-color: #CDD0C0'>" +
+                        "<p class='card-title mt-auto' style='font-weight: bold;'>" + books[i].title + "</p>" +
                         "<p class='card-text'>" + books[i].authorsCollection[0].firstName + " " 
                         + books[i].authorsCollection[0].lastName + "<br>" + (books[i].price / 100) + "$" + "</p>" +  
                     "</div>" +                

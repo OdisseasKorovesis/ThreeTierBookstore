@@ -31,10 +31,9 @@ function getKeywordFromUrl(paramName) {
 
 //generate search reults
 function generateSearchResults(booksByKeyword) {
-    for (i = 0; i < booksByKeyword.length; i++) {
-        if (i <= booksByKeyword.length - 1 && i <= 3) {
-            $('.card-deck.firstRow').append(
-                "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
+    for (i = 0; i < booksByKeyword.length; i++) {        
+            $('.row.searchResults').append(
+                "<div class='card card-custom mx-2 mb-3' style='max-width: 176.25px; max-height:421.2px;'>" +
                 "<a href='/book.html?id=" + booksByKeyword[i].id + "'>" +
                 "<img class='card-img-top' src='" + booksByKeyword[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
                 "<div class='card-body' style='background-color: #CDD0C0'>" +
@@ -42,41 +41,9 @@ function generateSearchResults(booksByKeyword) {
                 "<p class='card-text'>" + booksByKeyword[i].authorsCollection[0].firstName + " "
                 + booksByKeyword[i].authorsCollection[0].lastName + "<br>" + (booksByKeyword[i].price / 100) + "$" + "</p>" +
                 "</div>" +
-                "</div>")
-        }
+                "</div>")        
     }
-    if (booksByKeyword.length > 4) {
-        for (i = 4; i <= booksByKeyword.length; i++) {
-            if (i <= booksByKeyword.length - 1 && i <= 7) {
-                $('.card-deck.secondRow').append(
-                    "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
-                    "<a href='/book.html?id=" + booksByKeyword[i].id + "'>" +
-                    "<img class='card-img-top' src='" + booksByKeyword[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
-                    "<div class='card-body' style='background-color: #CDD0C0'>" +
-                    "<p class='card-title' style='font-weight: bold;'>" + booksByKeyword[i].title + "</h5>" +
-                    "<p class='card-text'>" + booksByKeyword[i].authorsCollection[0].firstName + " "
-                    + booksByKeyword[i].authorsCollection[0].lastName + "<br>" + (booksByKeyword[i].price / 100) + "$" + "</p>" +
-                    "</div>" +
-                    "</div>")
-            }
-        }
-      }
-      if (booksByKeyword.length > 8) {
-        for (i = 8; i <= booksByKeyword.length; i++) {
-            if (i <= booksByKeyword.length - 1 && i <= 11) {
-                $('.card-deck.thirdRow').append(
-                    "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
-                    "<a href='/book.html?id=" + booksByKeyword[i].id + "'>" +
-                    "<img class='card-img-top' src='" + booksByKeyword[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
-                    "<div class='card-body' style='background-color: #CDD0C0'>" +
-                    "<p class='card-title' style='font-weight: bold;'>" + booksByKeyword[i].title + "</h5>" +
-                    "<p class='card-text'>" + booksByKeyword[i].authorsCollection[0].firstName + " "
-                    + booksByKeyword[i].authorsCollection[0].lastName + "<br>" + (booksByKeyword[i].price / 100) + "$" + "</p>" +
-                    "</div>" +
-                    "</div>")
-            }
-        }
-    }
+    
 
 }
 
