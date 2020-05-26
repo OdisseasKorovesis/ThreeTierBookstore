@@ -27,9 +27,9 @@ public class SearchServiceImpl implements ISearchService {
     private List<Book> searchBooksByAuthorName(String keyphrase) {
         List<Book> resultBooks = new ArrayList();
         List<Author> resultAuthors = repositoryAuthors.searchByFirstName(keyphrase);
-        resultAuthors.add(repositoryAuthors.searchByLastName(keyphrase));
+        resultAuthors.addAll(repositoryAuthors.searchByLastName(keyphrase));
         for (Author author : resultAuthors) {
-            resultBooks.addAll(repositoryBooks.searchByAuthor(author));
+            resultBooks.addAll(repositoryBooks.searchByAuthor(author.getId()));
         }
         return resultBooks;
     }
