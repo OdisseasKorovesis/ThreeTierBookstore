@@ -72,7 +72,7 @@ function generateByGenreResults(booksByLanguage) {
     if (booksByLanguage.length > 8) {
         for (i = 8; i <= booksByLanguage.length; i++) {
             if (i <= booksByLanguage.length - 1 && i <= 11) {
-                $('.card-deck.secondRow').append(
+                $('.card-deck.thirdRow').append(
                     "<div class='card' style='max-width: 176.25px; max-height:421.2px;'>" +
                     "<a href='/book.html?id=" + booksByLanguage[i].id + "'>" +
                     "<img class='card-img-top' src='" + booksByLanguage[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
