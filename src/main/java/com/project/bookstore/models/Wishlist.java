@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,17 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "wishlists")
 @XmlRootElement
@@ -37,9 +25,11 @@ public class Wishlist implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "wishlistId")
-    @JsonManagedReference(value="wishlist-wishlistItem")
+    @JsonManagedReference(value = "wishlist-wishlistItem")
     private Collection<WishlistItem> wishlistItemsCollection;
+
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne
     private User userId;
@@ -100,5 +90,5 @@ public class Wishlist implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Wishlists[ id=" + id + " ]";
     }
-    
+
 }

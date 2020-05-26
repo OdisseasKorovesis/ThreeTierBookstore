@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -18,10 +13,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "genre")
 @XmlRootElement
@@ -32,11 +23,13 @@ public class Genre implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "genreId")
-    @JsonBackReference(value="genre-books")
+    @JsonBackReference(value = "genre-books")
     private Collection<Book> booksCollection;
 
     public Genre() {

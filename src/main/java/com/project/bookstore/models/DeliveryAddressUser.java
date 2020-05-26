@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import java.io.Serializable;
@@ -19,16 +14,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "delivery_address_user")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "DeliveryAddressUser.findAll", query = "SELECT d FROM DeliveryAddressUser d")
-    , @NamedQuery(name = "DeliveryAddressUser.findById", query = "SELECT d FROM DeliveryAddressUser d WHERE d.id = :id")})
 public class DeliveryAddressUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -37,9 +25,11 @@ public class DeliveryAddressUser implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private DeliveryAddress deliveryAddressId;
+
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
@@ -99,5 +89,5 @@ public class DeliveryAddressUser implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.DeliveryAddressUser[ id=" + id + " ]";
     }
-    
+
 }

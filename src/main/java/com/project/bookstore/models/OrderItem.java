@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -16,15 +11,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "order_items")
 @XmlRootElement
@@ -36,16 +25,19 @@ public class OrderItem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "quantity")
     private int quantity;
+
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value="orderItem-books")
+    @JsonManagedReference(value = "orderItem-books")
     private Book bookId;
+
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference(value="orderId-orderItem")
+    @JsonBackReference(value = "orderId-orderItem")
     private Order orderId;
 
     public OrderItem() {
@@ -116,5 +108,5 @@ public class OrderItem implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.OrderItems[ id=" + id + " ]";
     }
-    
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import java.io.Serializable;
@@ -14,31 +9,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "delivery_address")
 @XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "DeliveryAddress.findAll", query = "SELECT d FROM DeliveryAddress d")
-    , @NamedQuery(name = "DeliveryAddress.findById", query = "SELECT d FROM DeliveryAddress d WHERE d.id = :id")
-    , @NamedQuery(name = "DeliveryAddress.findByFirstName", query = "SELECT d FROM DeliveryAddress d WHERE d.firstName = :firstName")
-    , @NamedQuery(name = "DeliveryAddress.findByLastName", query = "SELECT d FROM DeliveryAddress d WHERE d.lastName = :lastName")
-    , @NamedQuery(name = "DeliveryAddress.findByStreet", query = "SELECT d FROM DeliveryAddress d WHERE d.street = :street")
-    , @NamedQuery(name = "DeliveryAddress.findByStreetNumber", query = "SELECT d FROM DeliveryAddress d WHERE d.streetNumber = :streetNumber")
-    , @NamedQuery(name = "DeliveryAddress.findByPostalCode", query = "SELECT d FROM DeliveryAddress d WHERE d.postalCode = :postalCode")
-    , @NamedQuery(name = "DeliveryAddress.findByProvince", query = "SELECT d FROM DeliveryAddress d WHERE d.province = :province")
-    , @NamedQuery(name = "DeliveryAddress.findByCountry", query = "SELECT d FROM DeliveryAddress d WHERE d.country = :country")
-    , @NamedQuery(name = "DeliveryAddress.findByPhoneNumber", query = "SELECT d FROM DeliveryAddress d WHERE d.phoneNumber = :phoneNumber")})
 public class DeliveryAddress implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,30 +25,39 @@ public class DeliveryAddress implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "first_name")
     private String firstName;
+
     @Basic(optional = false)
     @Column(name = "last_name")
     private String lastName;
+
     @Basic(optional = false)
     @Column(name = "street")
     private String street;
+
     @Basic(optional = false)
     @Column(name = "street_number")
     private int streetNumber;
+
     @Basic(optional = false)
     @Column(name = "postal_code")
     private int postalCode;
+
     @Basic(optional = false)
     @Column(name = "province")
     private String province;
+
     @Basic(optional = false)
     @Column(name = "country")
     private String country;
+
     @Basic(optional = false)
     @Column(name = "phone_number")
     private String phoneNumber;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
@@ -209,5 +196,5 @@ public class DeliveryAddress implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.DeliveryAddress[ id=" + id + " ]";
     }
-    
+
 }

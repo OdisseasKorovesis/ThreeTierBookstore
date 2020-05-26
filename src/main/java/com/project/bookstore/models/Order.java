@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -18,8 +13,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -27,10 +20,6 @@ import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "orders")
 @XmlRootElement
@@ -42,29 +31,37 @@ public class Order implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
+
     @Column(name = "process_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date processDate;
+
     @Column(name = "dispatch_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date dispatchDate;
+
     @Column(name = "tracking_number")
     private Integer trackingNumber;
+
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private DeliveryAddress deliveryAddressId;
+
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private OrderStatus statusId;
+
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    @JsonManagedReference(value="orderId-orderItem")
+    @JsonManagedReference(value = "orderId-orderItem")
     private Collection<OrderItem> orderItemsCollection;
 
     public Order() {
@@ -176,5 +173,5 @@ public class Order implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Orders[ id=" + id + " ]";
     }
-    
+
 }

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -16,10 +11,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "basket_items")
 @XmlRootElement
@@ -30,15 +21,18 @@ public class BasketItem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "quantity")
     private int quantity;
+
     @JoinColumn(name = "basket_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Basket basketId;
+
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value="basketItem-books")
+    @JsonManagedReference(value = "basketItem-books")
     private Book bookId;
 
     public BasketItem() {
@@ -109,5 +103,5 @@ public class BasketItem implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.BasketItems[ id=" + id + " ]";
     }
-    
+
 }

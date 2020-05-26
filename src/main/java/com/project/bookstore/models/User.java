@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -25,10 +20,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "users")
 @XmlRootElement
@@ -40,37 +31,42 @@ public class User implements Serializable {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "username")
     private String username;
+
     @Basic(optional = false)
     @Column(name = "password")
     private String password;
+
     @Basic(optional = false)
     @Column(name = "first_name")
     private String firstName;
+
     @Basic(optional = false)
     @Column(name = "last_name")
     private String lastName;
+
     @Basic(optional = false)
     @Column(name = "email")
     private String email;
-    
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     //@JsonManagedReference(value="basket-users")
     private Collection<Basket> basketsCollection;
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
-   // @JsonBackReference
+    // @JsonBackReference
     private Role roleId;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-  //  @JsonManagedReference
+    //  @JsonManagedReference
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-  //  @JsonManagedReference
+    //  @JsonManagedReference
     private Collection<Order> ordersCollection;
     @OneToMany(mappedBy = "userId")
-  //  @JsonManagedReference
+    //  @JsonManagedReference
     private Collection<Wishlist> wishlistsCollection;
 
     public User() {
@@ -81,7 +77,7 @@ public class User implements Serializable {
     }
 
     public User(String username, String password, String firstName, String lastName, String email) {
-        
+
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -205,5 +201,5 @@ public class User implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Users[ id=" + id + " ]";
     }
-    
+
 }

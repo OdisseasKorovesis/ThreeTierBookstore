@@ -23,11 +23,13 @@ public class Language implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "name")
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "languageId")
-    @JsonBackReference(value="language-books")
+    @JsonBackReference(value = "language-books")
     private Collection<Book> booksCollection;
 
     public Language() {

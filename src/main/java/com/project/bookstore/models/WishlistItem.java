@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -17,10 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "wishlist_items")
 @XmlRootElement
@@ -31,13 +22,15 @@ public class WishlistItem implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value="wishList-books")
+    @JsonManagedReference(value = "wishList-books")
     private Book bookId;
+
     @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference(value="wishlist-wishlistItem")
+    @JsonBackReference(value = "wishlist-wishlistItem")
     private Wishlist wishlistId;
 
     public WishlistItem() {
@@ -95,5 +88,5 @@ public class WishlistItem implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.WishlistItems[ id=" + id + " ]";
     }
-    
+
 }

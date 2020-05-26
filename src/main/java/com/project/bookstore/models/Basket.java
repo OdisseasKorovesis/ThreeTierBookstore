@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import java.io.Serializable;
@@ -16,17 +11,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "baskets")
 @XmlRootElement
@@ -38,8 +27,10 @@ public class Basket implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "basketId")
     private Collection<BasketItem> basketItemsCollection;
+
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private User userId;
@@ -100,5 +91,5 @@ public class Basket implements Serializable {
     public String toString() {
         return "com.project.bookstore.models.Baskets[ id=" + id + " ]";
     }
-    
+
 }
