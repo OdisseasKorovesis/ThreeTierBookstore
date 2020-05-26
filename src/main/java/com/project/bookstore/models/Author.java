@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -23,10 +18,6 @@ import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
-/**
- *
- * @author chatz
- */
 @Entity
 @Table(name = "authors")
 @XmlRootElement
@@ -38,25 +29,31 @@ public class Author implements Serializable {
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "first_name")
     private String firstName;
+
     @Basic(optional = false)
     @Column(name = "last_name")
     private String lastName;
+
     @Basic(optional = false)
     @Lob
     @Column(name = "quote")
     private String quote;
+
     @Basic(optional = false)
     @Lob
     @Column(name = "image_url")
     private String imageUrl;
+
     @JoinTable(name = "books_authors", joinColumns = {
         @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "book_id", referencedColumnName = "id")})
     @ManyToMany
-    @JsonManagedReference(value="author-book")
+//    @JsonBackReference(value = "author-book")
+    @JsonIgnore
     private Collection<Book> booksCollection;
 
     public Author() {
