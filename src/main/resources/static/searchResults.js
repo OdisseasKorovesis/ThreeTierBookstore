@@ -3,7 +3,7 @@ $(document).ready(function () {
     var booksByKeyword;
     var paramName = "keyword";
     $.ajax({
-        url: "tier3/search/" + decodeURIComponent(getKeywordFromUrl(paramName)),
+        url: "tier3/search/" + getKeywordFromUrl(paramName).replace("+", " ").trim(),
         data: {
             format: 'json'
         },
@@ -25,25 +25,28 @@ $(document).ready(function () {
 
 //get the search parameters from the url
 function getKeywordFromUrl(paramName) {
-    var results = new RegExp('[\?&]' + paramName + '=([^&#]*)').exec(window.location.href);
-    return results[1] || 0;
+    var url = new URL(window.location.href);
+    var c = url.searchParams.get(paramName);
+    return c;
+    // var results = new RegExp('[\?&]' + paramName + '=([^&#]*)').exec(window.location.href);
+    // return results[1] || 0;
 }
 
 //generate search reults
 function generateSearchResults(booksByKeyword) {
-    for (i = 0; i < booksByKeyword.length; i++) {        
-            $('.row.searchResults').append(
-                "<div class='card card-custom mx-2 mb-3' style='max-width: 176.25px; max-height:421.2px;'>" +
-                "<a href='/book.html?id=" + booksByKeyword[i].id + "'>" +
-                "<img class='card-img-top' src='" + booksByKeyword[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
-                "<div class='card-body' style='background-color: #CDD0C0'>" +
-                "<p class='card-title' style='font-weight: bold;'>" + booksByKeyword[i].title + "</h5>" +
-                "<p class='card-text'>" + booksByKeyword[i].authorsCollection[0].firstName + " "
-                + booksByKeyword[i].authorsCollection[0].lastName + "<br>" + (booksByKeyword[i].price / 100) + "$" + "</p>" +
-                "</div>" +
-                "</div>")        
+    for (i = 0; i < booksByKeyword.length; i++) {
+        $('.row.searchResults').append(
+            "<div class='card card-custom mx-2 mb-3' style='max-width: 176.25px; max-height:421.2px;'>" +
+            "<a href='/book.html?id=" + booksByKeyword[i].id + "'>" +
+            "<img class='card-img-top' src='" + booksByKeyword[i].imageUrl + "' alt='Card image cap'>" + "</a>" +
+            "<div class='card-body' style='background-color: #CDD0C0'>" +
+            "<p class='card-title' style='font-weight: bold;'>" + booksByKeyword[i].title + "</h5>" +
+            "<p class='card-text'>" + booksByKeyword[i].authorsCollection[0].firstName + " "
+            + booksByKeyword[i].authorsCollection[0].lastName + "<br>" + (booksByKeyword[i].price / 100) + "$" + "</p>" +
+            "</div>" +
+            "</div>")
     }
-    
+
 
 }
 
@@ -60,7 +63,7 @@ function getListOfAuthors(booksByKeyword) {
         $.each(listOfAuthors, function (i, el) {
             if ($.inArray(el, uniqueAuthors) === -1) uniqueAuthors.push(el);
         });
-    }    
+    }
     return uniqueAuthors
 }
 
@@ -71,9 +74,9 @@ function getListOfPublishers(booksByKeyword) {
         listOfPublishers.push(publisherName);
     }
     var uniquePublishers = [];
-        $.each(listOfPublishers, function (i, el) {
-            if ($.inArray(el, uniquePublishers) === -1) uniquePublishers.push(el);
-        });
+    $.each(listOfPublishers, function (i, el) {
+        if ($.inArray(el, uniquePublishers) === -1) uniquePublishers.push(el);
+    });
     return uniquePublishers;
 
 }
@@ -85,10 +88,10 @@ function getListOfYears(booksByKeyword) {
         listOfYears.push(publicationYear);
     }
     var uniqueYears = [];
-        $.each(listOfYears, function (i, el) {
-            if ($.inArray(el, uniqueYears) === -1) uniqueYears.push(el);
-        });
-    return uniqueYears;    
+    $.each(listOfYears, function (i, el) {
+        if ($.inArray(el, uniqueYears) === -1) uniqueYears.push(el);
+    });
+    return uniqueYears;
 }
 
 function getListOfLanguages(booksByKeyword) {
@@ -98,9 +101,9 @@ function getListOfLanguages(booksByKeyword) {
         listOfLanguages.push(language);
     }
     var uniqueLanguages = [];
-        $.each(listOfLanguages, function (i, el) {
-            if ($.inArray(el, uniqueLanguages) === -1) uniqueLanguages.push(el);
-        });
+    $.each(listOfLanguages, function (i, el) {
+        if ($.inArray(el, uniqueLanguages) === -1) uniqueLanguages.push(el);
+    });
     return uniqueLanguages;
 }
 
