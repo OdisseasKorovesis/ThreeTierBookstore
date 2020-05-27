@@ -43,7 +43,7 @@ public class AuthorController {
      * (Conflict) if the author already exists.
      */
     @PostMapping(value = "/authors", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<?> createGenre(@RequestBody Author author) {
+    public ResponseEntity<?> createAuthor(@RequestBody Author author) {
 
         if (authorService.isAuthorExist(author)) {
             return new ResponseEntity(HttpStatus.CONFLICT);
