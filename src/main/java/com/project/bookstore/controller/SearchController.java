@@ -3,6 +3,7 @@ package com.project.bookstore.controller;
 import com.project.bookstore.models.Book;
 import com.project.bookstore.service.SearchServiceImpl;
 import java.util.List;
+import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,8 +28,8 @@ public class SearchController {
      * returns no books.
      */
     @GetMapping("/search/{keyphrase}")
-    public ResponseEntity<List<Book>> getBook(@PathVariable("keyphrase") String keyphrase) {
-        List<Book> books = searchService.searchBooks(keyphrase);
+    public ResponseEntity<Set<Book>> getBook(@PathVariable("keyphrase") String keyphrase) {
+        Set<Book> books = searchService.searchBooks(keyphrase);
         if (books == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
