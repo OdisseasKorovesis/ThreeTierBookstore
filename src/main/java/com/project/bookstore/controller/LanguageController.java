@@ -27,6 +27,22 @@ public class LanguageController {
     LanguageServiceImpl languageService;
 
     /**
+     * GET /languages : Get all languages.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of languages
+     * in the body, or with status 204 (NO CONTENT) if there are no languages in
+     * database.
+     */
+    @GetMapping("/languages")
+    public ResponseEntity<List<Language>> getAllLanguages() {
+        List<Language> languages = languageService.findAllLanguages();
+        if (languages.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(languages, HttpStatus.OK);
+    }
+
+    /**
      * GET /language:language : Get books by language
      *
      * @param language the language of the books to retrieve
@@ -60,13 +76,5 @@ public class LanguageController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-    
-     @GetMapping("/languages")
-    public ResponseEntity<List<Language>> getAllLanguages() {
-        List<Language> languages = languageService.findAllLanguages();
-        if (languages.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(languages, HttpStatus.OK);
-    }
+
 }

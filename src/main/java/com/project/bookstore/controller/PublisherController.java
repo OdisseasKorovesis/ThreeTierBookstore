@@ -21,6 +21,22 @@ public class PublisherController {
     PublisherServiceImpl publisherService;
 
     /**
+     * GET /publishers : Get all publishers.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of
+     * publishers in the body, or with status 204 (NO CONTENT) if there are no
+     * publishers in database.
+     */
+    @GetMapping("/publishers")
+    public ResponseEntity<List<Publisher>> getAllAuthors() {
+        List<Publisher> publishers = publisherService.findAllPublishers();
+        if (publishers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(publishers, HttpStatus.OK);
+    }
+
+    /**
      * POST /publishers : Create a new publishers.
      *
      * @param publisher the publishers name to create
@@ -38,12 +54,4 @@ public class PublisherController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-       @GetMapping("/publishers")
-    public ResponseEntity<List<Publisher>> getAllAuthors() {
-        List<Publisher> publishers = publisherService.findAllPublishers();
-        if (publishers.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(publishers, HttpStatus.OK);
-    }
 }

@@ -27,6 +27,22 @@ public class GenreController {
     GenreServiceImpl genreService;
 
     /**
+     * GET /genre : Get all genre.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of genre in
+     * the body, or with status 204 (NO CONTENT) if there are no genre in
+     * database.
+     */
+    @GetMapping("/genre")
+    public ResponseEntity<List<Genre>> getAllGenre() {
+        List<Genre> genre = genreService.findAllGenre();
+        if (genre.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(genre, HttpStatus.OK);
+    }
+
+    /**
      * GET /genre:genre : Get books by genre
      *
      * @param genre the genre of the books to retrieve
@@ -34,17 +50,6 @@ public class GenreController {
      * genre the body, or with status 204 (NO CONTENT) if there are no books of
      * this genre.
      */
-    
-       @GetMapping("/genre")
-    public ResponseEntity<List<Genre>> getAllAuthors() {
-        List<Genre> genre = genreService.findAllGenre();
-        if (genre.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(genre, HttpStatus.OK);
-    }
-    
-    
     @GetMapping("/genre/{genre}")
     public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable("genre") String genre) {
         List<Book> books = bookService.findByGenre(genre);

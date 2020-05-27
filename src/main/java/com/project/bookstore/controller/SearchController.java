@@ -2,7 +2,6 @@ package com.project.bookstore.controller;
 
 import com.project.bookstore.models.Book;
 import com.project.bookstore.service.SearchServiceImpl;
-import java.util.List;
 import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
