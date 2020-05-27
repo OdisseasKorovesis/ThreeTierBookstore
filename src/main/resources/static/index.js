@@ -1,7 +1,7 @@
 $(document).ready(function () {    
     var allBooks;
     $.ajax({
-        url: "tier3/books",
+        url: "tier3/books/bestseller/8",
         data: {
             format: 'json'
         },
@@ -10,7 +10,23 @@ $(document).ready(function () {
         },
         success: function (data) {
             allBooks = data;
-            generateCarouselofMostSold(allBooks);
+            generateCarouselofMostSold(allBooks);                       
+        }
+    });
+});
+
+$(document).ready(function () {    
+    var allBooks;
+    $.ajax({
+        url: "tier3/books/recent/8",
+        data: {
+            format: 'json'
+        },
+        error: function() {
+            alert("Could not find any books!");
+        },
+        success: function (data) {
+            allBooks = data;            
             generateCarouselofMostRecent(allBooks);            
         }
     });
