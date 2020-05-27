@@ -118,6 +118,20 @@ public class Book implements Serializable {
         this.originalTitle = originalTitle;
     }
 
+    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle, String imageUrl, Genre genreId, Language languageId, Publisher publisherId) {
+        this.isbn = isbn;
+        this.title = title;
+        this.nrOfPages = nrOfPages;
+        this.publicationYear = publicationYear;
+        this.price = price;
+        this.description = description;
+        this.originalTitle = originalTitle;
+        this.imageUrl = imageUrl;
+        this.genreId = genreId;
+        this.languageId = languageId;
+        this.publisherId = publisherId;
+    }
+
     public Integer getId() {
         return id;
     }
