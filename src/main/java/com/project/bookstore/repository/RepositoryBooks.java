@@ -26,10 +26,18 @@ public interface RepositoryBooks extends CrudRepository<Book, Integer> {
 
     @Query(value = "SELECT * FROM books\n"
             + "WHERE title LIKE %?1%", nativeQuery = true)
-    List<Book> searchByTitle(String Title);
+    List<Book> searchByTitle(String title);
 
     @Query(value = "SELECT books.* from books \n"
             + "JOIN books_authors on books.id=books_authors.book_id\n"
             + "WHERE author_id=?1", nativeQuery = true)
     List<Book> searchByAuthor(int author_id);
+
+   @Query(value = "SELECT * FROM books\n"
+            + "WHERE isbn=?1",nativeQuery = true)
+    Book findByISBN(String isbn);
+
+    @Query(value = "SELECT * FROM books\n"
+            + "WHERE title=?1",nativeQuery = true)
+    Book findByTitle(String title);
 }

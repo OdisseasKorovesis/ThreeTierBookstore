@@ -45,20 +45,21 @@ public class BookServiceImpl implements IBookService {
     public List<Book> findNBestsellerBooks(int n) {
         return repositoryBooks.findNBestsellerBooks(n);
     }
-//
-//    @Override
-//    public boolean isBookExist(Book book) {
-////        TODO book exists only when id is the same?
-//        return findById(book.getId()) != null;
-//
-//    }
-//
-//    @Override
-//    public void saveBook(Book book) {
-////      TODO  get correct ID from DB to allow controller to return correct locator uri
-//        book.setId(counter.incrementAndGet());
-//        books.add(book);
-//    }
+
+    @Override
+    public boolean isBookExist(Book book) {
+        if (repositoryBooks.findByISBN(book.getIsbn()) == null
+                && repositoryBooks.findByTitle(book.getTitle()) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void saveBook(Book book) {
+        repositoryBooks.save(book);
+    }
 //
 //    @Override
 //    public void updateBook(Book book) {

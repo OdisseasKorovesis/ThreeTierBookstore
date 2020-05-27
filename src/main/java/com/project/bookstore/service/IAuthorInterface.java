@@ -2,6 +2,7 @@ package com.project.bookstore.service;
 
 import com.project.bookstore.models.Author;
 import com.project.bookstore.models.Genre;
+import java.util.List;
 
 public interface IAuthorInterface {
 
@@ -10,5 +11,7 @@ public interface IAuthorInterface {
     void saveAuthor(Author author);
 
     boolean isAuthorExist(Author author);
+    
+    List<Author> findAllAuthors();
 
 }

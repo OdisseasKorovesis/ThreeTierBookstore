@@ -8,5 +8,7 @@ public interface RepositoryPublishers extends CrudRepository<Publisher, Integer>
 
     @Query(value = "SELECT * FROM publishers WHERE name= ?1", nativeQuery = true)
     Publisher findByName(String name);
+    
+    
 
 }

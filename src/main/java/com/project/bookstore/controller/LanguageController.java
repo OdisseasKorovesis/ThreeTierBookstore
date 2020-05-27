@@ -60,4 +60,13 @@ public class LanguageController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+    
+     @GetMapping("/languages")
+    public ResponseEntity<List<Language>> getAllLanguages() {
+        List<Language> languages = languageService.findAllLanguages();
+        if (languages.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(languages, HttpStatus.OK);
+    }
 }

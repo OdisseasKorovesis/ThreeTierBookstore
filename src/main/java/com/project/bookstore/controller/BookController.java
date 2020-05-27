@@ -5,18 +5,15 @@ import com.project.bookstore.service.BookServiceImpl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/tier3")
@@ -97,22 +94,19 @@ public class BookController {
      * POST /books : Create a new book.
      *
      * @param book the book to create
-     * @return the ResponseEntity with status 201 (Created) and with location
-     * header the book uri, or with status 409 (Conflict) if the book already
-     * exists.
+     * @return the ResponseEntity with status 201 (Created), or with status 409
+     * (Conflict) if the book already exists.
      */
-//    @PostMapping("/books")
-//    public ResponseEntity<String> createBook(@RequestBody Book book, UriComponentsBuilder ucBuilder) {
-//
-//        if (bookService.isBookExist(book)) {
-//            return new ResponseEntity(HttpStatus.CONFLICT);
-//        }
-//        bookService.saveBook(book);
-//
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(ucBuilder.path("/books/{id}").buildAndExpand(book.getId()).toUri());
-//        return new ResponseEntity<>(headers, HttpStatus.CREATED);
-//    }
+    @PostMapping(value = "/books", consumes = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<String> createBook(@RequestBody Book book) {
+
+        if (bookService.isBookExist(book)) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
+        bookService.saveBook(book);
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 //
 //    /**
 //     * PUT /books:id : Update an existing book with id.

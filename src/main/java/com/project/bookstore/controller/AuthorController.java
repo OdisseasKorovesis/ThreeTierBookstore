@@ -1,8 +1,10 @@
 package com.project.bookstore.controller;
 
 import com.project.bookstore.models.Author;
-import com.project.bookstore.models.Genre;
+
+
 import com.project.bookstore.service.AuthorServiceImpl;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +28,17 @@ public class AuthorController {
      * @return the ResponseEntity with status 200 (OK) and a random author in
      * the body, or with status 204 (NO CONTENT) if the random author is empty.
      */
+    
+     @GetMapping("/authors")
+    public ResponseEntity<List<Author>> getAllAuthors() {
+        List<Author> authors = authorService.findAllAuthors();
+        if (authors.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(authors, HttpStatus.OK);
+    }
+    
+    
     @GetMapping("/quote")
     public ResponseEntity<Author> getRandomAuthor() {
         Author author = authorService.getRandomAuthor();

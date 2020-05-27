@@ -2,10 +2,12 @@ package com.project.bookstore.controller;
 
 import com.project.bookstore.models.Publisher;
 import com.project.bookstore.service.PublisherServiceImpl;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,4 +38,12 @@ public class PublisherController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+       @GetMapping("/publishers")
+    public ResponseEntity<List<Publisher>> getAllAuthors() {
+        List<Publisher> publishers = publisherService.findAllPublishers();
+        if (publishers.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(publishers, HttpStatus.OK);
+    }
 }

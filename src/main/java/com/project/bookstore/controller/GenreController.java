@@ -34,6 +34,17 @@ public class GenreController {
      * genre the body, or with status 204 (NO CONTENT) if there are no books of
      * this genre.
      */
+    
+       @GetMapping("/genre")
+    public ResponseEntity<List<Genre>> getAllAuthors() {
+        List<Genre> genre = genreService.findAllGenre();
+        if (genre.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(genre, HttpStatus.OK);
+    }
+    
+    
     @GetMapping("/genre/{genre}")
     public ResponseEntity<List<Book>> getBooksByGenre(@PathVariable("genre") String genre) {
         List<Book> books = bookService.findByGenre(genre);
