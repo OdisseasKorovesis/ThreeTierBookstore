@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-Tier Books</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"
+        integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="createBook.css">
+    <script src="https://kit.fontawesome.com/598efe55df.js" crossorigin="anonymous"></script>
+    <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />
+    <script src="createBook.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- div to set background for all the page -->
+
+    <!-- main container div -->
+    <div class="container">
+
+        <!-- logo area -->
+        <div class="text-center mb-1" style="position: relative;" id="logo">
+            <br>
+            <br>
+            <img src="img/3TB_BW-removebg-preview.png" alt="Image could not be loaded" width="230" height="200">
+        </div>
+
+        <!-- navbar area -->
+        <div id="navbar">
+            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CDD0C0;">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="index.html"><i class="fas fa-home"></i> Home </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-book-open"></i> About us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-envelope-open-text"></i></i> Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-question-circle"></i> Help</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav onleft">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i></i> Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-shopping-basket"></i> Basket</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-heart"></i> Wishlist</a>
+                        </li>
+
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+
+
+        <!-- main content area -->
+        <div id="mainContentArea" class="row">
+            <!-- sidebar area -->
+
+
+            <!-- main content -->
+            <div id="mainContent" class="col-12">
+                <hr>
+                <h1 class="display-5 text-center mt-4" style="color: #373737; font-family: 'Chelsea Market', cursive;">
+                    Create a new Book
+                </h1>
+                <hr>
+                <form id="bookForm" action="/createAuthor.html" method="POST" name="bookForm">
+                    <div class="form-group border rounded p-3">
+
+                        <label for="bookISBN">Book ISBN</label>
+                        <input onsubmit="checkValue(event)" type="text" class="form-control mt-2" id="bookISBN"
+                            placeholder="Enter book isbn here" name="isbn" required>
+
+                        <label class="mt-2" for="bookTitle">Book Title</label>
+                        <input onsubmit="checkValue(event)" type="text" class="form-control mt-2" id="bookTitle"
+                            placeholder="Enter book title here" name="title" required>
+
+                        <label class="mt-2" for="bookPages">Number of Pages</label>
+                        <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="bookPages"
+                            placeholder="Enter number of book pages here" name="nrOfPages" required>
+
+                        <!-- <label class="mt-2" for="bookStock">Number of Available Copies</label>
+                        <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="bookStock"
+                            placeholder="Enter how many copies will be initially available here" name="bookStock" required> -->
+
+
+                        <label class="mt-2" for="bookYear">Book Publication Year</label>
+                        <input onsubmit="checkValue(event)" type="number" class="form-control" id="bookYear"
+                            placeholder="Enter the book publication year here" name="publicationYear" required>
+
+                        <label class="mt-2" for="bookPrice">Price</label>
+                        <input onsubmit="checkValue(event)" type="number" class="form-control" id="bookPrice"
+                            placeholder="Enter the book price in cents here" name="price" required>
+
+
+                        <label class="mt-2" for="bookDescription">Example textarea</label>
+                        <textarea class="form-control" id="bookDescription" name="description" rows="3"
+                            form="bookForm" placeholder="Enter book description here"></textarea>
+
+                        <label class="mt-2" for="bookOriginalTitle">Book Original Title</label>
+                        <input onsubmit="checkValue(event)" type="text" class="form-control" id="bookOriginalTitle"
+                            placeholder="Enter book original title here" name="originalTitle" required>                        
+
+                        <!-- <label class="mt-2" for="bookAuthor">Select an available Author</label>
+                        <select class="custom-select" id="bookAuthor" name="bookAuthor" form="bookForm">                            
+                        </select> -->
+
+                        <label class="mt-2" for="bookGenre">Select an available Genre</label>
+                        <select class="custom-select" id="bookGenre" name="genreId" form="bookForm">                            
+                        </select>
+
+                        <label class="mt-2" for="bookLanguage">Select an available Language</label>
+                        <select class="custom-select" id="bookLanguage" name="languageId" form="bookForm">                            
+                        </select>
+
+                        <label class="mt-2" for="bookPublisher">Select an available Publisher</label>
+                        <select class="custom-select" id="bookPublisher" name="publisherId" form="bookForm">                            
+                        </select>
+
+                        <label class="mt-2" for="bookImage">Book Cover Url</label>
+                        <input onsubmit="checkValue(event)" type="url" class="form-control" id="bookImage"
+                            placeholder="Enter book original title here" name="imageUrl" required>
+
+                    </div>
+
+                </form>
+                <div class="text-center">
+                    <button type="submit" class="btn">Create Book!</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- footer area outside of container -->
+    <br>
+    <br>
+    <footer class="page-footer font-small">
+
+
+        <div class="py-5" style="background-color: #CDD0C0;">
+            <div class="mb-3 text-center">
+                <!-- Facebook -->
+                <a class="fb-ic">
+                    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!-- Twitter -->
+                <a class="tw-ic">
+                    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!-- Google +-->
+                <a class="gplus-ic">
+                    <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!--Linkedin -->
+                <a class="li-ic">
+                    <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!--Instagram-->
+                <a class="ins-ic">
+                    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                </a>
+                <!--Pinterest-->
+                <a class="pin-ic">
+                    <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3" style="background-color: #C0B283;">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        </div>
+    </footer>
+</body>
+
+</html>
