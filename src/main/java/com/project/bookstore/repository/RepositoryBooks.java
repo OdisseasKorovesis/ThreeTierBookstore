@@ -32,4 +32,10 @@ public interface RepositoryBooks extends CrudRepository<Book, Integer> {
             + "JOIN books_authors on books.id=books_authors.book_id\n"
             + "WHERE author_id=?1", nativeQuery = true)
     List<Book> searchByAuthor(int author_id);
+
+//    TODO
+    Book findByISBN(String isbn);
+
+//TODO
+    Book findByTitle(String title);
 }

@@ -17,10 +17,9 @@ public interface IBookService {
 
     List<Book> findNBestsellerBooks(int n);
 
-//    this does not need to be implemented in dao
-//    boolean isBookExist(Book book);
-//
-//    void saveBook(Book book);
+    boolean isBookExist(Book book);
+
+    void saveBook(Book book);
 //
 //    void updateBook(Book book);
 //
