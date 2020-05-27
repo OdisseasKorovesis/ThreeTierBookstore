@@ -1,6 +1,7 @@
 package com.project.bookstore.service;
 
 import com.project.bookstore.models.Publisher;
+import java.util.List;
 
 public interface IPublisherService {
 
@@ -8,4 +9,5 @@ public interface IPublisherService {
 
     boolean isPublisherExist(Publisher publisher);
 
+    List<Publisher> findAllPublishers();
 }
