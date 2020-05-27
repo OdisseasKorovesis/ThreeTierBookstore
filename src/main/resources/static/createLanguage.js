@@ -3,12 +3,12 @@ $(document).ready(function(){
     $(".btn").on('click', function(event){
         event.preventDefault();        
         var formData = {};
-        $("#genreForm").find(":input").each(function(){
+        $("#languageForm").find(":input").each(function(){
             formData[this.name] = $(this).val()
         })    
         $.ajax({
             type: "POST",
-            url: "tier3/publishers",
+            url: "tier3/languages",
             data: (JSON.stringify(formData)),
             dataType: "json",
             contentType: "application/json; charset=utf-8", 
