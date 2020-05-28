@@ -11,22 +11,33 @@ $(document).ready(function () {
             format: 'json'
         },
         error: function () {
-            alert("Something went wrong!");
+            alert("Could not find any results, with this keyword, please try again!");
         },
         success: function (data) {
+            console.log(data.length);
+            if(data.length !== 0) {
             booksByKeyword = data;
             booksByKeyword2 = data;
             generateSearchResults(booksByKeyword);
             generateFilters(booksByKeyword);
+            } else {                
+                $('#mainContentArea').empty();
+                $('#mainContentArea').append(
+                    "<div class='jumbotron col-12 border border-dark text-center' style='background-color: #CDD0C0;'>" +
+                    "<h1 class='display-4' style='font-family: Chelsea Market, cursive;'>Could not find any results!</h1>" +
+                    "<p class='lead'>Maybe it's because of a typo, or maybe you're looking for one of the very few books " +
+                    "that do not belong in our collection. You can either try again from the search bar above or simply cick on the button below and go back to our homepage to get some ideas.</p>" +
+                    "<hr class='my-4'>" +                    
+                    "<p class='lead text-center'>" +
+                      "<a class='btn btn-lg' style='background-color: #c0b283' href='/index.html' role='button'>Back to Homepage!</a>" +
+                   " </p>" +
+                  "</div>"
+                );
 
-            //filterResults();
-        }
-        // , to handle empty result set, to be created later on
-        // statusCode: {
-        //     204: displayNoResultsMessage()
-        // } 
-    });
-    console.log(booksByKeyword2);
+            }
+                        
+        }        
+    });    
 });
 
 //get the search parameters from the url

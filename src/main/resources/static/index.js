@@ -49,13 +49,12 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function () {
-    $('#mainSearchForm').submit(function (event) {
-        if ($('#searchInput').val() === "") {
+$(document).ready(function (event) {    
+    $('#mainSearchForm').submit(function (event) {        
+        if(!$('#searchInput').val().trim().length) {
             event.preventDefault();
             alert("Our collection is endless, try entering a keyword to search throught it, otherwise you might get lost.");
         }
-
     })
 })
 
