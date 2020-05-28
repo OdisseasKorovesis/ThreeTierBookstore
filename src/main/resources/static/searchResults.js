@@ -173,7 +173,7 @@ function generateFilters(booksByKeyword) {
     $('#myRange').attr("min", sortedMinMaxPrice[0]);
     $('#myRange').attr("max", sortedMinMaxPrice[sortedMinMaxPrice.length - 1]);
     $('#myRange').attr("value", sortedMinMaxPrice[sortedMinMaxPrice.length - 1]);
-    output.innerHTML = "Maximum Price: " + slider.value;
+    output.innerHTML = "Maximum Price: " + (slider.value / 100);
     // Update the current slider value (each time you drag the slider handle)
     slider.onchange = function () {
         output.innerHTML = "Maximum Price: " + (this.value / 100);
