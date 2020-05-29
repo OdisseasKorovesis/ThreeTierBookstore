@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    // click on button submit
-    $(".btn").on('click', function(event){
+    $("#authorForm").on('submit', function(event){
         event.preventDefault();        
         var formData = {};
         $("#authorForm").find(":input").each(function(){
@@ -14,7 +13,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8", 
             statusCode: {
                 201: function() {
-                    alert("created succesfully");
+                    alert("Author created succesffully!");
                 }
             }                                    
           });   

@@ -1,6 +1,5 @@
 $(document).ready(function(){
-    // click on button submit
-    $(".btn").on('click', function(event){
+    $("#genreForm").on('submit', function(event){
         event.preventDefault();        
         var formData = {};
         $("#genreForm").find(":input").each(function(){
@@ -14,7 +13,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8", 
             statusCode: {
                 201: function() {
-                    alert("created succesfully");
+                    alert("Genre created succesfully!");
                 }
             }                                    
           });   

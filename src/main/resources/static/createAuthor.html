@@ -91,25 +91,25 @@
                     Create a new author
                 </h1>
                 <hr>
-                <form id="authorForm" action="/createAuthor.html" method="POST" name="authorForm">
+                <form id="authorForm" name="authorForm">
                     <div class="form-group border rounded p-3">
                         <label for="authorFirstName">Author First Name</label>
-                        <input onsubmit="checkValue(event)" type="text" class="form-control" id="authorFirstName"
-                            placeholder="Enter author first name here" name="firstName" required>
+                        <input type="text" class="form-control" id="firstName"
+                            placeholder="Enter author first name here" name="firstName" minlength="1" maxlength="100" required>
                         <label for="authorLastName">Author Last Name</label>
-                        <input onsubmit="checkValue(event)" type="text" class="form-control" id="authorLastName"
-                            placeholder="Enter author last name here" name="lastName" required>
+                        <input type="text" class="form-control" id="lastName"
+                            placeholder="Enter author last name here" name="lastName"  minlength="1" maxlength="100" required>
                         <label for="authorQuote">Author Quote</label>
-                        <input onsubmit="checkValue(event)" type="text" class="form-control" id="authorQuote"
-                            placeholder="Enter a quote of the author here" name="quote" required>
-                            <label for="authorImage">Author Picture Url</label>
-                            <input onsubmit="checkValue(event)" type="text" class="form-control" id="authorImage"
-                                placeholder="Enter the url of an image of the author here" name="imageUrl" required>
+                        <input type="text" class="form-control" id="quote"
+                            placeholder="Enter a quote of the author here" name="quote" minlength="10" required>
+                        <label for="authorImage">Author Picture Url</label>
+                        <input type="text" class="form-control" id="imageUrl"
+                            placeholder="Enter the url of an image of the author here" name="imageUrl" min="11" required>
                     </div>
 
                 </form>
                 <div class="text-center">
-                    <button type="submit" class="btn">Create author!</button>
+                    <button type="submit" class="btn" form="authorForm">Create author!</button>
                 </div>
             </div>
 
