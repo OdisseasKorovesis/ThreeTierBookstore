@@ -19,7 +19,7 @@ public class SearchController {
     SearchServiceImpl searchService;
 
     /**
-     * GET /books/:id : Get book as search result
+     * GET /books/:keyphrase : Get book as search result
      *
      * @param keyphrase the keyphrase of the search
      * @return the ResponseEntity with status 200 (OK) and with body the books
@@ -29,7 +29,7 @@ public class SearchController {
     @GetMapping("/search/{keyphrase}")
     public ResponseEntity<Set<Book>> getBook(@PathVariable("keyphrase") String keyphrase) {
         Set<Book> books = searchService.searchBooks(keyphrase);
-        if (books == null) {
+        if (books.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(books, HttpStatus.OK);
