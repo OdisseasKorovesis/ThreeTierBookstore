@@ -19,7 +19,7 @@ public class SearchController {
     SearchServiceImpl searchService;
 
     /**
-     * GET /books/:keyphrase : Get book as search result
+     * GET /search/:keyphrase : Search books with keyphrase
      *
      * @param keyphrase the keyphrase of the search
      * @return the ResponseEntity with status 200 (OK) and with body the books

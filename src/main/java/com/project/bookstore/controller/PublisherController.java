@@ -28,7 +28,7 @@ public class PublisherController {
      * publishers in database.
      */
     @GetMapping("/publishers")
-    public ResponseEntity<List<Publisher>> getAllAuthors() {
+    public ResponseEntity<List<Publisher>> getAllPublishers() {
         List<Publisher> publishers = publisherService.findAllPublishers();
         if (publishers.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
@@ -37,7 +37,7 @@ public class PublisherController {
     }
 
     /**
-     * POST /publishers : Create a new publishers.
+     * POST /publishers:publisher : Create a new publisher.
      *
      * @param publisher the publishers name to create
      * @return the ResponseEntity with status 201 (Created), or with status 409

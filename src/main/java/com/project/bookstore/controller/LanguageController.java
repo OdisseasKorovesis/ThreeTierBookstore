@@ -43,23 +43,6 @@ public class LanguageController {
     }
 
     /**
-     * GET /language:language : Get books by language
-     *
-     * @param language the language of the books to retrieve
-     * @return the ResponseEntity with status 200 (OK) and a list of books by
-     * language in the body, or with status 204 (NO CONTENT) if there are no
-     * books of this language.
-     */
-    @GetMapping("/language/{language}")
-    public ResponseEntity<List<Book>> getBooksByLanguage(@PathVariable("language") String language) {
-        List<Book> books = bookService.findByLanguage(language);
-        if (books.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(books, HttpStatus.OK);
-    }
-
-    /**
      * POST /languages : Create a new book language.
      *
      * @param language the language to create
@@ -75,6 +58,23 @@ public class LanguageController {
         languageService.saveLanguage(language);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * GET /language:language : Get books by language
+     *
+     * @param language the language of the books to retrieve
+     * @return the ResponseEntity with status 200 (OK) and a list of books by
+     * language in the body, or with status 204 (NO CONTENT) if there are no
+     * books of this language.
+     */
+    @GetMapping("/language/{language}")
+    public ResponseEntity<List<Book>> getBooksByLanguage(@PathVariable("language") String language) {
+        List<Book> books = bookService.findByLanguage(language);
+        if (books.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(books, HttpStatus.OK);
     }
 
 }

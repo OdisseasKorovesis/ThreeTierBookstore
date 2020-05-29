@@ -27,7 +27,7 @@ public class GenreController {
     GenreServiceImpl genreService;
 
     /**
-     * GET /genre : Get all genre.
+     * GET /genre : Get all book genre.
      *
      * @return the ResponseEntity with status 200 (OK) and the list of genre in
      * the body, or with status 204 (NO CONTENT) if there are no genre in
@@ -60,7 +60,7 @@ public class GenreController {
     }
 
     /**
-     * POST /languages : Create a new book language.
+     * POST /genre : Create a new book genre.
      *
      * @param genre the genre to create
      * @return the ResponseEntity with status 201 (Created), or with status 409
