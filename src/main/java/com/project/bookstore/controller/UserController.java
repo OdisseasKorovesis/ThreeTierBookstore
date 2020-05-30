@@ -42,7 +42,7 @@ public class UserController {
      *
      * @param user the user to create
      * @return the ResponseEntity with status 201 (Created), or with status 409
-     * (Conflict) if the user already exists.
+     * (Conflict) if the user with same username already exists.
      */
     @PostMapping(value = "/users", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> createUser(@RequestBody User user) {

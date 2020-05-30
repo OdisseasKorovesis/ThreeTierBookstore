@@ -23,8 +23,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public boolean isUserExist(User user) {
-        if (repositoryUsers.findByFirstName(user.getFirstName()) == null
-                && repositoryUsers.findByLastName(user.getLastName()) == null) {
+        if (repositoryUsers.findByUsername(user.getUsername()) == null) {
             return false;
         } else {
             return true;
