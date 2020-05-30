@@ -21,4 +21,19 @@ public class UserServiceImpl implements IUserService {
         return users;
     }
 
+    @Override
+    public boolean isUserExist(User user) {
+        if (repositoryUsers.findByFirstName(user.getFirstName()) == null
+                && repositoryUsers.findByLastName(user.getLastName()) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void saveUser(User user) {
+        repositoryUsers.save(user);
+    }
+
 }

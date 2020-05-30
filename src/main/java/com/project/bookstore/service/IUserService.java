@@ -7,4 +7,8 @@ public interface IUserService {
 
     List<User> findAllUsers();
 
+    boolean isUserExist(User user);
+
+    void saveUser(User user);
+
 }
