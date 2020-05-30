@@ -12,11 +12,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "order_items")
-@XmlRootElement
 public class OrderItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,12 +30,10 @@ public class OrderItem implements Serializable {
 
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "orderItem-books")
     private Book bookId;
 
     @JoinColumn(name = "order_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference(value = "orderId-orderItem")
     private Order orderId;
 
     public OrderItem() {

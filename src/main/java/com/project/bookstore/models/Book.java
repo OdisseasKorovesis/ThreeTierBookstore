@@ -1,7 +1,6 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -18,12 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "books")
-@XmlRootElement
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,7 +63,6 @@ public class Book implements Serializable {
     private String imageUrl;
 
     @ManyToMany(mappedBy = "booksCollection")
-    @JsonManagedReference(value = "author-book")
     private Collection<Author> authorsCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
@@ -78,22 +74,18 @@ public class Book implements Serializable {
     private Collection<WishlistItem> wishlistItemsCollection;
 
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
-    @JsonManagedReference(value = "invetory-books")
     private Inventory inventory;
 
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "genre-books")
     private Genre genreId;
 
     @JoinColumn(name = "language_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "language-books")
     private Language languageId;
 
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "publisher-books")
     private Publisher publisherId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
@@ -118,7 +110,7 @@ public class Book implements Serializable {
         this.originalTitle = originalTitle;
     }
 
-    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle, Genre genreId, Language languageId, Publisher publisherId,String imageUrl) {
+    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle, Genre genreId, Language languageId, Publisher publisherId, String imageUrl) {
         this.isbn = isbn;
         this.title = title;
         this.nrOfPages = nrOfPages;

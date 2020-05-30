@@ -1,5 +1,6 @@
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
@@ -12,12 +13,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "publishers")
-@XmlRootElement
 public class Publisher implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +31,6 @@ public class Publisher implements Serializable {
     private String name;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "publisherId")
-//    @JsonBackReference(value = "publisher-books")
     @JsonIgnore
     private Collection<Book> booksCollection;
 

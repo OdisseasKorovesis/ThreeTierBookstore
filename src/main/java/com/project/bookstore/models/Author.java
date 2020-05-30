@@ -1,6 +1,5 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
@@ -15,12 +14,10 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "authors")
-@XmlRootElement
 public class Author implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,7 +49,6 @@ public class Author implements Serializable {
         @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "book_id", referencedColumnName = "id")})
     @ManyToMany
-//    @JsonBackReference(value = "author-book")
     @JsonIgnore
     private Collection<Book> booksCollection;
 

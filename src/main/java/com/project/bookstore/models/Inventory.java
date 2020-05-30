@@ -1,21 +1,18 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "inventory")
-@XmlRootElement
 public class Inventory implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,7 +27,7 @@ public class Inventory implements Serializable {
 
     @JoinColumn(name = "book_id", referencedColumnName = "id", insertable = false, updatable = false)
     @OneToOne(optional = false)
-    @JsonBackReference(value = "invetory-books")
+    @JsonIgnore
     private Book books;
 
     public Inventory() {
