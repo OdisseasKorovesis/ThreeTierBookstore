@@ -1,6 +1,5 @@
-$(document).ready(function(){
-    // click on button submit
-    $(".btn").on('click', function(event){
+$(document).ready(function(){    
+    $("#languageForm").on('submit', function(event){
         event.preventDefault();        
         var formData = {};
         $("#languageForm").find(":input").each(function(){
@@ -13,8 +12,8 @@ $(document).ready(function(){
             dataType: "json",
             contentType: "application/json; charset=utf-8", 
             statusCode: {
-                201: function() {
-                    alert("created succesfully");
+                201: function() {                    
+                    alert("Language created successfully!");
                 }
             }                                    
           });   

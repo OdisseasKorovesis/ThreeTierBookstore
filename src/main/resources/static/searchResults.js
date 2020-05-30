@@ -1,26 +1,43 @@
 //ajax call to get search results
+var booksByKeyword2;
 $(document).ready(function () {
+
     var booksByKeyword;
     var paramName = "keyword";
     $.ajax({
+        async: false,
         url: "tier3/search/" + getKeywordFromUrl(paramName).replace("+", " ").trim(),
         data: {
             format: 'json'
         },
         error: function () {
-            alert("Something went wrong!");
+            alert("Could not find any results, with this keyword, please try again!");
         },
         success: function (data) {
+            console.log(data.length);
+            if(data.length !== 0) {
             booksByKeyword = data;
+            booksByKeyword2 = data;
             generateSearchResults(booksByKeyword);
             generateFilters(booksByKeyword);
-            //filterResults();
-        }
-        // , to handle empty result set, to be created later on
-        // statusCode: {
-        //     204: displayNoResultsMessage()
-        // } 
-    });
+            } else {                
+                $('#mainContentArea').empty();
+                $('#mainContentArea').append(
+                    "<div class='jumbotron col-12 border border-dark text-center' style='background-color: #CDD0C0;'>" +
+                    "<h1 class='display-4' style='font-family: Chelsea Market, cursive;'>Could not find any results!</h1>" +
+                    "<p class='lead'>Maybe it's because of a typo, or maybe you're looking for one of the very few books " +
+                    "that do not belong in our collection. You can either try again from the search bar above or simply cick on the button below and go back to our homepage to get some ideas.</p>" +
+                    "<hr class='my-4'>" +                    
+                    "<p class='lead text-center'>" +
+                      "<a class='btn btn-lg' style='background-color: #c0b283' href='/index.html' role='button'>Back to Homepage!</a>" +
+                   " </p>" +
+                  "</div>"
+                );
+
+            }
+                        
+        }        
+    });    
 });
 
 //get the search parameters from the url
@@ -122,7 +139,7 @@ function generateFilters(booksByKeyword) {
         console.log("inside list of authors");
         $('#authorFilter').append(
             "<label class='form-check'>" +
-            "<input class='form-check-input' type='checkbox' name='author' value='" + listOfAuthors[k] + "'>" +
+            "<input id='" + listOfAuthors[k] + "' class='form-check-input' onChange='handleChange()' type='checkbox' name='author' checked value='" + listOfAuthors[k] + "'>" +
             "<span class='form-check-label'>" +
             listOfAuthors[k] +
             "</span>"
@@ -133,7 +150,7 @@ function generateFilters(booksByKeyword) {
     for (var k = 0; k < listOfPublishers.length; k++) {
         $('#publisherFilter').append(
             "<label class='form-check'>" +
-            "<input class='form-check-input' type='checkbox' value='" + listOfPublishers[k] + "'>" +
+            "<input id=" + listOfPublishers[k] + " class='form-check-input' onChange='handleChange()' type='checkbox' checked value='" + listOfPublishers[k] + "'>" +
             "<span class='form-check-label'>" +
             listOfPublishers[k] +
             "</span>"
@@ -143,7 +160,7 @@ function generateFilters(booksByKeyword) {
     for (var k = 0; k < listOfYears.length; k++) {
         $('#yearFilter').append(
             "<label class='form-check'>" +
-            "<input class='form-check-input' type='checkbox' name='year' value='" + listOfYears[k] + "'>" +
+            "<input id=" + listOfYears[k] + " class='form-check-input' onChange='handleChange()' type='checkbox' checked name='year' value='" + listOfYears[k] + "'>" +
             "<span class='form-check-label'>" +
             listOfYears[k] +
             "</span>"
@@ -153,61 +170,49 @@ function generateFilters(booksByKeyword) {
     for (var k = 0; k < listOfLanguages.length; k++) {
         $('#languageFilter').append(
             "<label class='form-check'>" +
-            "<input class='form-check-input' type='checkbox' value='" + listOfLanguages[k] + "'>" +
+            "<input id=" + listOfLanguages[k] + " class='form-check-input' onChange='handleChange()' type='checkbox' checked value='" + listOfLanguages[k] + "'>" +
             "<span class='form-check-label'>" +
             listOfLanguages[k] +
             "</span>"
         )
     }
     var minMaxPrice = getMinMaxPrice(booksByKeyword)
-    var sortedMinMaxPrice = minMaxPrice.sort();
+    var sortedMinMaxPrice = minMaxPrice.sort((a, b) => a - b);
     var slider = document.getElementById("myRange");
     var output = document.getElementById("showBar");
     // Display the default slider value
     $('#myRange').attr("min", sortedMinMaxPrice[0]);
     $('#myRange').attr("max", sortedMinMaxPrice[sortedMinMaxPrice.length - 1]);
-    $('#myRange').attr("value", (sortedMinMaxPrice[0] + sortedMinMaxPrice[sortedMinMaxPrice.length - 1]) / 2);
-    output.innerHTML = "Maximum Price: " + slider.value;
+    $('#myRange').attr("value", sortedMinMaxPrice[sortedMinMaxPrice.length - 1]);
+    output.innerHTML = "Maximum Price: " + (slider.value / 100);
     // Update the current slider value (each time you drag the slider handle)
-    slider.oninput = function () {
-        output.innerHTML = "Maximum Price: " + this.value;
+    slider.onchange = function () {
+        output.innerHTML = "Maximum Price: " + (this.value / 100);
+        handleChange();
     }
 }
 
-// //filter results under construction
-// function filterResults() {
 
-//     $("input[name=author]").change(function () {
-//         alert("form changed author");
-//         $(this).attr("id", this.checked ? "selected" : "notSelected");
-//         $('.card-text').each(function () {
+function handleChange() {
+    $('.row.searchResults').empty();
+    generateSearchResults(booksByKeyword2.filter(filter))
 
-//             if ($(this).text().indexOf($("input[name='author']").val()) == -1 && $("input[name='author']").attr('id') == "selected") {
-//                 console.log("mpike")
-//                 $(this).parent().parent().hide();
-//             }
-//             if ($(this).text().indexOf($("input[name='author']").val()) == -1 && $("input[name='author']").attr('id') == "notSelected") {
-//                 console.log("mpike")
-//                 $(this).parent().parent().show();
-//             }
-//         })
-//     })
-//     $("input[name=year]").change(function () {
-//         alert("form changed year");
-//         $(this).attr("id", this.checked ? "selected" : "notSelected");
-//         $('.card-text').each(function () {
+}
 
-//             if ($(this).text().indexOf($("input[name='year']").val()) == -1 && $("input[name='year']").attr('id') == "selected") {
-//                 console.log("mpike")
-//                 $(this).parent().parent().hide();
-//             }
-//             if ($(this).text().indexOf($("input[name='year']").val()) == -1 && $("input[name='year']").attr('id') == "notSelected") {
-//                 console.log("mpike")
-//                 $(this).parent().parent().show();
-//             }
-//         })
-//     })
-// }
+function filter(book) {            
+        
+        if($('#myRange').val() < book.price) {
+            console.log("mpike");
+            return false;
+        }
+        
+        return document.getElementById(book.authorsCollection[0].firstName + " " + book.authorsCollection[0].lastName).checked
+        && document.getElementById(book.publisherId.name).checked
+        && document.getElementById(book.publicationYear).checked
+        && document.getElementById(book.languageId.name).checked;
+}
+
+
 
 
 

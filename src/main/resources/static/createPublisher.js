@@ -1,6 +1,5 @@
-$(document).ready(function(){
-    // click on button submit
-    $(".btn").on('click', function(event){
+$(document).ready(function(){    
+    $("#publisherForm").on('submit', function(event){
         event.preventDefault();        
         var formData = {};
         $("#publisherForm").find(":input").each(function(){
@@ -13,8 +12,9 @@ $(document).ready(function(){
             dataType: "json",
             contentType: "application/json; charset=utf-8", 
             statusCode: {
-                201: function() {
-                    alert("created succesfully");
+                201: function() {                    
+                    alert("Publisher created successfully!");
+                    //check check
                 }
             }                                    
           });   

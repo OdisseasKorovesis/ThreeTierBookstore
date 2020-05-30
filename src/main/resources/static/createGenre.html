@@ -92,16 +92,16 @@
                         Create a new genre
                     </h1>
                     <hr>
-                    <form id="genreForm" action="/createPublisher.html" method="POST" name="genreForm">
+                    <form id="genreForm" name="genreForm">
                         <div class="form-group border rounded p-3">
-                            <label for="genreName">Genre Name</label>
-                            <input onsubmit="checkValue(event)" type="text" class="form-control" id="genreName"
-                                placeholder="Enter genre name here" name="name" required>
+                            <label for="name">Genre Name</label>
+                            <input type="text" class="form-control" id="name"
+                                placeholder="Enter genre name here" name="name" minlength="1" maxlength="45" required>
                         </div>                    
 
                     </form>
                     <div class="text-center">
-                        <button type="submit" class="btn">Create genre!</button>
+                        <button type="submit" class="btn" form="genreForm">Create genre!</button>
                     </div>                    
                 </div>
 

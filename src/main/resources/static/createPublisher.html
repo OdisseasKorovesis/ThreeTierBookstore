@@ -92,17 +92,17 @@
                         Create a new publisher
                     </h1>
                     <hr>
-                    <form id="publisherForm" action="/createPublisher.html" method="POST" name="publisherForm">
+                    <form id="publisherForm" name="publisherForm">
                         <div class="form-group border rounded p-3">
-                            <label for="publisherName">Publisher Name</label>
-                            <input onsubmit="checkValue(event)" type="text" class="form-control" id="publisherName"
-                                placeholder="Enter publisher name here" name="name" required>
+                            <label for="name">Publisher Name</label>
+                            <input type="text" class="form-control" id="name"
+                                placeholder="Enter publisher name here" name="name" minlength="1" maxlength="45" required>
                         </div>                    
 
                     </form>
                     <div class="text-center">
-                        <button type="submit" class="btn">Create publisher!</button>
-                    </div>                    
+                        <button type="submit" class="btn" form="publisherForm">Create Publisher!</button>
+                    </div>                     
                 </div>
 
             </div>

@@ -1,6 +1,5 @@
 $(document).ready(function () {
-    // click on button submit
-    $(".btn").on('click', function (event) {
+    $("#bookForm").on('submit', function (event) {
         console.log("pressed");
         event.preventDefault();
         var formData = {};
@@ -16,14 +15,11 @@ $(document).ready(function () {
             contentType: "application/json;",
             statusCode: {
                 201: function () {
-                    alert("created succesfully");                    
-                },
-                409: function() {
-                    alert("not created");
+                    alert("Book create successfully");                    
                 }
             },
             error: function() {
-                alert("did not insert");
+                alert("Could not create book please try again!");
             }
                 
             
