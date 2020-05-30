@@ -15,7 +15,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -37,12 +36,12 @@ public class Book implements Serializable {
     @Basic(optional = false)
     @Column(name = "title")
     private String title;
-    @Basic(optional = false)
 
+    @Basic(optional = false)
     @Column(name = "nr_of_pages")
     private int nrOfPages;
-    @Basic(optional = false)
 
+    @Basic(optional = false)
     @Column(name = "publication_year")
     private int publicationYear;
 
@@ -62,6 +61,10 @@ public class Book implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
+    @Basic(optional = false)
+    @Column(name = "inventory")
+    private int inventory;
+
     @ManyToMany(mappedBy = "booksCollection")
     private Collection<Author> authorsCollection;
 
@@ -72,9 +75,6 @@ public class Book implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     @JsonBackReference(value = "wishList-books")
     private Collection<WishlistItem> wishlistItemsCollection;
-
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
-    private Inventory inventory;
 
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -97,31 +97,6 @@ public class Book implements Serializable {
 
     public Book(Integer id) {
         this.id = id;
-    }
-
-    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
-
-        this.isbn = isbn;
-        this.title = title;
-        this.nrOfPages = nrOfPages;
-        this.publicationYear = publicationYear;
-        this.price = price;
-        this.description = description;
-        this.originalTitle = originalTitle;
-    }
-
-    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle, Genre genreId, Language languageId, Publisher publisherId, String imageUrl) {
-        this.isbn = isbn;
-        this.title = title;
-        this.nrOfPages = nrOfPages;
-        this.publicationYear = publicationYear;
-        this.price = price;
-        this.description = description;
-        this.originalTitle = originalTitle;
-        this.imageUrl = imageUrl;
-        this.genreId = genreId;
-        this.languageId = languageId;
-        this.publisherId = publisherId;
     }
 
     public Integer getId() {
@@ -223,11 +198,11 @@ public class Book implements Serializable {
         this.wishlistItemsCollection = wishlistItemsCollection;
     }
 
-    public Inventory getInventory() {
+    public int getInventory() {
         return inventory;
     }
 
-    public void setInventory(Inventory inventory) {
+    public void setInventory(int inventory) {
         this.inventory = inventory;
     }
 
