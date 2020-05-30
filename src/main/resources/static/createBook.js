@@ -15,10 +15,12 @@ $(document).ready(function () {
             contentType: "application/json;",
             statusCode: {
                 201: function () {
-                    alert("Book create successfully");                    
+                    console.log(data);
+                    alert("Book created successfully");                    
                 }
             },
             error: function() {
+                console.log(data);
                 alert("Could not create book please try again!");
             }
                 
@@ -97,29 +99,32 @@ $(document).ready(function createAuthorSelect() {
 
 function generateGenreSelect(allGenre) {
     for (var i = 0; i < allGenre.length; i++)
-        $('#bookGenre').append(
+        $('#genreId').append(
             "<option value= " + allGenre[i].id + ">" + allGenre[i].name + "</option>"
         )
 }
 
 function generateLanguageSelect(allLanguages) {
     for (var i = 0; i < allLanguages.length; i++)
-        $('#bookLanguage').append(
+        $('#languageId').append(
             "<option value= " + allLanguages[i].id + ">" + allLanguages[i].name + "</option>"
         )
 }
 
 function generatePublisherSelect(allPublishers) {
     for (var i = 0; i < allPublishers.length; i++)
-        $('#bookPublisher').append(
+        $('#publisherId').append(
             "<option value= " + allPublishers[i].id + ">" + allPublishers[i].name + "</option>"
         )
 }
 
 function generateAuthorSelect(allAuthors) {
-    for (var i = 0; i < allAuthors.length; i++)
-        $('#bookAuthor').append(
-            "<option value= " + allAuthors[i].id + ">"
-            + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>"
-        )
+    for (var i = 0; i < allAuthors.length; i++) {
+        $('#authorsCollection').append(            
+        "<option value= " + JSON.stringify(allAuthors[i]) + ">"
+        + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>");
+        console.log( JSON.stringify(allAuthors[i]));
+    }    
+        
+        
 }
