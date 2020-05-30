@@ -3,14 +3,18 @@ package com.project.bookstore.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
@@ -65,8 +69,13 @@ public class Book implements Serializable {
     @Column(name = "inventory")
     private int inventory;
 
-    @ManyToMany(mappedBy = "booksCollection")
-    private Collection<Author> authorsCollection;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "books_authors",
+            joinColumns = {
+                @JoinColumn(name = "book_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "author_id")})
+    private Set<Author> authorsCollection = new HashSet<Author>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     @JsonBackReference(value = "basketItem-books")
@@ -176,7 +185,7 @@ public class Book implements Serializable {
         return authorsCollection;
     }
 
-    public void setAuthorsCollection(Collection<Author> authorsCollection) {
+    public void setAuthorsCollection(Set<Author> authorsCollection) {
         this.authorsCollection = authorsCollection;
     }
 
