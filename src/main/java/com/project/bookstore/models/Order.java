@@ -1,6 +1,5 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -17,12 +16,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "orders")
-@XmlRootElement
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,7 +58,6 @@ public class Order implements Serializable {
     private User userId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "orderId")
-    @JsonManagedReference(value = "orderId-orderItem")
     private Collection<OrderItem> orderItemsCollection;
 
     public Order() {
