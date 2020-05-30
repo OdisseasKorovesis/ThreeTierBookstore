@@ -13,22 +13,28 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthenticationEntryPoint authEntryPoint;
+//    @Autowired
+//    private AuthenticationEntryPoint authEntryPoint;
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-				.antMatchers("/index.html", "/").permitAll()
-                                .antMatchers("/createPublisher.html")
-                                .access("hasRole('USER')")
-				.and().httpBasic()
-				.authenticationEntryPoint(authEntryPoint);
-	}
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/index.html", "/").permitAll()
+                .antMatchers("/createPublisher.html")
+                .access("hasRole('USER')")
+                .and().formLogin()
+                .and()
+                .logout()
+                .logoutUrl("/perform_logout")
+                .logoutSuccessUrl("/index.html")
+                .invalidateHttpSession(true) // set invalidation state when logout
+                .deleteCookies("JSESSIONID");
+        //.authenticationEntryPoint(authEntryPoint);
+    }
 
-	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("john123").password("password").roles("USER");
-	}
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication().withUser("john123").password("password").roles("USER");
+    }
 
 }
