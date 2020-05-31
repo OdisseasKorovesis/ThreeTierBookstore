@@ -1,30 +1,35 @@
-$(document).ready(function () {
+ $(document).ready(function() {
+    delete Object.prototype.toJSON;
+    delete Array.prototype.toJSON;
+    //delete Hash.prototype.toJSON;
+    delete String.prototype.toJSON;
+ })       
+
+
+$(document).ready(function () {    
     $("#bookForm").on('submit', function (event) {
-        console.log("pressed");
-        event.preventDefault();
-        var formData = {};
+        event.preventDefault();       
+        var formData = {};        
         $("#bookForm").find(":input").each(function () {
-            formData[this.name] = $(this).val()
-        })
-        console.log(JSON.stringify(formData));
+                if(this.name === "authorsCollection" || this.name === "genreId" 
+                || this.name === "languageId" || this.name === "publisherId"){
+                    formData[this.name] = JSON.parse($(this).val());
+                } else {
+                    formData[this.name] = $(this).val();
+                }
+                  
+        })                
         $.ajax({
             type: "POST",
             url: "tier3/books",
-            data: (JSON.stringify(formData)),
+            data: JSON.stringify(formData),
             dataType: "json",
             contentType: "application/json;",
             statusCode: {
                 201: function () {
-                    console.log(data);
-                    alert("Book created successfully");                    
+                    alert("Book created successfully");
                 }
-            },
-            error: function() {
-                console.log(data);
-                alert("Could not create book please try again!");
             }
-                
-            
         });
     });
 });
@@ -100,31 +105,33 @@ $(document).ready(function createAuthorSelect() {
 function generateGenreSelect(allGenre) {
     for (var i = 0; i < allGenre.length; i++)
         $('#genreId').append(
-            "<option value= " + allGenre[i].id + ">" + allGenre[i].name + "</option>"
+            "<option value= " + JSON.stringify(allGenre[i]) + ">" + allGenre[i].name + "</option>"
         )
 }
 
 function generateLanguageSelect(allLanguages) {
     for (var i = 0; i < allLanguages.length; i++)
         $('#languageId').append(
-            "<option value= " + allLanguages[i].id + ">" + allLanguages[i].name + "</option>"
+            "<option value= " + JSON.stringify(allLanguages[i]) + ">" + allLanguages[i].name + "</option>"
         )
 }
 
 function generatePublisherSelect(allPublishers) {
     for (var i = 0; i < allPublishers.length; i++)
         $('#publisherId').append(
-            "<option value= " + allPublishers[i].id + ">" + allPublishers[i].name + "</option>"
+            "<option value= " + JSON.stringify(allPublishers[i]) + ">" + allPublishers[i].name + "</option>"
         )
 }
 
 function generateAuthorSelect(allAuthors) {
     for (var i = 0; i < allAuthors.length; i++) {
-        $('#authorsCollection').append(            
-        "<option value= " + JSON.stringify(allAuthors[i]) + ">"
-        + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>");
-        console.log( JSON.stringify(allAuthors[i]));
-    }    
         
-        
+        var authorsCollection = [(allAuthors[i])];
+        $('#authorsCollection').append(
+            "<option value= '" + JSON.stringify(authorsCollection) + "'>"
+            + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>");
+        //console.log(JSON.stringify(allAuthors[i]));
+    }
+
+
 }

@@ -10,10 +10,7 @@ ul.navbar-nav.onleft > li {
 
 .carousel.slide.mt-3 .carousel-item {
     height: 300px;
-  }
-
-
-  
+  }  
 
 .card-header.filter {
     background-color: #373737; 
@@ -26,6 +23,14 @@ ul.navbar-nav.onleft > li {
 
 .form-check-label {
     font-family: Chelsea Market, cursive;
+}
+
+#sliderBox, #sliderBox2 {
+    background-color: #C0B283;
+}
+
+#myRange {
+    background-color: #373737;
 }
 
 

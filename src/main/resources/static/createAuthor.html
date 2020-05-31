@@ -16,29 +16,28 @@
         integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="createAuthor.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainLayout.css">
+    <link rel="stylesheet" type="text/css" href="/css/create.css">
     <script src="https://kit.fontawesome.com/598efe55df.js" crossorigin="anonymous"></script>
     <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />
-    <script src="createAuthor.js"></script>
+    <script src="/js/createAuthor.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <!-- div to set background for all the page -->
-
     <!-- main container div -->
     <div class="container">
 
         <!-- logo area -->
-        <div class="text-center mb-1" style="position: relative;" id="logo">
+        <div class="text-center mb-1" id="logo">
             <br>
             <br>
             <img src="img/3TB_BW-removebg-preview.png" alt="Image could not be loaded" width="230" height="200">
         </div>
-
+    
         <!-- navbar area -->
         <div id="navbar">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CDD0C0;">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -60,7 +59,7 @@
                     </ul>
                     <ul class="navbar-nav onleft">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i></i> Login</a>
+                            <a class="nav-link" href="login2.html"><i class="fas fa-sign-in-alt"></i></i> Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
@@ -71,7 +70,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-heart"></i> Wishlist</a>
                         </li>
-
+    
                     </ul>
                 </div>
             </nav>
@@ -87,7 +86,7 @@
             <!-- main content -->
             <div id="mainContent" class="col-12">
                 <hr>
-                <h1 class="display-5 text-center mt-4" style="color: #373737; font-family: 'Chelsea Market', cursive;">
+                <h1 id="formTitle" class="display-5 text-center mt-4">
                     Create a new author
                 </h1>
                 <hr>
@@ -116,46 +115,46 @@
         </div>
     </div>
 
-    <!-- footer area outside of container -->
-    <br>
-    <br>
-    <footer class="page-footer font-small">
+       <!-- footer area outside of container -->
+       <br>
+       <br>
+       <footer class="page-footer font-small">
 
 
-        <div class="py-5" style="background-color: #CDD0C0;">
-            <div class="mb-3 text-center">
-                <!-- Facebook -->
-                <a class="fb-ic">
-                    <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                </a>
-                <!-- Twitter -->
-                <a class="tw-ic">
-                    <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                </a>
-                <!-- Google +-->
-                <a class="gplus-ic">
-                    <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                </a>
-                <!--Linkedin -->
-                <a class="li-ic">
-                    <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                </a>
-                <!--Instagram-->
-                <a class="ins-ic">
-                    <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
-                </a>
-                <!--Pinterest-->
-                <a class="pin-ic">
-                    <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
-                </a>
-            </div>
-        </div>
+           <div id="footerUpper" class="py-5">
+               <div class="mb-3 text-center">
+                   <!-- Facebook -->
+                   <a class="fb-ic">
+                       <i class="fab fa-facebook-f fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                   </a>
+                   <!-- Twitter -->
+                   <a class="tw-ic">
+                       <i class="fab fa-twitter fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                   </a>
+                   <!-- Google +-->
+                   <a class="gplus-ic">
+                       <i class="fab fa-google-plus-g fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                   </a>
+                   <!--Linkedin -->
+                   <a class="li-ic">
+                       <i class="fab fa-linkedin-in fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                   </a>
+                   <!--Instagram-->
+                   <a class="ins-ic">
+                       <i class="fab fa-instagram fa-lg white-text mr-md-5 mr-3 fa-2x"> </i>
+                   </a>
+                   <!--Pinterest-->
+                   <a class="pin-ic">
+                       <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
+                   </a>
+               </div>
+           </div>
 
-        <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" style="background-color: #C0B283;">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
-        </div>
-    </footer>
+           <!-- Copyright -->
+           <div class="footer-copyright text-center py-3">© 2020 Copyright:
+               <a href="https://mdbootstrap.com/"> 3-Tier-Books Co.</a>
+           </div>
+       </footer>
 </body>
 
 </html>
