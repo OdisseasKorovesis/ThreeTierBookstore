@@ -1,6 +1,8 @@
 package com.project.bookstore.service;
 
+import com.project.bookstore.models.Basket;
 import com.project.bookstore.models.User;
+import com.project.bookstore.repository.RepositoryBaskets;
 import com.project.bookstore.repository.RepositoryUsers;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private RepositoryUsers repositoryUsers;
+
+    @Autowired
+    private RepositoryBaskets repositoryBaskets;
 
     @Override
     public List<User> findAllUsers() {
@@ -33,6 +38,8 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void saveUser(User user) {
         repositoryUsers.save(user);
+        Basket basket = new Basket(user);
+        repositoryBaskets.save(basket);
     }
 
 }
