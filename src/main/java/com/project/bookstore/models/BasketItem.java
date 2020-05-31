@@ -1,5 +1,6 @@
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,11 +26,12 @@ public class BasketItem implements Serializable {
 
     @JoinColumn(name = "basket_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private Basket basketId;
 
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Book bookId;
+    private Book book;
 
     public BasketItem() {
     }
@@ -67,12 +69,12 @@ public class BasketItem implements Serializable {
         this.basketId = basketId;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     @Override

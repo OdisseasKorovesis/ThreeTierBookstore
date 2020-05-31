@@ -1,5 +1,6 @@
 package com.project.bookstore.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -27,6 +28,7 @@ public class Basket implements Serializable {
     private Integer id;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "basketId")
+    @JsonIgnore
     private Collection<BasketItem> basketItemsCollection;
 
     @JoinColumn(name = "user_id", referencedColumnName = "id")
