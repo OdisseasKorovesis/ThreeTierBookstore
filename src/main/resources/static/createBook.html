@@ -106,9 +106,9 @@
                         <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="nrOfPages"
                             placeholder="Enter number of book pages here" name="nrOfPages" min="10" required>
 
-                        <!-- <label class="mt-2" for="bookStock">Number of Available Copies</label>
-                        <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="bookStock"
-                            placeholder="Enter how many copies will be initially available here" name="bookStock" required> -->
+                            <label class="mt-2" for="inventory">Stock Level</label>
+                            <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="inventory"
+                                placeholder="Enter how many copies of the book will be initially available" name="inventory" min="1" required>
 
 
                         <label class="mt-2" for="publicationYear">Book Publication Year</label>
@@ -128,9 +128,9 @@
                         <input type="text" class="form-control" id="originalTitle"
                             placeholder="Enter book original title here" name="originalTitle" minlength="1" maxlength="100" required>                        
 
-                        <!-- <label class="mt-2" for="bookAuthor">Select an available Author</label>
-                        <select class="custom-select" id="bookAuthor" name="bookAuthor" form="bookForm">                            
-                        </select> -->
+                        <label class="mt-2" for="bookAuthor">Select an available Author</label>
+                        <select class="custom-select" id="authorsCollection" name="authorsCollection" form="bookForm">                            
+                        </select>
 
                         <label class="mt-2" for="genreId">Select an available Genre</label>
                         <select class="custom-select" id="genreId" name="genreId" form="bookForm">                            

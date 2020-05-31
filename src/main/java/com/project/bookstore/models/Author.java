@@ -1,26 +1,17 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "authors")
-@XmlRootElement
 public class Author implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,14 +38,6 @@ public class Author implements Serializable {
     @Lob
     @Column(name = "image_url")
     private String imageUrl;
-
-    @JoinTable(name = "books_authors", joinColumns = {
-        @JoinColumn(name = "author_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "book_id", referencedColumnName = "id")})
-    @ManyToMany
-//    @JsonBackReference(value = "author-book")
-    @JsonIgnore
-    private Collection<Book> booksCollection;
 
     public Author() {
     }
@@ -109,15 +92,6 @@ public class Author implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    @XmlTransient
-    public Collection<Book> getBooksCollection() {
-        return booksCollection;
-    }
-
-    public void setBooksCollection(Collection<Book> booksCollection) {
-        this.booksCollection = booksCollection;
     }
 
     @Override

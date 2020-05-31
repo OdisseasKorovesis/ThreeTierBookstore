@@ -1,7 +1,6 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -13,16 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "users")
-@XmlRootElement
 public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,20 +48,23 @@ public class User implements Serializable {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    //@JsonManagedReference(value="basket-users")
+    @JsonIgnore
     private Collection<Basket> basketsCollection;
+
     @JoinColumn(name = "role_id", referencedColumnName = "id")
     @ManyToOne
-    // @JsonBackReference
     private Role roleId;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    //  @JsonManagedReference
+    @JsonIgnore
     private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    //  @JsonManagedReference
+    @JsonIgnore
     private Collection<Order> ordersCollection;
+
     @OneToMany(mappedBy = "userId")
-    //  @JsonManagedReference
+    @JsonIgnore
     private Collection<Wishlist> wishlistsCollection;
 
     public User() {

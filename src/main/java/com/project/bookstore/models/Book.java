@@ -1,29 +1,29 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "books")
-@XmlRootElement
 public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,12 +40,12 @@ public class Book implements Serializable {
     @Basic(optional = false)
     @Column(name = "title")
     private String title;
-    @Basic(optional = false)
 
+    @Basic(optional = false)
     @Column(name = "nr_of_pages")
     private int nrOfPages;
-    @Basic(optional = false)
 
+    @Basic(optional = false)
     @Column(name = "publication_year")
     private int publicationYear;
 
@@ -65,9 +65,17 @@ public class Book implements Serializable {
     @Column(name = "image_url")
     private String imageUrl;
 
-    @ManyToMany(mappedBy = "booksCollection")
-    @JsonManagedReference(value = "author-book")
-    private Collection<Author> authorsCollection;
+    @Basic(optional = false)
+    @Column(name = "inventory")
+    private int inventory;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "books_authors",
+            joinColumns = {
+                @JoinColumn(name = "book_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "author_id")})
+    private Set<Author> authorsCollection = new HashSet<Author>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
     @JsonBackReference(value = "basketItem-books")
@@ -77,23 +85,16 @@ public class Book implements Serializable {
     @JsonBackReference(value = "wishList-books")
     private Collection<WishlistItem> wishlistItemsCollection;
 
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "books")
-    @JsonManagedReference(value = "invetory-books")
-    private Inventory inventory;
-
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "genre-books")
     private Genre genreId;
 
     @JoinColumn(name = "language_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "language-books")
     private Language languageId;
 
     @JoinColumn(name = "publisher_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "publisher-books")
     private Publisher publisherId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
@@ -105,31 +106,6 @@ public class Book implements Serializable {
 
     public Book(Integer id) {
         this.id = id;
-    }
-
-    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle) {
-
-        this.isbn = isbn;
-        this.title = title;
-        this.nrOfPages = nrOfPages;
-        this.publicationYear = publicationYear;
-        this.price = price;
-        this.description = description;
-        this.originalTitle = originalTitle;
-    }
-
-    public Book(String isbn, String title, int nrOfPages, int publicationYear, int price, String description, String originalTitle, Genre genreId, Language languageId, Publisher publisherId,String imageUrl) {
-        this.isbn = isbn;
-        this.title = title;
-        this.nrOfPages = nrOfPages;
-        this.publicationYear = publicationYear;
-        this.price = price;
-        this.description = description;
-        this.originalTitle = originalTitle;
-        this.imageUrl = imageUrl;
-        this.genreId = genreId;
-        this.languageId = languageId;
-        this.publisherId = publisherId;
     }
 
     public Integer getId() {
@@ -209,7 +185,7 @@ public class Book implements Serializable {
         return authorsCollection;
     }
 
-    public void setAuthorsCollection(Collection<Author> authorsCollection) {
+    public void setAuthorsCollection(Set<Author> authorsCollection) {
         this.authorsCollection = authorsCollection;
     }
 
@@ -231,11 +207,11 @@ public class Book implements Serializable {
         this.wishlistItemsCollection = wishlistItemsCollection;
     }
 
-    public Inventory getInventory() {
+    public int getInventory() {
         return inventory;
     }
 
-    public void setInventory(Inventory inventory) {
+    public void setInventory(int inventory) {
         this.inventory = inventory;
     }
 

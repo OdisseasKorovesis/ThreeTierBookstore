@@ -1,6 +1,5 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -9,11 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "basket_items")
-@XmlRootElement
 public class BasketItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +29,6 @@ public class BasketItem implements Serializable {
 
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "basketItem-books")
     private Book bookId;
 
     public BasketItem() {

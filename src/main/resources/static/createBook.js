@@ -15,10 +15,12 @@ $(document).ready(function () {
             contentType: "application/json;",
             statusCode: {
                 201: function () {
-                    alert("Book create successfully");                    
+                    console.log(data);
+                    alert("Book created successfully");                    
                 }
             },
             error: function() {
+                console.log(data);
                 alert("Could not create book please try again!");
             }
                 
@@ -117,9 +119,12 @@ function generatePublisherSelect(allPublishers) {
 }
 
 function generateAuthorSelect(allAuthors) {
-    for (var i = 0; i < allAuthors.length; i++)
-        $('#bookAuthor').append(
-            "<option value= " + allAuthors[i].id + ">"
-            + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>"
-        )
+    for (var i = 0; i < allAuthors.length; i++) {
+        $('#authorsCollection').append(            
+        "<option value= " + JSON.stringify(allAuthors[i]) + ">"
+        + allAuthors[i].firstName + " " + allAuthors[i].lastName + "</option>");
+        console.log( JSON.stringify(allAuthors[i]));
+    }    
+        
+        
 }

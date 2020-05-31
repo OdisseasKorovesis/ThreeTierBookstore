@@ -1,7 +1,6 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,12 +24,11 @@ public class WishlistItem implements Serializable {
 
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonManagedReference(value = "wishList-books")
     private Book bookId;
 
     @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonBackReference(value = "wishlist-wishlistItem")
+    @JsonIgnore
     private Wishlist wishlistId;
 
     public WishlistItem() {
