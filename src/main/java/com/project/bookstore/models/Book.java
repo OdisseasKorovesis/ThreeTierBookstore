@@ -82,7 +82,7 @@ public class Book implements Serializable {
     @JsonIgnore
     private Collection<BasketItem> basketItemsCollection;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
     @JsonBackReference(value = "wishList-books")
     private Collection<WishlistItem> wishlistItemsCollection;
 

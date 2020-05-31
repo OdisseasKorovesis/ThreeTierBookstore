@@ -2,8 +2,10 @@ package com.project.bookstore.service;
 
 import com.project.bookstore.models.Basket;
 import com.project.bookstore.models.User;
+import com.project.bookstore.models.Wishlist;
 import com.project.bookstore.repository.RepositoryBaskets;
 import com.project.bookstore.repository.RepositoryUsers;
+import com.project.bookstore.repository.RepositoryWishlists;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,9 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private RepositoryBaskets repositoryBaskets;
+
+    @Autowired
+    private RepositoryWishlists repositoryWishlists;
 
     @Override
     public List<User> findAllUsers() {
@@ -39,7 +44,9 @@ public class UserServiceImpl implements IUserService {
     public void saveUser(User user) {
         repositoryUsers.save(user);
         Basket basket = new Basket(user);
+        Wishlist wishlist = new Wishlist(user);
         repositoryBaskets.save(basket);
+        repositoryWishlists.save(wishlist);
     }
 
 }

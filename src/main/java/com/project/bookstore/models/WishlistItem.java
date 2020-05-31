@@ -5,30 +5,30 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "wishlist_items")
-@XmlRootElement
 public class WishlistItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
 
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Book bookId;
+    private Book book;
 
     @JoinColumn(name = "wishlist_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    @JsonIgnore
     private Wishlist wishlistId;
 
     public WishlistItem() {
@@ -46,12 +46,12 @@ public class WishlistItem implements Serializable {
         this.id = id;
     }
 
-    public Book getBookId() {
-        return bookId;
+    public Book getBook() {
+        return book;
     }
 
-    public void setBookId(Book bookId) {
-        this.bookId = bookId;
+    public void setBook(Book book) {
+        this.book = book;
     }
 
     public Wishlist getWishlistId() {
