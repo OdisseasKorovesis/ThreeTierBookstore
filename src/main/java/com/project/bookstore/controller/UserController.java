@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/tier3")
 public class UserController {
+    
+      @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     UserServiceImpl userService;
@@ -47,10 +51,18 @@ public class UserController {
     @PostMapping(value = "/users", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> createUser(@RequestBody User user) {
 
+      
+        
         if (userService.isUserExist(user)) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
-        userService.saveUser(user);
+        User user2=new User();
+        user2.setEmail(user.getEmail());
+        user2.setFirstName(user.getFirstName());
+        user2.setLastName(user.getLastName());
+        user2.setUsername(user.getUsername());
+        user2.setPassword(passwordEncoder.encode(user.getPassword()));
+        userService.saveUser(user2);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

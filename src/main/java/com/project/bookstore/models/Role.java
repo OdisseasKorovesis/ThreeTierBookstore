@@ -28,9 +28,7 @@ public class Role implements Serializable {
     @Column(name = "role")
     private String role;
 
-    @OneToMany(mappedBy = "roleId")
-    @JsonIgnore
-    private Collection<User> usersCollection;
+    
 
     public Role() {
     }
@@ -39,8 +37,8 @@ public class Role implements Serializable {
         this.id = id;
     }
 
-    public Role(Integer id, String role) {
-        this.id = id;
+    public Role(String role) {
+        
         this.role = role;
     }
 
@@ -60,14 +58,6 @@ public class Role implements Serializable {
         this.role = role;
     }
 
-    @XmlTransient
-    public Collection<User> getUsersCollection() {
-        return usersCollection;
-    }
-
-    public void setUsersCollection(Collection<User> usersCollection) {
-        this.usersCollection = usersCollection;
-    }
 
     @Override
     public int hashCode() {
@@ -91,7 +81,10 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "com.project.bookstore.models.Roles[ id=" + id + " ]";
+        return "Role{" +
+            "id=" + id +
+            ", name='" + role + '\'' +
+            '}';
     }
 
 }

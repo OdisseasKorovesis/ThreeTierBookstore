@@ -11,6 +11,6 @@ public interface RepositoryUsers extends CrudRepository<User, Integer> {
 
     @Query(value = "SELECT * FROM users\n"
             + "WHERE username = ?1", nativeQuery = true)
-    Author findByUsername(String username);
+    User findByUsername(String username);
 
 }
