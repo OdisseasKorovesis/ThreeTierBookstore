@@ -42,6 +42,10 @@ public class Basket implements Serializable {
         this.id = id;
     }
 
+    public Basket(User userId) {
+        this.userId = userId;
+    }
+
     public Integer getId() {
         return id;
     }
