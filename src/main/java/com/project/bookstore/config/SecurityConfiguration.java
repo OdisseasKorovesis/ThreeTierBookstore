@@ -1,3 +1,6 @@
+
+
+  
 package com.project.bookstore.config;
 
 import com.project.bookstore.service.IUserService;
@@ -24,10 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/index.html", "/").permitAll()
-                //                .antMatchers("/createPublisher.html")
-                //                .access("hasRole('ADMIN')")
-                .anyRequest().authenticated()
-                .and().formLogin()
+                .antMatchers("/adminDash.html").access("hasRole('ADMIN')")
+                .antMatchers("/createPublisher.html").access("hasRole('ADMIN')")
+                .antMatchers("/createGenre.html").access("hasRole('ADMIN')")
+                .antMatchers("/createLanguage.html").access("hasRole('ADMIN')")
+                .antMatchers("/createBook.html").access("hasRole('ADMIN')")
+                .antMatchers("/createAuthor.html").access("hasRole('ADMIN')")
+                .and().formLogin().loginPage("/login2.html").loginProcessingUrl("/login2.html").defaultSuccessUrl("/index.html")
                 .and()
                 .logout()
                 .logoutUrl("/perform_logout")

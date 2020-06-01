@@ -3,6 +3,8 @@ package com.project.bookstore.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,16 +21,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
-
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
 
-    
-    
-    
-    
-    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -60,15 +56,14 @@ public class User implements Serializable {
     @JsonIgnore
     private Collection<Basket> basketsCollection;
 
-     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-        name = "users_roles",
-        joinColumns = @JoinColumn(
-            name = "user_id", referencedColumnName = "id"),
-        inverseJoinColumns = @JoinColumn(
-            name = "role_id", referencedColumnName = "id"))
-    
-    private Collection < Role > roles;
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
+    private Set< Role> roles=new HashSet<Role>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
@@ -98,7 +93,7 @@ public class User implements Serializable {
         this.email = email;
     }
 
-    public User(String username, String password, String firstName, String lastName, String email, Collection<Role> roles) {
+    public User(String username, String password, String firstName, String lastName, String email, Set<Role> roles) {
         this.username = username;
         this.password = password;
         this.firstName = firstName;
@@ -164,11 +159,11 @@ public class User implements Serializable {
         this.basketsCollection = basketsCollection;
     }
 
-   public Collection < Role > getRoles() {
+    public Set< Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Collection < Role > roles) {
+    public void setRoles(Set< Role> roles) {
         this.roles = roles;
     }
 
@@ -219,18 +214,17 @@ public class User implements Serializable {
         return true;
     }
 
-    
     @Override
     public String toString() {
-        return "User{" +
-            "id=" + id +
-            ", username='"+username+'\''+    
-            ", firstName='" + firstName + '\'' +
-            ", lastName='" + lastName + '\'' +
-            ", email='" + email + '\'' +
-            ", password='" + "*********" + '\'' +
-            ", roles=" + roles +
-            '}';
+        return "User{"
+                + "id=" + id
+                + ", username='" + username + '\''
+                + ", firstName='" + firstName + '\''
+                + ", lastName='" + lastName + '\''
+                + ", email='" + email + '\''
+                + ", password='" + "*********" + '\''
+                + ", roles=" + roles
+                + '}';
     }
 
 }
