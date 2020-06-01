@@ -47,7 +47,7 @@ public class WishlistController {
      * user in the body, or with status 204 (NO CONTENT) if there is no wishlist
      * for this user in the database.
      */
-    @GetMapping("/wishlist/{id}")
+    @GetMapping("/wishlist/{userId}")
     public ResponseEntity<Wishlist> getUserWishlistId(@PathVariable("userId") int userId) {
         Wishlist wishlist = wishlistService.findWishlistWithUserId(userId);
         if (wishlist == null) {
