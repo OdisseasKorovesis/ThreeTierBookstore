@@ -1,6 +1,7 @@
 package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
@@ -77,11 +78,11 @@ public class Book implements Serializable {
                 @JoinColumn(name = "author_id")})
     private Set<Author> authorsCollection = new HashSet<Author>();
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
-    @JsonBackReference(value = "basketItem-books")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
+    @JsonIgnore
     private Collection<BasketItem> basketItemsCollection;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bookId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "book")
     @JsonBackReference(value = "wishList-books")
     private Collection<WishlistItem> wishlistItemsCollection;
 

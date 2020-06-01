@@ -1,19 +1,21 @@
 package com.project.bookstore.service;
 
+import com.project.bookstore.models.Basket;
 import com.project.bookstore.models.Role;
 import com.project.bookstore.models.User;
+import com.project.bookstore.models.Wishlist;
+import com.project.bookstore.repository.RepositoryBaskets;
 import com.project.bookstore.repository.RepositoryUsers;
+import com.project.bookstore.repository.RepositoryWishlists;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -21,10 +23,14 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private RepositoryUsers repositoryUsers;
-    
-    
+
 //    @Autowired
 //    private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private RepositoryBaskets repositoryBaskets;
+
+    @Autowired
+    private RepositoryWishlists repositoryWishlists;
 
     @Override
     public List<User> findAllUsers() {
@@ -46,6 +52,10 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void saveUser(User user) {
         repositoryUsers.save(user);
+        Basket basket = new Basket(user);
+        Wishlist wishlist = new Wishlist(user);
+        repositoryBaskets.save(basket);
+        repositoryWishlists.save(wishlist);
     }
 
     @Override
@@ -66,7 +76,7 @@ public class UserServiceImpl implements IUserService {
                 mapRolesToAuthorities(user.getRoles()));
     }
 
-    private Collection < ? extends GrantedAuthority > mapRolesToAuthorities(Collection< Role> roles) {
+    private Collection< ? extends GrantedAuthority> mapRolesToAuthorities(Collection< Role> roles) {
         return roles.stream()
                 .map(role -> new SimpleGrantedAuthority(role.getRole()))
                 .collect(Collectors.toList());
