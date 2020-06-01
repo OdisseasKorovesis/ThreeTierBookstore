@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 public interface RepositoryBaskets extends CrudRepository<Basket, Integer> {
 
     @Query(value = "SELECT * from baskets WHERE user_id=?1", nativeQuery = true)
-    Basket findBasketWithUserId(int id);
+    Basket findBasketWithUserId(int userId);
 
 }

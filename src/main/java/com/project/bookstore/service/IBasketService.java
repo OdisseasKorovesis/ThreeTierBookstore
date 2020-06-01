@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface IBasketService {
 
-    List<BasketItem> findBasketItemsWithUserId(int id);
+    List<BasketItem> findBasketItemsWithBasketId(int basketId);
 
-    Basket findBasketWithUserId(int id);
+    Basket findBasketWithUserId(int userId);
 
     void saveBasketItem(BasketItem basketItem);
 
