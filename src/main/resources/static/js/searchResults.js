@@ -11,17 +11,7 @@ $(document).ready(function () {
             format: 'json'
         },
         error: function () {
-            alert("Could not find any results, with this keyword, please try again!");
-        },
-        success: function (data) {
-            console.log(data.length);
-            if(data.length !== 0) {
-            booksByKeyword = data;
-            booksByKeyword2 = data;
-            generateSearchResults(booksByKeyword);
-            generateFilters(booksByKeyword);
-            } else {                
-                $('#mainContentArea').empty();
+            $('#mainContentArea').empty();
                 $('#mainContentArea').append(
                     "<div class='jumbotron col-12 border border-dark text-center' style='background-color: #CDD0C0;'>" +
                     "<h1 class='display-4' style='font-family: Chelsea Market, cursive;'>Could not find any results!</h1>" +
@@ -33,9 +23,12 @@ $(document).ready(function () {
                    " </p>" +
                   "</div>"
                 );
-
-            }
-                        
+        },
+        success: function (data) {            
+            booksByKeyword = data;
+            booksByKeyword2 = data;
+            generateSearchResults(booksByKeyword);
+            generateFilters(booksByKeyword);           
         }        
     });    
 });

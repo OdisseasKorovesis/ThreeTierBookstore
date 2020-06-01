@@ -49,9 +49,9 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function (event) {    
-    $('#mainSearchForm').submit(function (event) {        
-        if(!$('#searchInput').val().trim().length) {
+$(document).ready(function (event) {
+    $('#mainSearchForm').submit(function (event) {
+        if (!$('#searchInput').val().trim().length) {
             event.preventDefault();
             alert("Our collection is endless, try entering a keyword to search throught it, otherwise you might get lost.");
         }
@@ -144,5 +144,15 @@ function getQuoteOfTheDay(author) {
     $('#quoteImage').attr('src', author.imageUrl);
 }
 
-
+//experiment with login/logout change items
+// $(document).ready(function () {
+//     if (sessionStorage.getItem('status') != null) {
+//         $('#navLogin').empty();
+//         $('#navLogin').append(
+//             "<li class='nav-item'>" +
+//             "<a class='nav-link' href='login2.html'><i class='fas fa-sign-in-alt'></i>Login</a>" +
+//             "</li>"
+//         )
+//     }
+// })
 

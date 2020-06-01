@@ -7,30 +7,25 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    
-    
-     @Autowired
+    @Autowired
     private IUserService userService;
-    
+
 //    @Autowired
 //    private AuthenticationEntryPoint authEntryPoint;
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/index.html", "/").permitAll()
-//                .antMatchers("/createPublisher.html")
-//                .access("hasRole('ADMIN')")
+                //                .antMatchers("/createPublisher.html")
+                //                .access("hasRole('ADMIN')")
                 .anyRequest().authenticated()
                 .and().formLogin()
                 .and()
@@ -46,9 +41,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 //        auth.inMemoryAuthentication().withUser("john123").password("password").roles("USER");
 //    }
-    
-    
-     @Bean
+    @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -58,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
-        
+
         return auth;
     }
 
@@ -67,5 +60,3 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(authenticationProvider());
     }
 }
-
-

@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-Tier Books</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.serializejson.js"></script>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
@@ -16,10 +17,11 @@
         integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd"
         crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" type="text/css" href="createBook.css">
+    <link rel="stylesheet" type="text/css" href="/css/create.css">
+    <link rel="stylesheet" type="text/css" href="/css/mainLayout.css">
     <script src="https://kit.fontawesome.com/598efe55df.js" crossorigin="anonymous"></script>
     <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />
-    <script src="createBook.js"></script>
+    <script src="/js/createBook.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
 </head>
 
@@ -30,15 +32,15 @@
     <div class="container">
 
         <!-- logo area -->
-        <div class="text-center mb-1" style="position: relative;" id="logo">
+        <div class="text-center mb-1" id="logo">
             <br>
             <br>
             <img src="img/3TB_BW-removebg-preview.png" alt="Image could not be loaded" width="230" height="200">
         </div>
-
+    
         <!-- navbar area -->
         <div id="navbar">
-            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #CDD0C0;">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                     aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -60,7 +62,7 @@
                     </ul>
                     <ul class="navbar-nav onleft">
                         <li class="nav-item">
-                            <a class="nav-link" href="#"><i class="fas fa-sign-in-alt"></i></i> Login</a>
+                            <a class="nav-link" href="login2.html"><i class="fas fa-sign-in-alt"></i></i> Login</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-user-plus"></i> Sign Up</a>
@@ -71,7 +73,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#"><i class="fas fa-heart"></i> Wishlist</a>
                         </li>
-
+    
                     </ul>
                 </div>
             </nav>
@@ -87,7 +89,7 @@
             <!-- main content -->
             <div id="mainContent" class="col-12">
                 <hr>
-                <h1 class="display-5 text-center mt-4" style="color: #373737; font-family: 'Chelsea Market', cursive;">
+                <h1 id="formTitle" class="display-5 text-center mt-4">
                     Create a new Book
                 </h1>
                 <hr>
@@ -98,7 +100,7 @@
                         <input onsubmit="checkValue(event)" type="text" class="form-control mt-2" id="isbn"
                             placeholder="Enter book isbn here" name="isbn" minlength="10" maxlength="50" required>
 
-                        <label class="mt-2" for="bookTitle">Book Title</label>
+                        <label class="mt-2" for="title">Book Title</label>
                         <input onsubmit="checkValue(event)" type="text" class="form-control mt-2" id="title"
                             placeholder="Enter book title here" name="title" minlength="1" maxlength="100" required>
 
@@ -106,14 +108,11 @@
                         <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="nrOfPages"
                             placeholder="Enter number of book pages here" name="nrOfPages" min="10" required>
 
-                            <label class="mt-2" for="inventory">Stock Level</label>
-                            <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="inventory"
-                                placeholder="Enter how many copies of the book will be initially available" name="inventory" min="1" required>
-
 
                         <label class="mt-2" for="publicationYear">Book Publication Year</label>
                         <input type="number" class="form-control" id="publicationYear"
-                            placeholder="Enter the book publication year here" name="publicationYear" min="1900" max="2020" required>
+                            placeholder="Enter the book publication year here" name="publicationYear" min="1900"
+                            max="2020" required>
 
                         <label class="mt-2" for="price">Price</label>
                         <input type="number" class="form-control" id="price"
@@ -121,32 +120,38 @@
 
 
                         <label class="mt-2" for="description">Example textarea</label>
-                        <textarea class="form-control" id="description" name="description" rows="3"
-                            form="bookForm" placeholder="Enter book description here" minlength="10" required></textarea>
+                        <textarea class="form-control" id="description" name="description" rows="3" form="bookForm"
+                            placeholder="Enter book description here" minlength="10" required></textarea>
 
                         <label class="mt-2" for="originalTitle">Book Original Title</label>
                         <input type="text" class="form-control" id="originalTitle"
-                            placeholder="Enter book original title here" name="originalTitle" minlength="1" maxlength="100" required>                        
-
-                        <label class="mt-2" for="bookAuthor">Select an available Author</label>
-                        <select class="custom-select" id="authorsCollection" name="authorsCollection" form="bookForm">                            
-                        </select>
-
-                        <label class="mt-2" for="genreId">Select an available Genre</label>
-                        <select class="custom-select" id="genreId" name="genreId" form="bookForm">                            
-                        </select>
-
-                        <label class="mt-2" for="languageId">Select an available Language</label>
-                        <select class="custom-select" id="languageId" name="languageId" form="bookForm">                            
-                        </select>
-
-                        <label class="mt-2" for="publisherId">Select an available Publisher</label>
-                        <select class="custom-select" id="publisherId" name="publisherId" form="bookForm">                            
-                        </select>
+                            placeholder="Enter book original title here" name="originalTitle" minlength="1"
+                            maxlength="100" required>
 
                         <label class="mt-2" for="imageUrl">Book Cover Url</label>
                         <input type="url" class="form-control" id="imageUrl"
                             placeholder="Enter book original title here" name="imageUrl" minlength="11" required>
+
+                        <label class="mt-2" for="inventory">Stock Level</label>
+                        <input onsubmit="checkValue(event)" type="number" class="form-control mt-2" id="inventory"
+                            placeholder="Enter how many copies of the book will be initially available" name="inventory"
+                            min="1" required>
+
+                        <label class="mt-2" for="authorsCollection">Select an available Author</label>
+                        <select class="custom-select" id="authorsCollection" name="authorsCollection" form="bookForm">
+                        </select>
+
+                        <label class="mt-2" for="genreId">Select an available Genre</label>
+                        <select class="custom-select" id="genreId" name="genreId" form="bookForm">
+                        </select>
+
+                        <label class="mt-2" for="languageId">Select an available Language</label>
+                        <select class="custom-select" id="languageId" name="languageId" form="bookForm">
+                        </select>
+
+                        <label class="mt-2" for="publisherId">Select an available Publisher</label>
+                        <select class="custom-select" id="publisherId" name="publisherId" form="bookForm">
+                        </select>
 
                     </div>
 
@@ -165,7 +170,7 @@
     <footer class="page-footer font-small">
 
 
-        <div class="py-5" style="background-color: #CDD0C0;">
+        <div id="footerUpper" class="py-5">
             <div class="mb-3 text-center">
                 <!-- Facebook -->
                 <a class="fb-ic">
@@ -195,8 +200,8 @@
         </div>
 
         <!-- Copyright -->
-        <div class="footer-copyright text-center py-3" style="background-color: #C0B283;">© 2020 Copyright:
-            <a href="https://mdbootstrap.com/"> MDBootstrap.com</a>
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://mdbootstrap.com/"> 3-Tier-Books Co.</a>
         </div>
     </footer>
 </body>
