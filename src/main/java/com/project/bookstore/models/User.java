@@ -7,19 +7,28 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
 
+    
+    
+    
+    
+    
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -51,9 +60,15 @@ public class User implements Serializable {
     @JsonIgnore
     private Collection<Basket> basketsCollection;
 
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    @ManyToOne
-    private Role roleId;
+     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "users_roles",
+        joinColumns = @JoinColumn(
+            name = "user_id", referencedColumnName = "id"),
+        inverseJoinColumns = @JoinColumn(
+            name = "role_id", referencedColumnName = "id"))
+    
+    private Collection < Role > roles;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
@@ -81,6 +96,15 @@ public class User implements Serializable {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+    }
+
+    public User(String username, String password, String firstName, String lastName, String email, Collection<Role> roles) {
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.roles = roles;
     }
 
     public Integer getId() {
@@ -140,12 +164,12 @@ public class User implements Serializable {
         this.basketsCollection = basketsCollection;
     }
 
-    public Role getRoleId() {
-        return roleId;
+   public Collection < Role > getRoles() {
+        return roles;
     }
 
-    public void setRoleId(Role roleId) {
-        this.roleId = roleId;
+    public void setRoles(Collection < Role > roles) {
+        this.roles = roles;
     }
 
     @XmlTransient
@@ -195,9 +219,18 @@ public class User implements Serializable {
         return true;
     }
 
+    
     @Override
     public String toString() {
-        return "com.project.bookstore.models.Users[ id=" + id + " ]";
+        return "User{" +
+            "id=" + id +
+            ", username='"+username+'\''+    
+            ", firstName='" + firstName + '\'' +
+            ", lastName='" + lastName + '\'' +
+            ", email='" + email + '\'' +
+            ", password='" + "*********" + '\'' +
+            ", roles=" + roles +
+            '}';
     }
 
 }
