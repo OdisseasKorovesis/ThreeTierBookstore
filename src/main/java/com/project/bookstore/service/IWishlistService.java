@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IWishlistService {
 
-    List<WishlistItem> findWishlistItemsWithUserId(int id);
+    List<WishlistItem> findWishlistItemsWithWishlistId(int wishlistId);
 
     Wishlist findWishlistWithUserId(int id);
 

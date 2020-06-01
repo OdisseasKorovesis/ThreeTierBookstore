@@ -18,8 +18,8 @@ public class WishlistServiceImpl implements IWishlistService {
     private RepositoryWishlists repositoryWishlists;
 
     @Override
-    public List<WishlistItem> findWishlistItemsWithUserId(int id) {
-        return repositoryWishlistItems.findWishlistItemsWithUserId(id);
+    public List<WishlistItem> findWishlistItemsWithWishlistId(int wishlistId) {
+        return repositoryWishlistItems.findWishlistItemsWithWishlistId(wishlistId);
     }
 
     @Override
