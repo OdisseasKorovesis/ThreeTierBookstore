@@ -6,18 +6,18 @@
 
 html,body {
     height: 100%;
-    overflow: hidden;
+    overflow: hidden;    
 }
 
 body {
     margin: 0;
     padding: 0;
     font-weight: 400;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Chelsea Market', cursive;
     font-size: 1rem;
     line-height: 1.58;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #F4F4F4;
     height: 100%;
 }
 
@@ -27,7 +27,7 @@ body:before {
     position: absolute;
     top: 0;
     left: 0;
-    background: #128ff2;
+    background: #C0B283;
     content: "";
     z-index: 0;
 }
@@ -87,19 +87,19 @@ button {
 }
 
 button.default {
-    background-color: #e8e8e8;
+    background-color: #C0B283;
     color: #333;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
 }
 
 button.primary {
-    background-color: #128ff2;
+    background-color: #C0B283;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }
 
 button.accent {
-    background-color: #ff4743;
+    background-color: #C0B283;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.12);
     color: #fff;
 }
@@ -109,7 +109,7 @@ button.accent {
 }
 
 .username-page-container {
-    background: #fff;
+    background: #CDD0C0;
     box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
     border-radius: 2px;
     width: 100%;
