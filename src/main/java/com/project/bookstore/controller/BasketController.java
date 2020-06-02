@@ -23,16 +23,16 @@ public class BasketController {
     BasketServiceImpl basketService;
 
     /**
-     * GET /basketItems:userId : Get basket of user.
+     * GET /basketItems:basketId : Get basketItems of basketId.
      *
-     * @param id the id of the user whose basket to retrieve.
+     * @param basketId the id of the basket whose items to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the basket items of
-     * the user in the body, or with status 204 (NO CONTENT) if there are no
-     * basket items for this user in the database.
+     * the basket in the body, or with status 204 (NO CONTENT) if there are no
+     * basket items for this basket in the database.
      */
-    @GetMapping("/basketItems/{id}")
-    public ResponseEntity<List<BasketItem>> getAllUserBasketItems(@PathVariable("id") int id) {
-        List<BasketItem> basketItems = basketService.findBasketItemsWithUserId(id);
+    @GetMapping("/basketItems/{basketId}")
+    public ResponseEntity<List<BasketItem>> getAllBasketItemsInBasket(@PathVariable("basketId") int basketId) {
+        List<BasketItem> basketItems = basketService.findBasketItemsWithBasketId(basketId);
         if (basketItems.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -42,14 +42,14 @@ public class BasketController {
     /**
      * GET /basket:userId : Get basket id of user.
      *
-     * @param id the id of the user whose basket id to retrieve.
+     * @param userId the id of the user whose basket id to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the basket of the
      * user in the body, or with status 204 (NO CONTENT) if there is no basket
      * for this user in the database.
      */
-    @GetMapping("/basket/{id}")
-    public ResponseEntity<Basket> getUserBasketId(@PathVariable("id") int id) {
-        Basket basket = basketService.findBasketWithUserId(id);
+    @GetMapping("/basket/{userId}")
+    public ResponseEntity<Basket> getUserBasketId(@PathVariable("userId") int userId) {
+        Basket basket = basketService.findBasketWithUserId(userId);
         if (basket == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

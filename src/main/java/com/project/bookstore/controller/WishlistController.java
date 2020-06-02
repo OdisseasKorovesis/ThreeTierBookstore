@@ -23,16 +23,16 @@ public class WishlistController {
     WishlistServiceImpl wishlistService;
 
     /**
-     * GET /wishlistItems:userId : Get wishlistItems of user.
+     * GET /wishlistItems:wishlistId : Get wishlistItems of user.
      *
-     * @param id the id of the user whose wishlistItems to retrieve.
+     * @param wishlistId the id of the wishlist whose items to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the wishlistItems
-     * items of the user in the body, or with status 204 (NO CONTENT) if there
-     * are no wishlistItems items for this user in the database.
+     * items of the wishlist in the body, or with status 204 (NO CONTENT) if
+     * there are no wishlistItems items for this wishlist in the database.
      */
-    @GetMapping("/wishlistItems/{id}")
-    public ResponseEntity<List<WishlistItem>> getAllUserwishlistItems(@PathVariable("id") int id) {
-        List<WishlistItem> wishlistItems = wishlistService.findWishlistItemsWithUserId(id);
+    @GetMapping("/wishlistItems/{wishlistId}")
+    public ResponseEntity<List<WishlistItem>> getAllUserwishlistItems(@PathVariable("wishlistId") int wishlistId) {
+        List<WishlistItem> wishlistItems = wishlistService.findWishlistItemsWithWishlistId(wishlistId);
         if (wishlistItems.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -42,14 +42,14 @@ public class WishlistController {
     /**
      * GET /wishlist:userId : Get wishlist id of user.
      *
-     * @param id the id of the user whose wishlist id to retrieve.
+     * @param userId the id of the user whose wishlist id to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the wishlist of the
      * user in the body, or with status 204 (NO CONTENT) if there is no wishlist
      * for this user in the database.
      */
-    @GetMapping("/wishlist/{id}")
-    public ResponseEntity<Wishlist> getUserWishlistId(@PathVariable("id") int id) {
-        Wishlist wishlist = wishlistService.findWishlistWithUserId(id);
+    @GetMapping("/wishlist/{userId}")
+    public ResponseEntity<Wishlist> getUserWishlistId(@PathVariable("userId") int userId) {
+        Wishlist wishlist = wishlistService.findWishlistWithUserId(userId);
         if (wishlist == null) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
