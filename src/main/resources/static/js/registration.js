@@ -18,6 +18,9 @@ $(document).ready(function () {
             statusCode: {
                 201: function () {
                     alert("User created successfully");
+                },
+                409: function() {
+                    alert("A user with this username already exists, please try changing it.")
                 }
             }
         });
