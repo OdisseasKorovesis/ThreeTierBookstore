@@ -16,7 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
@@ -56,14 +55,13 @@ public class User implements Serializable {
     @JsonIgnore
     private Collection<Basket> basketsCollection;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "users_roles",
-            joinColumns = @JoinColumn(
-                    name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(
-                    name = "role_id", referencedColumnName = "id"))
-    private Set< Role> roles=new HashSet<Role>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = {
+                @JoinColumn(name = "user_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "role_id")})
+    private Set<Role> roles = new HashSet<Role>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
@@ -78,28 +76,6 @@ public class User implements Serializable {
     private Collection<Wishlist> wishlistsCollection;
 
     public User() {
-    }
-
-    public User(Integer id) {
-        this.id = id;
-    }
-
-    public User(String username, String password, String firstName, String lastName, String email) {
-
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public User(String username, String password, String firstName, String lastName, String email, Set<Role> roles) {
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.roles = roles;
     }
 
     public Integer getId() {

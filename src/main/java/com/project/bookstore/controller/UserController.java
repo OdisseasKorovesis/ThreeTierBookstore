@@ -1,6 +1,5 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.models.Book;
 import com.project.bookstore.models.User;
 import com.project.bookstore.service.UserServiceImpl;
 import java.util.List;
@@ -18,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/tier3")
 public class UserController {
-    
-      @Autowired
+
+    @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
@@ -42,7 +41,7 @@ public class UserController {
     }
 
     /**
-     * POST /user : Create a new user.
+     * POST /users : Create a new user.
      *
      * @param user the user to create
      * @return the ResponseEntity with status 201 (Created), or with status 409
@@ -51,17 +50,16 @@ public class UserController {
     @PostMapping(value = "/users", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> createUser(@RequestBody User user) {
 
-      
-        
         if (userService.isUserExist(user)) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
-        User user2=new User();
+        User user2 = new User();
         user2.setEmail(user.getEmail());
         user2.setFirstName(user.getFirstName());
         user2.setLastName(user.getLastName());
         user2.setUsername(user.getUsername());
         user2.setPassword(passwordEncoder.encode(user.getPassword()));
+        user2.setRoles(user.getRoles());
         userService.saveUser(user2);
 
         return new ResponseEntity<>(HttpStatus.CREATED);

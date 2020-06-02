@@ -1,17 +1,13 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
 @Table(name = "roles")
@@ -28,8 +24,6 @@ public class Role implements Serializable {
     @Column(name = "role")
     private String role;
 
-    
-
     public Role() {
     }
 
@@ -38,7 +32,7 @@ public class Role implements Serializable {
     }
 
     public Role(String role) {
-        
+
         this.role = role;
     }
 
@@ -57,7 +51,6 @@ public class Role implements Serializable {
     public void setRole(String role) {
         this.role = role;
     }
-
 
     @Override
     public int hashCode() {
@@ -81,10 +74,10 @@ public class Role implements Serializable {
 
     @Override
     public String toString() {
-        return "Role{" +
-            "id=" + id +
-            ", name='" + role + '\'' +
-            '}';
+        return "Role{"
+                + "id=" + id
+                + ", name='" + role + '\''
+                + '}';
     }
 
 }
