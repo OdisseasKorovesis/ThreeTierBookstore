@@ -12,15 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.paypal.api.payments.Links;
 import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.PayPalRESTException;
-import com.project.bookstore.config.PaypalPaymentIntent;
-import com.project.bookstore.config.PaypalPaymentMethod;
-import com.project.bookstore.paypal.util.URLUtils;
 import com.project.bookstore.service.PaypalService;
 import java.util.ArrayList;
 import java.util.List;
@@ -98,7 +94,7 @@ public class PaymentController {
         payment.setPayer(payer);
         payment.setRedirectUrls(redirectUrls);
         payment.setTransactions(transactions);
-
+        payment.setExperienceProfileId(PAYPAL_CANCEL_URL);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
