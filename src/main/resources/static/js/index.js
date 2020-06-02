@@ -144,15 +144,4 @@ function getQuoteOfTheDay(author) {
     $('#quoteImage').attr('src', author.imageUrl);
 }
 
-//experiment with login/logout change items
-// $(document).ready(function () {
-//     if (sessionStorage.getItem('status') != null) {
-//         $('#navLogin').empty();
-//         $('#navLogin').append(
-//             "<li class='nav-item'>" +
-//             "<a class='nav-link' href='login2.html'><i class='fas fa-sign-in-alt'></i>Login</a>" +
-//             "</li>"
-//         )
-//     }
-// })
 
