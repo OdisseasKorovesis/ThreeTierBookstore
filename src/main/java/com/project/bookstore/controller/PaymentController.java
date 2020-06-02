@@ -2,6 +2,7 @@ package com.project.bookstore.controller;
 
 import com.paypal.api.payments.Amount;
 import com.paypal.api.payments.Details;
+import com.paypal.api.payments.InputFields;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -16,6 +17,7 @@ import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
 import com.paypal.api.payments.RedirectUrls;
 import com.paypal.api.payments.Transaction;
+import com.paypal.api.payments.WebProfile;
 import com.paypal.base.rest.PayPalRESTException;
 import com.project.bookstore.service.PaypalService;
 import java.util.ArrayList;
@@ -95,6 +97,12 @@ public class PaymentController {
         payment.setRedirectUrls(redirectUrls);
         payment.setTransactions(transactions);
         payment.setExperienceProfileId(PAYPAL_CANCEL_URL);
+
+//        Set no shipping
+        WebProfile webProfile = new WebProfile();
+        InputFields inputfield = new InputFields();
+        inputfield.setNoShipping(1);
+        webProfile.setInputFields(inputfield);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
