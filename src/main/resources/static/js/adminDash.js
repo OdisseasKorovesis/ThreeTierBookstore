@@ -27,7 +27,7 @@ AmCharts.makeChart("chartdiv",
 				"balloonText": "[[title]] of [[category]]:[[value]]",
 				"fillAlphas": 1,
 				"id": "AmGraph-1",
-				"title": "Physical Sles",
+				"title": "Physical Sales",
 				"type": "column",
 				"valueField": "column-1"
 			},
@@ -124,7 +124,7 @@ AmCharts.makeChart("chartdiv2",
 				"balloonText": "[[title]] of [[category]]:[[value]]",
 				"bullet": "round",
 				"id": "AmGraph-1",
-				"title": "graph 1",
+				"title": "Registrations",
 				"valueField": "column-1"
 			}
 		],
@@ -176,3 +176,23 @@ AmCharts.makeChart("chartdiv2",
 		]
 	}
 );
+
+$(document).ready(function () {
+
+    $.ajax({
+        async: false,
+        url: "tier3/userdetails",
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            alert("Something went wrong!");
+        },
+        success: function (data) {
+            username = data.username;
+            $('#adminWelcome').text(
+				"Welcome back, " + username
+			)
+        }
+    });
+});

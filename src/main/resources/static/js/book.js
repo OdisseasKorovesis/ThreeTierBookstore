@@ -1,3 +1,4 @@
+var bookId = decodeURIComponent(getBookIdFromUrl("id"));
 $(document).ready(function () {
     var book;
     var paramName = "id";
@@ -75,4 +76,95 @@ function getQuoteOfTheDay(author) {
     $('#quoteAuthor').text(author.firstName + " " + author.lastName);
     $('#quoteImage').attr('src', author.imageUrl);
 }
+
+//add book to basket
+
+var username;
+$(document).ready(function () {
+
+    $.ajax({
+        async: false,
+        url: "tier3/userdetails",
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            alert("Something went wrong!");
+        },
+        success: function (data) {
+            username = data.username;
+            console.log(data.username);
+        }
+    });
+});
+
+var user;
+$(document).ready(function () {
+
+    $.ajax({
+        async: false,
+        url: "tier3/user/" + username,
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            alert("Something went wrong!");
+        },
+        success: function (data) {
+            user = data;
+            console.log(user)
+        }
+    });
+});
+
+
+$(document).ready(function() {
+    $('#addToBasket').on('click', function() {
+        var bookToBeAdded = {}
+        bookToBeAdded.quantity = 1;
+        bookToBeAdded.userId = {id: user.id};
+        bookToBeAdded.book = {id: bookId};
+        console.log(JSON.stringify(bookToBeAdded));
+        $.ajax({
+            type: "POST",
+            url: "/tier3/basketItems",
+            data: JSON.stringify(bookToBeAdded),
+            dataType: "json",
+            statusCode: {
+                201: function() {
+                    alert("Book added succesfully!");
+                },
+                409: function() {
+                    alert("This item is already in your basket!")
+                }
+            } 
+        });
+        
+    });
+    $('#addToWishlist').on('click', function() {
+        var bookToBeAdded = {}
+        bookToBeAdded.quantity = 1;
+        bookToBeAdded.userId = {id: user.id};
+        bookToBeAdded.book = {id: bookId};
+        console.log(JSON.stringify(bookToBeAdded));
+        $.ajax({
+            type: "POST",
+            url: "/tier3/wishlistItems",
+            data: JSON.stringify(bookToBeAdded),
+            dataType: "json",
+            statusCode: {
+                201: function() {
+                    alert("Book added succesfully!");
+                },
+                409: function() {
+                    alert("This item is already in your wishlist!")
+                }
+            } 
+        });
+        
+    });
+})
+
+
+
 

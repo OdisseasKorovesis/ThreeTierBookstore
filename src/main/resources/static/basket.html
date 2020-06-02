@@ -22,6 +22,7 @@
     <link rel='icon' href='img/unnamed-removebg-preview.png' type='image/ico' />        
     <script src="/js/role_handling.js"></script>
     <script src="/js/basket.js"></script>
+    <script src="/js/index.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
 </head>
 
@@ -197,17 +198,26 @@
                 <hr class="mx-3">
             </div>
             <div class="mt-2 mb-1 rounded sidebarBox">
-                <p class="px-3 pt-2 rounded text-white sidebarTitle">View our
-                    discounts!</p>
-                <img id="chatImage" class="rounded px-3"
-                    src="img/sales-promotion-discounts-and-allowances-computer-icons-marketing-png-clip-art-removebg-preview.png"
+                <p class="px-3 pt-2 rounded text-white sidebarTitle">Join our chat and share your book thoughts!</p>
+                <a href="/chat.html">
+                    <img id="chatImage" class="rounded px-3 pb-2"
+                    src="/img/82-824259_chat-comments-chat-vector-icon-png-removebg-preview.png"
                     alt="no img">
+                </a>
+                
             </div>
         </div>
                 <!-- main content -->
                 <div id="mainContent" class="col-9">                    
                     <div id="itemsArea" class="row w-100">
                         
+                    </div>
+                    <div id="totalPriceAndCheckout" class="row rounded w-100 text-center justify-content-center">
+                        <span id="itemCount" class="col-12"></span>
+                        <br>
+                        <span id="totalPrice" class="col-12"></span>
+                        <br>
+                        <button class="btn" style="background-color: #C0B283">Proceed to checkout</button>
                     </div>                                                   
                 </div>
 
