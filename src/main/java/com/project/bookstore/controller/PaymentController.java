@@ -1,5 +1,7 @@
 package com.project.bookstore.controller;
 
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -11,11 +13,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payer;
 import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.Transaction;
 import com.paypal.base.rest.PayPalRESTException;
 import com.project.bookstore.config.PaypalPaymentIntent;
 import com.project.bookstore.config.PaypalPaymentMethod;
+import com.project.bookstore.paypal.util.URLUtils;
 import com.project.bookstore.service.PaypalService;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequestMapping("/tier3")
@@ -29,28 +38,67 @@ public class PaymentController {
     @Autowired
     private PaypalService paypalService;
 
-    @RequestMapping(method = RequestMethod.POST, value = "pay")
+    @GetMapping(value = "/pay")
     public String pay(HttpServletRequest request) {
-        String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
-        String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
-        try {
-            Payment payment = paypalService.createPayment(
-                    4.00,
-                    "USD",
-                    PaypalPaymentMethod.paypal,
-                    PaypalPaymentIntent.sale,
-                    "payment description",
-                    cancelUrl,
-                    successUrl);
-            for (Links links : payment.getLinks()) {
-                if (links.getRel().equals("approval_url")) {
-                    return "redirect:" + links.getHref();
-                }
-            }
-        } catch (PayPalRESTException e) {
-            log.error(e.getMessage());
-        }
-        return "redirect:/";
+//        String cancelUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_CANCEL_URL;
+//        String successUrl = URLUtils.getBaseURl(request) + "/" + PAYPAL_SUCCESS_URL;
+//        try {
+//            Payment payment = paypalService.createPayment(
+//                    4.00,
+//                    "USD",
+//                    PaypalPaymentMethod.paypal,
+//                    PaypalPaymentIntent.sale,
+//                    "payment description",
+//                    cancelUrl,
+//                    successUrl);
+//            for (Links links : payment.getLinks()) {
+//                if (links.getRel().equals("approval_url")) {
+//                    return "redirect:" + links.getHref();
+//                }
+//            }
+//        } catch (PayPalRESTException e) {
+//            log.error(e.getMessage());
+//        }
+//        return "redirect:/";
+
+        Payer payer = new Payer();
+        payer.setPaymentMethod("paypal");
+
+// Set redirect URLs
+        RedirectUrls redirectUrls = new RedirectUrls();
+        redirectUrls.setCancelUrl("http://localhost:3000/cancel");
+        redirectUrls.setReturnUrl("http://localhost:3000/process");
+
+// Set payment details
+        Details details = new Details();
+        details.setShipping("1");
+        details.setSubtotal("5");
+        details.setTax("1");
+
+// Payment amount
+        Amount amount = new Amount();
+        amount.setCurrency("USD");
+// Total must be equal to sum of shipping, tax and subtotal.
+        amount.setTotal("7");
+        amount.setDetails(details);
+
+// Transaction information
+        Transaction transaction = new Transaction();
+        transaction.setAmount(amount);
+        transaction
+                .setDescription("This is the payment transaction description.");
+
+// Add transaction to a list
+        List<Transaction> transactions = new ArrayList<Transaction>();
+        transactions.add(transaction);
+
+// Add payment details
+        Payment payment = new Payment();
+        payment.setIntent("sale");
+        payment.setPayer(payer);
+        payment.setRedirectUrls(redirectUrls);
+        payment.setTransactions(transactions);
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
