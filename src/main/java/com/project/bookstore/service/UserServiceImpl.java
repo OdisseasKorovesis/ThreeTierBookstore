@@ -81,4 +81,9 @@ public class UserServiceImpl implements IUserService {
                 .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public User findUserWithUsername(String username) {
+        return repositoryUsers.findByUsername(username);
+    }
 }
