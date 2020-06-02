@@ -23,16 +23,16 @@ public class BasketController {
     BasketServiceImpl basketService;
 
     /**
-     * GET /basketItems:basketId : Get basketItems of basketId.
+     * GET /basketItems:userId : Get basketItems of userId.
      *
-     * @param basketId the id of the basket whose items to retrieve.
+     * @param userId the id of the basket whose items to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the basket items of
-     * the basket in the body, or with status 204 (NO CONTENT) if there are no
-     * basket items for this basket in the database.
+     * the user in the body, or with status 204 (NO CONTENT) if there are no
+     * basket items for this user in the database.
      */
-    @GetMapping("/basketItems/{basketId}")
-    public ResponseEntity<List<BasketItem>> getAllBasketItemsInBasket(@PathVariable("basketId") int basketId) {
-        List<BasketItem> basketItems = basketService.findBasketItemsWithBasketId(basketId);
+    @GetMapping("/basketItems/{userId}")
+    public ResponseEntity<List<BasketItem>> getAllBasketItemsOfUser(@PathVariable("userId") int userId) {
+        List<BasketItem> basketItems = basketService.findBasketItemsWithUserId(userId);
         if (basketItems.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

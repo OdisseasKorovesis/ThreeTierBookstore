@@ -18,8 +18,9 @@ public class BasketServiceImpl implements IBasketService {
     private RepositoryBaskets repositoryBaskets;
 
     @Override
-    public List<BasketItem> findBasketItemsWithBasketId(int basketId) {
-        return repositoryBasketItems.findBasketItemsWithBasketId(basketId);
+    public List<BasketItem> findBasketItemsWithUserId(int userId) {
+        
+        return repositoryBasketItems.findBasketItemsByUserId(userId);
     }
 
     @Override

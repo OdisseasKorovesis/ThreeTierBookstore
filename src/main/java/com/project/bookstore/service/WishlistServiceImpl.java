@@ -17,15 +17,6 @@ public class WishlistServiceImpl implements IWishlistService {
     @Autowired
     private RepositoryWishlists repositoryWishlists;
 
-    @Override
-    public List<WishlistItem> findWishlistItemsWithWishlistId(int wishlistId) {
-        return repositoryWishlistItems.findWishlistItemsWithWishlistId(wishlistId);
-    }
-
-    @Override
-    public Wishlist findWishlistWithUserId(int id) {
-        return repositoryWishlists.findWishlistWithUserId(id);
-    }
 
     @Override
     public void saveWishlistItem(WishlistItem wishlistItem) {
@@ -40,6 +31,11 @@ public class WishlistServiceImpl implements IWishlistService {
         } else {
             return true;
         }
+    }
+
+    @Override
+    public List<WishlistItem> findWishlistItemsByUserId(int userId) {
+        return repositoryWishlistItems.findWishlistItemsByUserId(userId);
     }
 
 }

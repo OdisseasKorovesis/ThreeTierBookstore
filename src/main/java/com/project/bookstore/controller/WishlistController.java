@@ -23,38 +23,23 @@ public class WishlistController {
     WishlistServiceImpl wishlistService;
 
     /**
-     * GET /wishlistItems:wishlistId : Get wishlistItems of user.
+     * GET /wishlistItems:userId : Get wishlistItems of user.
      *
-     * @param wishlistId the id of the wishlist whose items to retrieve.
+     * @param userId the id of the user whose items to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the wishlistItems
-     * items of the wishlist in the body, or with status 204 (NO CONTENT) if
-     * there are no wishlistItems items for this wishlist in the database.
+     * items of the user in the body, or with status 204 (NO CONTENT) if
+     * there are no wishlistItems items for this user in the database.
      */
-    @GetMapping("/wishlistItems/{wishlistId}")
-    public ResponseEntity<List<WishlistItem>> getAllUserwishlistItems(@PathVariable("wishlistId") int wishlistId) {
-        List<WishlistItem> wishlistItems = wishlistService.findWishlistItemsWithWishlistId(wishlistId);
+    @GetMapping("/wishlistItems/{userId}")
+    public ResponseEntity<List<WishlistItem>> getAllUserwishlistItems(@PathVariable("userId") int userId) {
+        List<WishlistItem> wishlistItems = wishlistService.findWishlistItemsByUserId(userId);
         if (wishlistItems.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(wishlistItems, HttpStatus.OK);
     }
 
-    /**
-     * GET /wishlist:userId : Get wishlist id of user.
-     *
-     * @param userId the id of the user whose wishlist id to retrieve.
-     * @return the ResponseEntity with status 200 (OK) and the wishlist of the
-     * user in the body, or with status 204 (NO CONTENT) if there is no wishlist
-     * for this user in the database.
-     */
-    @GetMapping("/wishlist/{userId}")
-    public ResponseEntity<Wishlist> getUserWishlistId(@PathVariable("userId") int userId) {
-        Wishlist wishlist = wishlistService.findWishlistWithUserId(userId);
-        if (wishlist == null) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(wishlist, HttpStatus.OK);
-    }
+    
 
     /**
      * POST /wishlistItems : Create a wishlist item for a wishlist.

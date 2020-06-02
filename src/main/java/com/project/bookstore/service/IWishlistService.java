@@ -6,12 +6,11 @@ import java.util.List;
 
 public interface IWishlistService {
 
-    List<WishlistItem> findWishlistItemsWithWishlistId(int wishlistId);
-
-    Wishlist findWishlistWithUserId(int id);
-
+    
     void saveWishlistItem(WishlistItem wishlistItem);
 
     boolean isWishlistItemExist(WishlistItem wishlistItem);
+    
+     List<WishlistItem> findWishlistItemsByUserId(int userId);
 
 }

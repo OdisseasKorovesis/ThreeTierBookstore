@@ -14,4 +14,8 @@ public interface RepositoryWishlistItems extends CrudRepository<WishlistItem, In
     @Query(value = "SELECT * from wishlist_items WHERE book_id=?1", nativeQuery = true)
     Book findWishlistItemWithBookId(int id);
 
+    @Query(value="SELECT wishlist_items.* from wishlist_items "
+            + "JOIN wishlists ON wishlist_id =wishlist_items.wishlist_id "
+            + "WHERE user_id = ?1",nativeQuery = true)
+    List<WishlistItem> findWishlistItemsByUserId(int userId);
 }
