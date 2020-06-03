@@ -1,6 +1,6 @@
 package com.project.bookstore.models;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -25,6 +25,7 @@ public class DeliveryAddressUser implements Serializable {
 
     @JoinColumn(name = "delivery_address_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JsonIgnore
     private DeliveryAddress deliveryAddressId;
 
     @JoinColumn(name = "user_id", referencedColumnName = "id")
