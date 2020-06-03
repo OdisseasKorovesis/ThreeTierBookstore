@@ -1,6 +1,6 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.models.Wishlist;
+import com.project.bookstore.models.BasketItem;
 import com.project.bookstore.models.WishlistItem;
 import com.project.bookstore.service.WishlistServiceImpl;
 import java.util.List;
@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +28,8 @@ public class WishlistController {
      *
      * @param userId the id of the user whose items to retrieve.
      * @return the ResponseEntity with status 200 (OK) and the wishlistItems
-     * items of the user in the body, or with status 204 (NO CONTENT) if
-     * there are no wishlistItems items for this user in the database.
+     * items of the user in the body, or with status 204 (NO CONTENT) if there
+     * are no wishlistItems items for this user in the database.
      */
     @GetMapping("/wishlistItems/{userId}")
     public ResponseEntity<List<WishlistItem>> getAllUserwishlistItems(@PathVariable("userId") int userId) {
@@ -38,8 +39,6 @@ public class WishlistController {
         }
         return new ResponseEntity<>(wishlistItems, HttpStatus.OK);
     }
-
-    
 
     /**
      * POST /wishlistItems : Create a wishlist item for a wishlist.
@@ -57,5 +56,23 @@ public class WishlistController {
         wishlistService.saveWishlistItem(wishlistItem);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * DELETE /wishlistItems/:wishlistItemId : Delete wishlist item with id.
+     *
+     * @param wishlistItemId the id of the wishlist item to delete
+     * @return the ResponseEntity with status 200 (OK) if wishlist item is
+     * deleted or status 404 (not found) if wishlist item does not exist.
+     */
+    @DeleteMapping("/wishlistItems/{wishlistItemId}")
+    public ResponseEntity<String> deleteWishlistItem(@PathVariable("wishlistItemId") int wishlistItemId) {
+
+        WishlistItem wishlistItem = wishlistService.findWishlistItemById(wishlistItemId);
+        if (wishlistItem == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        wishlistService.deleteWishlistItemById(wishlistItemId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

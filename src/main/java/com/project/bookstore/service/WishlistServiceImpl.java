@@ -1,6 +1,5 @@
 package com.project.bookstore.service;
 
-import com.project.bookstore.models.Wishlist;
 import com.project.bookstore.models.WishlistItem;
 import com.project.bookstore.repository.RepositoryWishlistItems;
 import com.project.bookstore.repository.RepositoryWishlists;
@@ -16,7 +15,6 @@ public class WishlistServiceImpl implements IWishlistService {
 
     @Autowired
     private RepositoryWishlists repositoryWishlists;
-
 
     @Override
     public void saveWishlistItem(WishlistItem wishlistItem) {
@@ -36,6 +34,16 @@ public class WishlistServiceImpl implements IWishlistService {
     @Override
     public List<WishlistItem> findWishlistItemsByUserId(int userId) {
         return repositoryWishlistItems.findWishlistItemsByUserId(userId);
+    }
+
+    @Override
+    public void deleteWishlistItemById(int wishlistItemId) {
+        repositoryWishlistItems.deleteById(wishlistItemId);
+    }
+
+    @Override
+    public WishlistItem findWishlistItemById(int wishlistItemId) {
+        return repositoryWishlistItems.findWishlistItemById(wishlistItemId);
     }
 
 }

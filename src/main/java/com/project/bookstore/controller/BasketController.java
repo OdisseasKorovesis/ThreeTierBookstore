@@ -97,7 +97,7 @@ public class BasketController {
     /**
      * PUT /basketItems: Update the quantity of an existing basket item.
      *
-     * @body basketItem the basket item to update
+     * @param basketItem the basket item to update
      * @return the ResponseEntity with state 200 (sK) if update is done, or
      * status 404 (Not found) if the basket item does not exist.
      */
