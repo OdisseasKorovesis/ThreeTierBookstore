@@ -6,8 +6,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.paypal.api.payments.Payment;
 import com.paypal.base.rest.PayPalRESTException;
@@ -23,8 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/tier3")
 public class PaymentController {
 
-    public static final String PAYPAL_SUCCESS_URL = "pay/success";
-    public static final String PAYPAL_CANCEL_URL = "pay/cancel";
+    public static final String PAYPAL_SUCCESS_URL = "http://localhost:8080/paymentSuccess.html";
+    public static final String PAYPAL_CANCEL_URL = "http://localhost:8080/paymentCancel.html";
 
     private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -36,8 +34,6 @@ public class PaymentController {
         System.out.println(userId);
 
         double totalPrice = paypalService.computePrice(userId);
-        String cancelUrl = "http://localhost:8080/tier3/index";
-        String successUrl = "http://localhost:8080/tier3/index";
         try {
             Payment payment = paypalService.createPayment(
                     totalPrice,
@@ -45,8 +41,8 @@ public class PaymentController {
                     PaypalPaymentMethod.paypal,
                     PaypalPaymentIntent.sale,
                     "payment description",
-                    cancelUrl,
-                    successUrl);
+                    PAYPAL_CANCEL_URL,
+                    PAYPAL_SUCCESS_URL);
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
                     return links.getHref();
@@ -57,23 +53,4 @@ public class PaymentController {
         }
         return "redirect:/";
     }
-
-    @RequestMapping(method = RequestMethod.GET, value = PAYPAL_CANCEL_URL)
-    public String cancelPay() {
-        return "cancel";
-    }
-
-    @RequestMapping(method = RequestMethod.GET, value = PAYPAL_SUCCESS_URL)
-    public String successPay(@RequestParam("paymentId") String paymentId, @RequestParam("PayerID") String payerId) {
-        try {
-            Payment payment = paypalService.executePayment(paymentId, payerId);
-            if (payment.getState().equals("approved")) {
-                return "success";
-            }
-        } catch (PayPalRESTException e) {
-            log.error(e.getMessage());
-        }
-        return "redirect:/";
-    }
-
 }
