@@ -7,4 +7,8 @@ public interface IDeliveryAddressService {
 
     List<DeliveryAddress> findDeliveryAddressesWithUserId(int userId);
 
+    boolean isDeliveryAddressExist(DeliveryAddress deliveryAddress);
+
+    void saveDeliveryAddress(DeliveryAddress deliveryAddress);
+
 }

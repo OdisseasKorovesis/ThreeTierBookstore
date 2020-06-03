@@ -2,6 +2,7 @@ package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -59,9 +60,9 @@ public class DeliveryAddress implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddress")
     @JsonBackReference(value = "delivery_address_user")
-    private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
+    private Collection<DeliveryAddressUser> deliveryAddressUserCollection = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
     @JsonBackReference(value = "delivery_address_order")

@@ -17,4 +17,24 @@ public class DeliveryAddressServiceImpl implements IDeliveryAddressService {
         return repositoryDeliveryAddress.findDeliveryAddressesWithUserId(userId);
     }
 
+    @Override
+    public boolean isDeliveryAddressExist(DeliveryAddress deliveryAddress) {
+        String recipientFirstName = deliveryAddress.getFirstName();
+        String recipientLastName = deliveryAddress.getLastName();
+        String streetName = deliveryAddress.getStreet();
+        int streetNr = deliveryAddress.getStreetNumber();
+        int postalCode = deliveryAddress.getPostalCode();
+        String province = deliveryAddress.getProvince();
+        if (repositoryDeliveryAddress.findDeliveryAddressesWithAllFields(recipientFirstName, recipientLastName, streetName, streetNr, postalCode, province) == null) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    @Override
+    public void saveDeliveryAddress(DeliveryAddress deliveryAddress) {
+        repositoryDeliveryAddress.save(deliveryAddress);
+    }
+
 }

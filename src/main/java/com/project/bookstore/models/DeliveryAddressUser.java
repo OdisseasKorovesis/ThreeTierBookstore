@@ -23,10 +23,10 @@ public class DeliveryAddressUser implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @JoinColumn(name = "delivery_address_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
+    @JoinColumn(name = "delivery_address_id", referencedColumnName = "id")
     @JsonIgnore
-    private DeliveryAddress deliveryAddressId;
+    private DeliveryAddress deliveryAddress;
 
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
@@ -47,12 +47,12 @@ public class DeliveryAddressUser implements Serializable {
         this.id = id;
     }
 
-    public DeliveryAddress getDeliveryAddressId() {
-        return deliveryAddressId;
+    public DeliveryAddress getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setDeliveryAddressId(DeliveryAddress deliveryAddressId) {
-        this.deliveryAddressId = deliveryAddressId;
+    public void setDeliveryAddress(DeliveryAddress deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
     public User getUserId() {
