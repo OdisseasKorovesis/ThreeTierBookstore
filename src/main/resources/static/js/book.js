@@ -117,19 +117,62 @@ $(document).ready(function () {
     });
 });
 
+var basketId;
+$(document).ready(function () {
+    var booksInBasket;
+    $.ajax({
+        async: false,
+        url: "tier3/basketItems/" + user.id,
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            alert("Could not find books of this genre!");
+        },
+        success: function (data) {
+            basketId = data[0].basketId.id
+            console.log(basketId);
+            console.log(data);
+            
+
+        }
+    });
+});
+
+var wishlistId;
+$(document).ready(function () {    
+    $.ajax({
+        async: false,
+        url: "tier3/wishlistItems/" + user.id,
+        data: {
+            format: 'json'
+        },
+        error: function () {
+            alert("Could not find books of this genre!");
+        },
+        success: function (data) {
+            wishlistId = data[0].wishlistId.id
+            console.log(basketId);
+            console.log(data);
+            
+
+        }
+    });
+});
+
 
 $(document).ready(function() {
     $('#addToBasket').on('click', function() {
         var bookToBeAdded = {}
         bookToBeAdded.quantity = 1;
-        bookToBeAdded.userId = {id: user.id};
-        bookToBeAdded.book = {id: bookId};
-        console.log(JSON.stringify(bookToBeAdded));
+        bookToBeAdded.basketId = {id: basketId};
+        bookToBeAdded.book = {id: JSON.parse(bookId)};        
         $.ajax({
             type: "POST",
             url: "/tier3/basketItems",
             data: JSON.stringify(bookToBeAdded),
             dataType: "json",
+            contentType: "application/json; charset=utf-8",
             statusCode: {
                 201: function() {
                     alert("Book added succesfully!");
@@ -137,21 +180,27 @@ $(document).ready(function() {
                 409: function() {
                     alert("This item is already in your basket!")
                 }
+            },
+            error: { function() {
+                alert('Something went wrong, please try again!');
+            }
+                
             } 
         });
         
     });
+
     $('#addToWishlist').on('click', function() {
         var bookToBeAdded = {}
         bookToBeAdded.quantity = 1;
-        bookToBeAdded.userId = {id: user.id};
-        bookToBeAdded.book = {id: bookId};
-        console.log(JSON.stringify(bookToBeAdded));
+        bookToBeAdded.wishlistId = {id: wishlistId};
+        bookToBeAdded.book = {id: JSON.parse(bookId)};        
         $.ajax({
             type: "POST",
             url: "/tier3/wishlistItems",
             data: JSON.stringify(bookToBeAdded),
             dataType: "json",
+            contentType: "application/json; charset=utf-8",
             statusCode: {
                 201: function() {
                     alert("Book added succesfully!");
@@ -159,7 +208,12 @@ $(document).ready(function() {
                 409: function() {
                     alert("This item is already in your wishlist!")
                 }
-            } 
+            },
+            error: { function() {
+                alert('Something went wrong, please try again!');
+            }
+                
+            }  
         });
         
     });

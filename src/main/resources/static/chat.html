@@ -1,21 +1,21 @@
-
-
-
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-      <title>3-Tier Books</title>
-      <link rel="stylesheet" href="/css/chat.css" />
-      <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
-  </head>
-  <body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>3-Tier Books</title>
+    <link rel="stylesheet" href="/css/chat.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Chelsea+Market&display=swap" rel="stylesheet">
+</head>
+
+<body>
     <noscript>
-      <h2>Sorry! Your browser doesn't support Javascript</h2>
+        <h2>Sorry! Your browser doesn't support Javascript</h2>
     </noscript>
-    
+
     <div id="username-page">
-        
+
         <div class="username-page-container">
             <div class="text-center mt-3" style="position: relative;" id="logo">
                 <br>
@@ -28,7 +28,8 @@
                     <input type="text" id="name" placeholder="Username" autocomplete="off" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="accent username-submit" style="font-family: Chelsea Market, cursive;">Join!</button>
+                    <button type="submit" class="accent username-submit"
+                        style="font-family: Chelsea Market, cursive;">Join!</button>
                 </div>
             </form>
         </div>
@@ -42,7 +43,7 @@
                     <br>
                     <img src="img/3TB_BW-removebg-preview.png" alt="Image could not be loaded" width="230" height="200">
                 </div>
-                <h2>3-TierBook Chat</h2>                
+                <h2>3-TierBook Chat</h2>
             </div>
             <div class="connecting">
                 Connecting...
@@ -53,7 +54,8 @@
             <form id="messageForm" name="messageForm" nameForm="messageForm">
                 <div class="form-group ">
                     <div class="input-group clearfix">
-                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off" class="form-control"/>
+                        <input type="text" id="message" placeholder="Type a message..." autocomplete="off"
+                            class="form-control" />
                         <button type="submit" class="primary">Send</button>
                     </div>
                 </div>
@@ -64,5 +66,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
     <script src="/js/chat.js"></script>
-  </body>
+</body>
+
 </html>

@@ -52,13 +52,13 @@ $(document).ready(function () {
             console.log(data);
             for (var i = 0; i < booksInWishlist.length; i++) {
                 console.log(booksInWishlist[i].book);
-                generatebooksInWishlist(booksInWishlist[i].book);
+                generatebooksInWishlist(booksInWishlist[i].book, booksInWishlist[i]);
             }
         }
     });
 });
 
-function generatebooksInWishlist(bookInWishlist) {
+function generatebooksInWishlist(bookInWishlist, wishlistItem) {
     $('#itemsArea').append(
         '<div class="card mb-3" style="max-height: 200px; min-width: 100%; background-color: #CDD0C0;">' +
         '<div class="row no-gutters">' +
@@ -72,7 +72,7 @@ function generatebooksInWishlist(bookInWishlist) {
         '<p class="card-text">' + bookInWishlist.authorsCollection[0].firstName + ' '
         + bookInWishlist.authorsCollection[0].lastName + '</p>' +
         '<p class="card-text">' + bookInWishlist.publisherId.name + '</p>' +
-        '<button class="btn border text-white" style="background-color: #373737">Remove from wishlist</button>' +
+        '<button id="removeItem" class="btn border text-white" onclick="removeItem('+ wishlistItem.id +')" style="background-color: #373737">Remove from wishlist</button>' +
         '</div>' +
         '</div>' +
         '<div class="col-md-2">' +
@@ -83,6 +83,42 @@ function generatebooksInWishlist(bookInWishlist) {
         '</div>' +
         '</div>'
     );    
+}
+
+//function for removing items
+function removeItem(wishlistItemId) {    
+    $.ajax({
+        url: 'tier3/wishlistItems/' + wishlistItemId,
+        type: 'DELETE',
+        data: {
+            format: 'json'
+        },
+        success: function () {
+            alert("Book removed from your wishlist!")
+            $('#itemsArea').empty();
+            $.ajax({
+                url: "tier3/wishlistItems/" + user.id,
+                data: {
+                    format: 'json'
+                },
+                error: function () {
+                    alert("Something went Wrong!");
+                },
+                success: function (data) {
+                    booksInWishlist = data;
+                    console.log(data);
+                    for (var i = 0; i < booksInWishlist.length; i++) {
+                        console.log(booksInWishlist[i].book);
+                        generatebooksInWishlist(booksInWishlist[i].book, booksInWishlist[i]);
+                    }
+                }
+            });
+
+        },
+        error: function () {
+            alert("Could not remove book!")
+        }
+    });
 }
 
 
