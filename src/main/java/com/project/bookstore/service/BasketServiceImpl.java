@@ -52,4 +52,9 @@ public class BasketServiceImpl implements IBasketService {
     public void deleteBasketItemById(int basketItemId) {
         repositoryBasketItems.deleteById(basketItemId);
     }
+
+    @Override
+    public void updateQuantityBasketItemWithId(BasketItem currentBasketItem) {
+        repositoryBasketItems.updateQuantityBasketItemWithId(currentBasketItem.getId(), currentBasketItem.getQuantity());
+    }
 }

@@ -18,4 +18,5 @@ public interface IBasketService {
 
     void deleteBasketItemById(int basketItemId);
 
+    void updateQuantityBasketItemWithId(BasketItem currentBasketItem);
 }

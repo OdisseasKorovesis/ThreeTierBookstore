@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -90,6 +91,27 @@ public class BasketController {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
         basketService.deleteBasketItemById(basketItemId);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * PUT /basketItems: Update the quantity of an existing basket item.
+     *
+     * @body basketItem the basket item to update
+     * @return the ResponseEntity with state 200 (sK) if update is done, or
+     * status 404 (Not found) if the basket item does not exist.
+     */
+    @PutMapping("/basketItems")
+    public ResponseEntity<String> updateQuantityOfBasketItem(@RequestBody BasketItem basketItem) {
+
+        BasketItem currentBasketItem = basketService.findBasketItemById(basketItem.getId());
+
+        if (currentBasketItem == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        currentBasketItem.setQuantity(basketItem.getQuantity());
+
+        basketService.updateQuantityBasketItemWithId(currentBasketItem);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }

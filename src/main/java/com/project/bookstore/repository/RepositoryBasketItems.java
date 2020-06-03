@@ -3,6 +3,8 @@ package com.project.bookstore.repository;
 import com.project.bookstore.models.BasketItem;
 import com.project.bookstore.models.Book;
 import java.util.List;
+import javax.transaction.Transactional;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -21,4 +23,11 @@ public interface RepositoryBasketItems extends CrudRepository<BasketItem, Intege
             + "JOIN baskets ON basket_id = basket_items.basket_id "
             + "WHERE user_id = ?1", nativeQuery = true)
     List<BasketItem> findBasketItemsByUserId(int userId);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE basket_items "
+            + "SET quantity =?2 "
+            + "WHERE id=?1", nativeQuery = true)
+    void updateQuantityBasketItemWithId(int currentBasketItemId, int quantity);
 }
