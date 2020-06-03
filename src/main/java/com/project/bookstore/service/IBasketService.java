@@ -8,10 +8,14 @@ public interface IBasketService {
 
     List<BasketItem> findBasketItemsWithUserId(int userId);
 
+    BasketItem findBasketItemById(int basketItemId);
+
     Basket findBasketWithUserId(int userId);
 
     void saveBasketItem(BasketItem basketItem);
 
     boolean isBasketItemExist(BasketItem basketItem);
+
+    void deleteBasketItemById(int basketItemId);
 
 }

@@ -19,7 +19,7 @@ public class BasketServiceImpl implements IBasketService {
 
     @Override
     public List<BasketItem> findBasketItemsWithUserId(int userId) {
-        
+
         return repositoryBasketItems.findBasketItemsByUserId(userId);
     }
 
@@ -41,5 +41,15 @@ public class BasketServiceImpl implements IBasketService {
         } else {
             return true;
         }
+    }
+
+    @Override
+    public BasketItem findBasketItemById(int basketItemId) {
+        return repositoryBasketItems.findBasketItemById(basketItemId);
+    }
+
+    @Override
+    public void deleteBasketItemById(int basketItemId) {
+        repositoryBasketItems.deleteById(basketItemId);
     }
 }

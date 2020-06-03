@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,5 +73,23 @@ public class BasketController {
         basketService.saveBasketItem(basketItem);
 
         return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+    /**
+     * DELETE /basketItems/:basketItemId : Delete basket item with id.
+     *
+     * @param basketItemId the id of the basket item to delete
+     * @return the ResponseEntity with status 200 (OK) if basket item is deleted
+     * or status 404 (not found) if basket item does not exist.
+     */
+    @DeleteMapping("/basketItems/{basketItemId}")
+    public ResponseEntity<String> deleteBasketItem(@PathVariable("basketItemId") int basketItemId) {
+
+        BasketItem basketItem = basketService.findBasketItemById(basketItemId);
+        if (basketItem == null) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+        basketService.deleteBasketItemById(basketItemId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

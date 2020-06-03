@@ -14,8 +14,11 @@ public interface RepositoryBasketItems extends CrudRepository<BasketItem, Intege
     @Query(value = "SELECT * from basket_items WHERE book_id=?1", nativeQuery = true)
     Book findBasketItemWithBookId(int id);
 
-    @Query(value="SELECT basket_items.* from basket_items "
+    @Query(value = "SELECT * from basket_items WHERE basket_items.id=?1", nativeQuery = true)
+    BasketItem findBasketItemById(int basketItemId);
+
+    @Query(value = "SELECT basket_items.* from basket_items "
             + "JOIN baskets ON basket_id = basket_items.basket_id "
-            + "WHERE user_id = ?1",nativeQuery = true)
+            + "WHERE user_id = ?1", nativeQuery = true)
     List<BasketItem> findBasketItemsByUserId(int userId);
 }
