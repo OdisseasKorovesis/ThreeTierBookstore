@@ -18,12 +18,16 @@ import com.paypal.base.rest.APIContext;
 import com.paypal.base.rest.PayPalRESTException;
 import com.project.bookstore.config.PaypalPaymentIntent;
 import com.project.bookstore.config.PaypalPaymentMethod;
+import com.project.bookstore.repository.RepositoryBasketItems;
 
 @Service
-public class PaypalService {
+public class PaypalServiceImpl {
 
     @Autowired
     private APIContext apiContext;
+
+    @Autowired
+    private RepositoryBasketItems repositoryBasketItems;
 
     public Payment createPayment(
             Double total,
@@ -66,5 +70,9 @@ public class PaypalService {
         PaymentExecution paymentExecute = new PaymentExecution();
         paymentExecute.setPayerId(payerId);
         return payment.execute(apiContext, paymentExecute);
+    }
+
+    public double computePrice(int userId) {
+        return repositoryBasketItems.computeTotaPrice(userId);
     }
 }

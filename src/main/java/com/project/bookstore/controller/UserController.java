@@ -24,7 +24,7 @@ public class UserController {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    UserServiceImpl userService;
+    private UserServiceImpl userService;
 
     /**
      * GET /users : Get all users
