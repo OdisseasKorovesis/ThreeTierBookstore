@@ -49,7 +49,7 @@ public class PaymentController {
                     successUrl);
             for (Links links : payment.getLinks()) {
                 if (links.getRel().equals("approval_url")) {
-                    return "redirect:" + links.getHref();
+                    return links.getHref();
                 }
             }
         } catch (PayPalRESTException e) {
