@@ -64,8 +64,8 @@ function generateAddressSelect(userAddresses) {
             + userAddresses[i].postalCode + ", " + userAddresses[i].province + ", "
             + userAddresses[i].country + ", " + userAddresses[i].phoneNumber
             + "</option>");
-            userAddresses[i].userId = {id : user.id};
-            console.log(userAddresses[i]);
+        userAddresses[i].userId = { id: user.id };
+        console.log(userAddresses[i]);
 
     }
 
@@ -73,15 +73,17 @@ function generateAddressSelect(userAddresses) {
 }
 
 $(document).ready(function () {
+    
+    //process if user creates a new address
     $('#addressForm').on('submit', function (event) {
         event.preventDefault();
         var formData = {};
         $('#addressForm').find(":input").each(function () {
             if (this.name !== "button") {
-                formData[this.name] = $(this).val();                
+                formData[this.name] = $(this).val();
             }
         })
-        formData.userId = {id: user.id};               
+        formData.userId = { id: user.id };
         sessionStorage.setItem("orderAddress", formData);
         $.ajax({
             type: "POST",
@@ -95,11 +97,45 @@ $(document).ready(function () {
                 }
             }
         });
+        var id = user.id;
+        $.ajax({
+            type: "POST",
+            url: "tier3/pay/" + id,
+            data: JSON.stringify(id),
+            dataType: "json",
+            contentType: "application/json;",
+            statusCode: {
+                201: function () {
+                    alert("Delivery address added successfully");
+                }
+            }
+        });        
     });
-    $('#addressSelectButton').on('click', function(event) {
-        event.preventDefault();       
-        sessionStorage.setItem("orderAddress", $('#addressSelect').val())
+
+    //process if user selects already existing addres 
+    $('#addressSelectButton').on('click', function (event) {
+        event.preventDefault();
+        sessionStorage.setItem("orderAddress", $('#addressSelect').val());
+        var id = user.id;
+        console.log(id)
+        console.log(JSON.stringify(id));
+        $.ajax({
+            type: "POST",
+            url: "tier3/pay/" + id,
+            data: JSON.stringify(id),
+            dataType: "json",
+            contentType: "application/json;",
+            success: function(data) {
+                console.log(data);
+            }, 
+            statusCode: {
+                200: function (data) {
+                    window.location.href = data.responseText;
+                }
+            }
+        });        
     })
-    
-    
+
+
 })
+
