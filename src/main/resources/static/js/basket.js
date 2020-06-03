@@ -163,9 +163,16 @@ function changeQuantity(basketItemId, basketItemQuant) {
        statusCode: {
            200: function() {
                console.log('Quantity changed');
+               location.reload();
            }
        } 
     });
 }
+
+$(document).ready(function() {
+    $('#checkoutButton').on('click', function() {
+        window.location.href = "/createOrSelectDeliveryAddress.html";
+    })
+})
 
 

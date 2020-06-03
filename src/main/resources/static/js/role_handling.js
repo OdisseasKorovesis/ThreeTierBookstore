@@ -14,7 +14,7 @@ $(document).ready(function() {
             if(data !== 'anonymousUser'){
                 var username = data.username;           
             $('#navUserWelcome').append(
-                '<a class="nav-link" href="/perform_logout"><i class="fas fa-door-open"></i> &nbsp; Welcome, '+ username +'</a>'
+                '<a class="nav-link" href="#"><i class="fas fa-door-open"></i> &nbsp; Welcome, '+ username +'</a>'
                 );
             $('#navLoginLogout').empty().append(
                 '<a class="nav-link" href="/perform_logout"><i class="fas fa-sign-out-alt"></i> Logout</a>' 

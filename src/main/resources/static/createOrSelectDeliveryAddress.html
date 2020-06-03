@@ -101,7 +101,7 @@
             <div id="mainContent" class="col-12">
                 <hr>
                 <h1 id="formTitle" class="display-5 text-center mt-4">
-                    Select an existing address or create a new one
+                    Choose an already existing address or your order
                 </h1>
                 <hr>
                 <form id="selectAddress" name="selectAddress">
@@ -109,15 +109,19 @@
                         <label class="mt-2" for="address">Select an available address</label>
                         <select class="custom-select" id="addressSelect" name="addressSelect" form="selectAddress">
                         </select>
-                        <div class=" mt-2 text-center">
-                            <button type="submit" class="btn" form="selectAddress">Select this address!</button>
+                        <div class=" mt-4 text-center">
+                            <button id="addressSelectButton" type="submit" class="btn" form="selectAddress">Select this address!</button>
                         </div>
                     </div>
 
                 </form>
-                <br>
+                
                 <hr>
-                <br>
+                <h1 id="formTitle" class="display-5 text-center">
+                    Or create a new one
+                </h1>
+                <hr>
+                
                 <form id="addressForm" name="addressForm">
                     <div class="form-group border rounded p-3">
 
@@ -151,16 +155,18 @@
                         <input type="text" class="form-control" id="country" placeholder="Enter country name here"
                             name="country" minlength="1" maxlength="45" required>
 
-                        <label for="country">Phone Number</label>
-                        <input type="text" class="form-control" id="country"
-                            placeholder="Enter recipient phone number here" name="country" min="10" max="15" required>
-                        <div class=" mt-2 text-center">
-                            <button type="submit" class="btn" form="addressForm">Create the address!</button>
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="text" class="form-control" id="phoneNumber"
+                            placeholder="Enter recipient phone number here" name="phoneNumber" min="10" max="15" required>
+                        
+                        </form>
+                            <div class=" mt-4 text-center">
+                            <button type="submit" class="btn" form="addressForm" name="button">Create the address and select it for your order!</button>
                         </div>
 
                     </div>
 
-                </form>
+                
 
             </div>
 
