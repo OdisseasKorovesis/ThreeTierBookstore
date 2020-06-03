@@ -65,15 +65,15 @@ public class User implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
     @JsonIgnore
-    private Collection<DeliveryAddressUser> deliveryAddressUserCollection;
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
-    @JsonIgnore
     private Collection<Order> ordersCollection;
 
     @OneToMany(mappedBy = "userId")
     @JsonIgnore
     private Collection<Wishlist> wishlistsCollection;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "userId")
+    @JsonIgnore
+    private Collection<DeliveryAddress> deliveryAddressCollection;
 
     public User() {
     }
@@ -144,15 +144,6 @@ public class User implements Serializable {
     }
 
     @XmlTransient
-    public Collection<DeliveryAddressUser> getDeliveryAddressUserCollection() {
-        return deliveryAddressUserCollection;
-    }
-
-    public void setDeliveryAddressUserCollection(Collection<DeliveryAddressUser> deliveryAddressUserCollection) {
-        this.deliveryAddressUserCollection = deliveryAddressUserCollection;
-    }
-
-    @XmlTransient
     public Collection<Order> getOrdersCollection() {
         return ordersCollection;
     }
@@ -168,6 +159,14 @@ public class User implements Serializable {
 
     public void setWishlistsCollection(Collection<Wishlist> wishlistsCollection) {
         this.wishlistsCollection = wishlistsCollection;
+    }
+
+    public Collection<DeliveryAddress> getDeliveryAddressCollection() {
+        return deliveryAddressCollection;
+    }
+
+    public void setDeliveryAddressCollection(Collection<DeliveryAddress> deliveryAddressCollection) {
+        this.deliveryAddressCollection = deliveryAddressCollection;
     }
 
     @Override

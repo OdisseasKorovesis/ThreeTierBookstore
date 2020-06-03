@@ -1,6 +1,5 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.models.Book;
 import com.project.bookstore.models.DeliveryAddress;
 import com.project.bookstore.service.DeliveryAddressServiceImpl;
 import java.util.List;
@@ -48,10 +47,10 @@ public class DeliveryAddressController {
      */
     @PostMapping(value = "/deliveryAddress", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<String> createDeliveryAddress(@RequestBody DeliveryAddress deliveryAddress) {
-//
-//        if (deliveryAddressService.isDeliveryAddressExist(deliveryAddress)) {
-//            return new ResponseEntity(HttpStatus.CONFLICT);
-//        }
+
+        if (deliveryAddressService.isDeliveryAddressExist(deliveryAddress)) {
+            return new ResponseEntity(HttpStatus.CONFLICT);
+        }
         deliveryAddressService.saveDeliveryAddress(deliveryAddress);
 
         return new ResponseEntity<>(HttpStatus.CREATED);

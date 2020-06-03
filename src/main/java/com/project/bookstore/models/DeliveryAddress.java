@@ -2,7 +2,6 @@ package com.project.bookstore.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
@@ -11,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -60,9 +61,9 @@ public class DeliveryAddress implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddress")
-    @JsonBackReference(value = "delivery_address_user")
-    private Collection<DeliveryAddressUser> deliveryAddressUserCollection = new ArrayList<>();
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
+    private User userId;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "deliveryAddressId")
     @JsonBackReference(value = "delivery_address_order")
@@ -159,13 +160,12 @@ public class DeliveryAddress implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    @XmlTransient
-    public Collection<DeliveryAddressUser> getDeliveryAddressUserCollection() {
-        return deliveryAddressUserCollection;
+    public User getUserId() {
+        return userId;
     }
 
-    public void setDeliveryAddressUserCollection(Collection<DeliveryAddressUser> deliveryAddressUserCollection) {
-        this.deliveryAddressUserCollection = deliveryAddressUserCollection;
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     @XmlTransient
