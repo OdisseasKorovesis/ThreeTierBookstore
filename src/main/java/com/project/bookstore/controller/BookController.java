@@ -107,47 +107,4 @@ public class BookController {
 
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-//
-//    /**
-//     * PUT /books:id : Update an existing book with id.
-//     *
-//     * @param id the id of the book to update
-//     * @return the ResponseEntity with state 200 (OK) and and with location
-//     * header the updated book uri, or with status 404 (Not found) if the book
-//     * does not exist.
-//     */
-//    @PutMapping("/books/{id}")
-//    public ResponseEntity<String> updateBook(@PathVariable("id") long id, @RequestBody Book book, UriComponentsBuilder ucBuilder) {
-//
-//        Book currentBook = bookService.findById(id);
-//
-//        if (currentBook == null) {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-////TODO update all variables of book when entity is created
-//        currentBook.setTitle(book.getTitle());
-//
-//        bookService.updateBook(currentBook);
-//        HttpHeaders headers = new HttpHeaders();
-//        headers.setLocation(ucBuilder.path("/books/{id}").buildAndExpand(book.getId()).toUri());
-//        return new ResponseEntity<>(headers, HttpStatus.OK);
-//    }
-//
-//    /**
-//     * DELETE /books/:id : Delete book with id.
-//     *
-//     * @param id the id of the book to delete
-//     * @return the ResponseEntity with status 200 (OK) or status 404 (not found)
-//     * if book does not exist.
-//     */
-//    @DeleteMapping("/books/{id}")
-//    public ResponseEntity<Book> deleteBook(@PathVariable("id") long id) {
-//
-//        Book book = bookService.findById(id);
-//        if (book == null) {
-//            return new ResponseEntity(HttpStatus.NOT_FOUND);
-//        }
-//        bookService.deleteBookById(id);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
 }
