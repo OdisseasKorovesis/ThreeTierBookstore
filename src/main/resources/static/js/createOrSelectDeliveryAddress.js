@@ -84,7 +84,7 @@ $(document).ready(function () {
             }
         })
         formData.userId = { id: user.id };
-        sessionStorage.setItem("orderAddress", formData);
+        //sessionStorage.setItem("orderAddress", formData);
         $.ajax({
             type: "POST",
             url: "tier3/deliveryAddress",
@@ -92,8 +92,10 @@ $(document).ready(function () {
             dataType: "json",
             contentType: "application/json;",
             statusCode: {
-                201: function () {
-                    alert("Delivery address added successfully");
+                201: function (data) {
+                    console.log("Delivery address added successfully");
+                    console.log(data);
+                    sessionStorage.setItem("orderAddress", data);
                 }
             }
         });
@@ -105,8 +107,8 @@ $(document).ready(function () {
             dataType: "json",
             contentType: "application/json;",
             statusCode: {
-                201: function () {
-                    alert("Delivery address added successfully");
+                200: function () {
+                    window.location.href = data.responseText;
                 }
             }
         });        
