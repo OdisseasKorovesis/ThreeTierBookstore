@@ -105,21 +105,21 @@ $(document).ready(function createAuthorSelect() {
 function generateGenreSelect(allGenre) {
     for (var i = 0; i < allGenre.length; i++)
         $('#genreId').append(
-            "<option value= " + JSON.stringify(allGenre[i]) + ">" + allGenre[i].name + "</option>"
+            "<option value= '" + JSON.stringify(allGenre[i]) + "'>" + allGenre[i].name + "</option>"
         )
 }
 
 function generateLanguageSelect(allLanguages) {
     for (var i = 0; i < allLanguages.length; i++)
         $('#languageId').append(
-            "<option value= " + JSON.stringify(allLanguages[i]) + ">" + allLanguages[i].name + "</option>"
+            "<option value= '" + JSON.stringify(allLanguages[i]) + "'>" + allLanguages[i].name + "</option>"
         )
 }
 
 function generatePublisherSelect(allPublishers) {
     for (var i = 0; i < allPublishers.length; i++)
         $('#publisherId').append(
-            "<option value= " + JSON.stringify(allPublishers[i]) + ">" + allPublishers[i].name + "</option>"
+            "<option value= '" + JSON.stringify(allPublishers[i]) + "'>" + allPublishers[i].name + "</option>"
         )
 }
 
