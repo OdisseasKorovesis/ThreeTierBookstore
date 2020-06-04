@@ -35,17 +35,21 @@ public class OrderServiceImpl implements IOrderService {
         Date currentDate = new Date();
         order.setOrderDate(currentDate);
         repositoryOrders.save(order);
+        moveBasketItemsToOrderItems(order);
 
+    }
+
+    private void moveBasketItemsToOrderItems(Order order) {
         List<BasketItem> userBasketItems = repositoryBasketItems.findBasketItemsByUserId(order.getUserId().getId());
 
-        for (BasketItem basketItem : userBasketItems) {
+        userBasketItems.forEach((basketItem) -> {
             OrderItem orderItem = new OrderItem();
             orderItem.setBookId(basketItem.getBook());
             orderItem.setQuantity(basketItem.getQuantity());
             orderItem.setOrderId(order);
             repositoryOrderItems.save(orderItem);
             repositoryBasketItems.delete(basketItem);
-        }
+        });
 
     }
 
