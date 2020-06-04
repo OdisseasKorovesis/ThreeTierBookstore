@@ -1,6 +1,7 @@
 package com.project.bookstore.controller;
 
-import com.project.bookstore.models.BasketItem;
+import com.project.bookstore.models.Basket;
+import com.project.bookstore.models.Wishlist;
 import com.project.bookstore.models.WishlistItem;
 import com.project.bookstore.service.WishlistServiceImpl;
 import java.util.List;
@@ -74,5 +75,22 @@ public class WishlistController {
         }
         wishlistService.deleteWishlistItemById(wishlistItemId);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * GET /wishlist:userId : Get wishlist id of user.
+     *
+     * @param userId the id of the user whose basket id to retrieve.
+     * @return the ResponseEntity with status 200 (OK) and the wishlist of the
+     * user in the body, or with status 204 (NO CONTENT) if there is no wishlist
+     * for this user in the database.
+     */
+    @GetMapping("/wishlist/{userId}")
+    public ResponseEntity<Wishlist> getUserWishlistId(@PathVariable("userId") int userId) {
+        Wishlist wishlist = wishlistService.findWishlistWithUserId(userId);
+        if (wishlist == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(wishlist, HttpStatus.OK);
     }
 }

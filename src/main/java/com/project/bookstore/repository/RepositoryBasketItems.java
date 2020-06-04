@@ -33,6 +33,7 @@ public interface RepositoryBasketItems extends CrudRepository<BasketItem, Intege
 
     @Query(value = "SELECT sum(books.price*basket_items.quantity)/100 FROM basket_items,books "
             + "WHERE books.id=basket_items.book_id "
-            + "GROUP BY basket_id", nativeQuery = true)
-    double computeTotaPrice(int userId);
+            + "GROUP BY basket_id "
+            + "HAVING basket_id = ?1", nativeQuery = true)
+    double computeTotaPrice(int basketId);
 }

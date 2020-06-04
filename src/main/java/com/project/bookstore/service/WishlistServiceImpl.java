@@ -1,5 +1,7 @@
 package com.project.bookstore.service;
 
+import com.project.bookstore.models.Basket;
+import com.project.bookstore.models.Wishlist;
 import com.project.bookstore.models.WishlistItem;
 import com.project.bookstore.repository.RepositoryWishlistItems;
 import com.project.bookstore.repository.RepositoryWishlists;
@@ -44,6 +46,11 @@ public class WishlistServiceImpl implements IWishlistService {
     @Override
     public WishlistItem findWishlistItemById(int wishlistItemId) {
         return repositoryWishlistItems.findWishlistItemById(wishlistItemId);
+    }
+
+    @Override
+    public Wishlist findWishlistWithUserId(int userId) {
+        return repositoryWishlists.findWishlistWithUserId(userId);
     }
 
 }
