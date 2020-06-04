@@ -29,7 +29,6 @@ public class Order implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Basic(optional = false)
     @Column(name = "order_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date orderDate;
