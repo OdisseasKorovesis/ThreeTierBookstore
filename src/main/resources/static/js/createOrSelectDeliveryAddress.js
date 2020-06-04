@@ -107,7 +107,7 @@ $(document).ready(function () {
             dataType: "json",
             contentType: "application/json;",
             statusCode: {
-                200: function () {
+                200: function (data) {
                     window.location.href = data.responseText;
                 }
             }
