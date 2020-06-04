@@ -27,7 +27,7 @@ $(document).ready(function () {
             format: 'json'
         },
         error: function () {
-            alert("Could not find books of this genre!");
+            alert("Something went wrong!");
         },
         success: function (data) {
             user = data;
@@ -46,7 +46,7 @@ $(document).ready(function () {
             format: 'json'
         },
         error: function () {
-            alert("Could not find books of this genre!");
+            alert("Something went wrong!");
         },
         success: function (data) {
             

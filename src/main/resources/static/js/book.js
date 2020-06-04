@@ -143,7 +143,7 @@ var wishlistId;
 $(document).ready(function () {    
     $.ajax({
         async: false,
-        url: "tier3/wishlistItems/" + user.id,
+        url: "tier3/wishlist/" + user.id,
         data: {
             format: 'json'
         },
@@ -151,7 +151,7 @@ $(document).ready(function () {
             alert("Something went wrong");
         },
         success: function (data) {
-            wishlistId = data[0].wishlistId.id
+            wishlistId = data.id
             console.log(basketId);
             console.log(data);
             
