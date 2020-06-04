@@ -48,15 +48,18 @@ $(document).ready(function createAuthorSelect() {
         },
         success: function (data) {
             userAddresses = data;
+            console.log(data);
+            console.log(userAddresses)
             generateAddressSelect(userAddresses);
         }
     });
 });
 
 function generateAddressSelect(userAddresses) {
+
     for (var i = 0; i < userAddresses.length; i++) {
 
-        var userAddresses = [(userAddresses[i])];
+        //var userAddress = [(userAddresses[i])];
         $('#addressSelect').append(
             "<option value= '" + JSON.stringify(userAddresses[i]) + "'>"
             + userAddresses[i].firstName + ", " + userAddresses[i].lastName + ", "
@@ -65,7 +68,7 @@ function generateAddressSelect(userAddresses) {
             + userAddresses[i].country + ", " + userAddresses[i].phoneNumber
             + "</option>");
         userAddresses[i].userId = { id: user.id };
-        console.log(userAddresses[i]);
+
 
     }
 
@@ -73,7 +76,7 @@ function generateAddressSelect(userAddresses) {
 }
 
 $(document).ready(function () {
-    
+
     //process if user creates a new address
     $('#addressForm').on('submit', function (event) {
         event.preventDefault();
@@ -94,9 +97,10 @@ $(document).ready(function () {
             statusCode: {
                 201: function (data) {
                     console.log("Delivery address added successfully");
-                    console.log(data);
+
                     formData.id = data.id;
-                    sessionStorage.setItem("orderAddress", formData);
+                    console.log(formData)
+                    sessionStorage.setItem("orderAddress", JSON.stringify(formData));
                 }
             }
         });
@@ -112,7 +116,7 @@ $(document).ready(function () {
                     window.location.href = data.responseText;
                 }
             }
-        });        
+        });
     });
 
     //process if user selects already existing addres 
@@ -128,15 +132,15 @@ $(document).ready(function () {
             data: JSON.stringify(id),
             dataType: "json",
             contentType: "application/json;",
-            success: function(data) {
+            success: function (data) {
                 console.log(data);
-            }, 
+            },
             statusCode: {
                 200: function (data) {
                     window.location.href = data.responseText;
                 }
             }
-        });        
+        });
     })
 
 

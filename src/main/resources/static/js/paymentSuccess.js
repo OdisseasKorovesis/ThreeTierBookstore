@@ -36,15 +36,15 @@ $(document).ready(function () {
     });
 });
 
-$(document).ready(function() {
-    
-    orderAddress = JSON.parse(sessionStorage.getItem("orderAddress"));    
-    addressId = orderAddress.id;    
+$(document).ready(function () {
+    console.log(sessionStorage.getItem("orderAddress"));
+    orderAddress = JSON.parse(sessionStorage.getItem("orderAddress"));
+    addressId = orderAddress.id;
     var jsonData = {};
-    jsonData.deliveryAddressId = {id: addressId};
-    jsonData.statusId = {id: 2};
-    jsonData.userId = {id: user.id};
-    console.log(JSON.stringify(jsonData));    
+    jsonData.deliveryAddressId = { id: addressId };
+    jsonData.statusId = { id: 2 };
+    jsonData.userId = { id: user.id };
+    console.log(JSON.stringify(jsonData));
     $.ajax({
         type: "POST",
         url: "/tier3/order",
@@ -52,15 +52,16 @@ $(document).ready(function() {
         dataType: "json",
         contentType: "application/json; charset=utf-8",
         statusCode: {
-            201: function() {
+            201: function () {
                 console.log("order completed successfully")
-            }            
+            }
         },
-        error: { function() {
-            alert('Something went wrong, please try again!');
+        error: {
+            function() {
+                alert('Something went wrong, please try again!');
+            }
+
         }
-            
-        } 
     });
 })
 
