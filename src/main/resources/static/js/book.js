@@ -122,15 +122,15 @@ $(document).ready(function () {
     var booksInBasket;
     $.ajax({
         async: false,
-        url: "tier3/basketItems/" + user.id,
+        url: "tier3/basket/" + user.id,
         data: {
             format: 'json'
         },
         error: function () {
-            alert("Could not find books of this genre!");
+            alert("Something went wrong!");
         },
         success: function (data) {
-            basketId = data[0].basketId.id
+            basketId = data.id
             console.log(basketId);
             console.log(data);
             
@@ -148,7 +148,7 @@ $(document).ready(function () {
             format: 'json'
         },
         error: function () {
-            alert("Could not find books of this genre!");
+            alert("Something went wrong");
         },
         success: function (data) {
             wishlistId = data[0].wishlistId.id
