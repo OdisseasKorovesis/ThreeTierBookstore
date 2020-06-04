@@ -4,6 +4,7 @@ import com.project.bookstore.models.DeliveryAddress;
 import com.project.bookstore.service.DeliveryAddressServiceImpl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
 @RequestMapping("/tier3")
@@ -42,17 +44,18 @@ public class DeliveryAddressController {
      * POST /deliveryAddress : Create a new deliveryAddress for user.
      *
      * @param deliveryAddress the delivery address to create
-     * @return the ResponseEntity with status 201 (Created), or with status 409
-     * (Conflict) if the delivery address already exists.
+     * @return the ResponseEntity with status 201 (Created) and with body the
+     * newly created delivery address, or with status 409 (Conflict) if the
+     * delivery address already exists.
      */
     @PostMapping(value = "/deliveryAddress", consumes = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<String> createDeliveryAddress(@RequestBody DeliveryAddress deliveryAddress) {
+    public ResponseEntity<DeliveryAddress> createDeliveryAddress(@RequestBody DeliveryAddress deliveryAddress) {
 
         if (deliveryAddressService.isDeliveryAddressExist(deliveryAddress)) {
             return new ResponseEntity(HttpStatus.CONFLICT);
         }
         deliveryAddressService.saveDeliveryAddress(deliveryAddress);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(deliveryAddress, HttpStatus.CREATED);
     }
 }
