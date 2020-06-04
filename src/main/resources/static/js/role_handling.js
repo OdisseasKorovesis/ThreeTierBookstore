@@ -5,7 +5,7 @@ $(document).ready(function() {
             format: 'json'
         },
         error: function () {
-            alert("Could not find any books!");
+            alert("Something went wrong!");
         },
         success: function (data) {
             if(data === 'anonymousUser'){
