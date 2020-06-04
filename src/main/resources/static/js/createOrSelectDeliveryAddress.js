@@ -95,7 +95,7 @@ $(document).ready(function () {
                 201: function (data) {
                     console.log("Delivery address added successfully");
                     console.log(data);
-                    formData.id = data;
+                    formData.id = data.id;
                     sessionStorage.setItem("orderAddress", formData);
                 }
             }
